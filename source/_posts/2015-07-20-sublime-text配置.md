@@ -1,10 +1,10 @@
 title: sublime-text配置
 date: 2015-07-20 11:36:54
-tags:
+tags: sublime
 ---
 
-
-我的sublime配置：
+sublime是一个超级好用的编辑器, 可以根据个人喜好来配置,因此要找到一个自己用起来顺手的配置,也是不太容易, 下面我的sublime配置：
+<!--more-->
 
 
 ```json
