@@ -71,7 +71,7 @@ theme: landscape
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:focus-lingfeng/focus-lingfeng.github.io.git
+  repo: git@github.com:lgfng/lgfng.github.com.git
   branch: master
   message: "lenggaofeng update blog: {{ now('YYYY-MM-DD HH:mm:ss') }}"
 
