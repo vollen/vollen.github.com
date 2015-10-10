@@ -3,9 +3,9 @@ date: 2015-07-28 15:13:59
 tags: [linux, kill, 信号] 
 ---
 
-#关于linux命令发送的信号,以及信号监听处理
+# 关于linux命令发送的信号,以及信号监听处理
 
-##linux kill 信号列表
+## linux kill 信号列表
 在shell中通过使用 kill -l 来查看kill命令能发送的信号列表
 
 <!--more-->
@@ -158,7 +158,7 @@ tags: [linux, kill, 信号]
 SIGSTOP 和 SIGCONT 用来暂停和继续目标进程.
 SIGABRT,SIGALRM,SIGFPE,SIGPIPE,SIGINT,SIGHUP,SIGILL,SIGQUIT,SIGSEGV,SIGTERM,SIGUSR1,SIGUSR2这12种信号，如果在进程中没有对其进行捕获处理的话，进程在收到它们时，会终止，当然还有不可捕获的SIGKILL。
 
-##信号的捕获与处理
+## 信号的捕获与处理
 在进程中需要等待某个信号时,可以用pause()函数,在pause调用前,一定要有对目标信号的捕获机制,这样在收到目标信号后,程序会继续运行,捕获信号最简单的是signal函数:
 
 ```c
@@ -209,7 +209,7 @@ int sigaction(int signum, const struct sigaction *act,struct sigaction *oldact);
 具体测试代码,见以上被注释部分, 运行效果完全一样.
 
 
-##参考链接
+## 参考链接
 1. [linux kill信号列表](http://www.2cto.com/os/201202/119425.html)
 2. [linux 捕获kill命令的信号](http://blog.sina.com.cn/s/blog_72e502400100qlx9.html)
 
