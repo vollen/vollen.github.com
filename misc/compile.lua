@@ -27,11 +27,8 @@ function compile(code)
         if is_code then
             table.insert(codes,v)
         else
-            local f,err=loadstring(v)
-            if f==nil then
-                f,err=loadstring("return "..v)
-            end
- 
+            local f,err=loadstring("return " .. v)
+
             local n,value=result(setfenv(assert(f,err),E)())
             if n>0 then
                 local t=type(value)
@@ -39,7 +36,7 @@ function compile(code)
                 if t=="nil" or t=="number" or t=="boolean" then
                     table.insert(codes,tostring(value))
                 elseif t=="string" then
-                    table.insert(codes,"[=["..value.."]=]")
+                    table.insert(codes, value)
                 else
                     local n=args_cache[value]
                     if not n then

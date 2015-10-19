@@ -430,7 +430,7 @@ void	Matrix4x3::setupScaleAlongAxis(const Vector3 &axis, float k) {
 
 	m11 = ax*axis.x + 1.0f;
 	m22 = ay*axis.y + 1.0f;
-	m32 = az*axis.z + 1.0f;
+	m33 = az*axis.z + 1.0f;
 
 	m12 = m21 = ax*axis.y;
 	m13 = m31 = ax*axis.z;

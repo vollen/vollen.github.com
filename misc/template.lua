@@ -1,4 +1,4 @@
-local root = "/home/leng/git/blog/lua"
+local root = "/home/leng/git/blog/code"
 package.path = package.path .. ";"  .. root.. "/misc/?.lua" 
 require "misc"
 require "compile"

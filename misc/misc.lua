@@ -27,3 +27,16 @@ end
 function sin(angle)
     return math.sin(toR(angle))
 end
+
+
+function onPanel(p, n, d)
+    local offset = dot3(p, n) - d
+    print("onPanel==", offset)
+    return math.abs(offset) < 2
+end
+
+function onBall(p, c, r)
+    local d = vec3.distance(p, c)
+    return math.abs(d - r) < 0.1
+end
+
