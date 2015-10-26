@@ -1,3 +1,22 @@
 title: python_入门
 tags:
 ---
+
+偶尔有接触到python的地方,这里记一下,方便之后温习.
+
+
+# 字符串
+惯例先上大神链接[python字符串操作](http://www.cnblogs.com/huangcong/archive/2011/08/29/2158268.html)
+
+## 字符串查找
+    str1 = "1234"
+    str2 = "23"
+    print str1.index(srt2)
+
+## 字符串切割
+    str = "134325435"
+    print str [0 : 4]   #从0 到 4
+    print str [2 : ]    #从 2 到 结尾
+    print str [ : 3]    #从 开头到 3
+
+

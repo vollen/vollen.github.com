@@ -38,6 +38,8 @@ tags: [word]
 # b
 # c
 * curves    曲线
+* coincident    重合的
+
 
 # d
 * determinant   行列式   
@@ -61,12 +63,19 @@ tags: [word]
 # q
 # r
 # s
+* shrink    收缩
+
 # t
-*transpose 转置
+* transpose 转置
+* tolerance     公差
 
 # u
 # v
+* vertex    顶点
+
 # w
+* weld  焊接
+
 # x
 # y
 # z
