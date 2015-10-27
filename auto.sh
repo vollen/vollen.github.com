@@ -5,9 +5,9 @@ hexo g
 hexo d
 
 #同步git
-git add .
+git add --all .
 #提交本地
-git commit -a -m "update"
+git commit -m "update"
 #拉取远程更新
 git pull
 #推送到远程
