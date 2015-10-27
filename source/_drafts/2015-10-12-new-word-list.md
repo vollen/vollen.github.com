@@ -36,9 +36,12 @@ tags: [word]
 
 # a
 # b
+* bail      保释
+
 # c
 * curves    曲线
 * coincident    重合的
+* complicate    变复杂
 
 
 # d
@@ -46,9 +49,13 @@ tags: [word]
 
 # e
 # f
+* fixup     修正
+
 # g
 # h
 # i
+* investigate   研究
+
 # j
 # k
 # l
@@ -62,6 +69,8 @@ tags: [word]
 # p
 # q
 # r
+* radically     根本上
+
 # s
 * shrink    收缩
 
