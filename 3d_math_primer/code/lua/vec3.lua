@@ -8,9 +8,9 @@ function vec3.new(x, y, z)
 end
 
 function vec3.init(self, x, y, z)
-    self[1] = x
-    self[2] = y
-    self[3] = z
+    self[1] = x or 0
+    self[2] = y or 0
+    self[3] = z or 0
 end
 
 --输出
