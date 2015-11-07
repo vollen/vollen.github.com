@@ -1,19 +1,21 @@
 -----------------------------------------------
--- [FILE] MainLandMapAI.lua
--- [DATE] 2015-07-15
+-- [FILE] ExamMapAI.lua
+-- [DATE] 2015-11-07
 -- [CODE] BY ghgame
 -- [MARK] NONE
 -----------------------------------------------
 
-module("MainLandMapAI", package.seeall)
-defclass("MainLandMapAI", MainLandMapAI, SafeMapAI)
+module("ExamMapAI", package.seeall)
+defclass("ExamMapAI", ExamMapAI, SafeMapAI)
+
 
 function init(self, cfg)
 	super.init(self, cfg)
 end
 
+
 function onInit (self)
 	super.onInit(self)
 
-	MainCtl:init()
+	-- 
 end

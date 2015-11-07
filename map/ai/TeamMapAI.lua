@@ -46,7 +46,7 @@ end
 
 function addBattPlayer(self, msg, class)
     local role = super.addBattPlayer(self, msg, class)
-    if role.attr.hp == 0 then
+    if role and role.attr.hp == 0 then
         role:die(1)
     end
 
@@ -95,7 +95,7 @@ function onHeroDieAll(self)
     local group = Role.hero and Role.hero.group
     for id, role in pairs(Role.roles) do
         if not group or role.group == group then
-            Map:setFollow(role, nil, nil)
+            Map:setFollow(role)
         end
     end
 
@@ -151,8 +151,7 @@ function onPause(self)
     dlg:showBtnClose(function() dlg:hide() end)
     dlg:showBtnL("取消", function() dlg:hide() end)
     dlg:showBtnR("退出", function()
-        Map:leave(MAP_LEAVE_GIVEUP)
-        Game:gotoMain()
+        Game:gotoMain(MAP_LEAVE_GIVEUP)
         dlg:hide()
     end)
 

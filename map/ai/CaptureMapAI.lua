@@ -42,7 +42,7 @@ function onQuiz (self)
     local num = math.random(0, #list)
     local id = list[math.ceil(num)]
     id = id or list[1]
-	Puzzle:show(id, PuzzleResultForNet)
+	Puzzle:show(id, PuzzleResultForNet, 3)
 end
 
 function onQuizEnd (self, result)
@@ -61,8 +61,7 @@ function onFinish (self)
 
     local func = function()
         if Map.lastMainMapId then
-            Map:leave(MAP_LEAVE_TOMAIN)
-            Map:enter(Map.lastMainMapId, 0)
+            Map:enter(Map.lastMainMapId, 0, nil, nil, MAP_LEAVE_TOMAIN)
         else
             Game:gotoMain()
         end

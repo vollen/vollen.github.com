@@ -97,6 +97,37 @@ function onStart(self)
     super.onStart(self)
 end
 
+function finish(self, result, reason)
+    super.finish(self)
+    self.result = result
+    self.failResean = reason or 0
+
+    if self.result == 1 then
+        local func = function()
+            Msg:send(VENTURE_TARGET, {id = TARGET_HP, curNum = Role.hero.attr.hp/Role.hero.attr.hpFull*100})
+            Msg:send(VENTURE_TARGET, {id = TARGET_TIME, curNum = self.ventureCfg.duration - self.time})
+            for i = 2, 3 do
+                if VentureModule.targetList[i].state then
+                    self.star = self.star + 1
+                end
+            end
+            local p = Net.venture_success_c2s()
+            p.star = self.star
+            p.time_cost = math.ceil(self.ventureCfg.duration - self.time)
+            if VentureModule.getClue then
+                p.got_clue = 1
+            else
+                p.got_clue = 0
+            end
+            Net:sync(p)
+        end
+        self:showSuccessEff(func)
+    else
+        local p = Net.venture_fail_c2s()
+        p.reason = self.failResean
+        Net:sync(p)
+    end
+end
 
 function onFinish(self)
     if self.failResean == 2 then
@@ -133,10 +164,11 @@ end
 
 function onPause(self)
     BasePausePanel:show()
+    BasePausePanel:pauseGame()
     BasePausePanel:addResumeBtn()
     BasePausePanel:addBtn("重新开始", function() Guide:event(GUIDE_CLICK_BTN, 82030102); self:againHandler() end)
     BasePausePanel:addBtn("重选关卡", function() Guide:event(GUIDE_CLICK_BTN, 82030103); self:selectHandler() end)
-    BasePausePanel:addBtn("返回主城", function() Guide:event(GUIDE_CLICK_BTN, 82030104); Game:gotoMain() end)
+    BasePausePanel:addBtn("返回主城", function() Guide:event(GUIDE_CLICK_BTN, 82030104); Game:gotoMain(MAP_LEAVE_GIVEUP) end)
 end
 
 function onMsg(self, msgId, data)
@@ -151,41 +183,9 @@ function onMsg(self, msgId, data)
     end
 end
 
-function finish(self, result, reason)
-    super.finish(self)
-    self.result = result
-    self.failResean = reason or 0
-
-    if self.result == 1 then
-        local func = function()
-            Msg:send(VENTURE_TARGET, {id = TARGET_HP, curNum = Role.hero.attr.hp/Role.hero.attr.hpFull*100})
-            Msg:send(VENTURE_TARGET, {id = TARGET_TIME, curNum = self.ventureCfg.duration - self.time})
-            for i = 2, 3 do
-                if VentureModule.targetList[i].state then
-                    self.star = self.star + 1
-                end
-            end
-            local p = Net.venture_success_c2s()
-            p.star = self.star
-            p.time_cost = math.ceil(self.ventureCfg.duration - self.time)
-            if VentureModule.getClue then
-                p.got_clue = 1
-            else
-                p.got_clue = 0
-            end
-            Net:sync(p)
-        end
-        self:showSuccessEff(func)
-    else
-        local p = Net.venture_fail_c2s()
-        p.reason = self.failResean
-        Net:sync(p)
-    end
-end
-
 function addHero(self, msg, class)
     local hero = super.addHero(self, msg, class)
-    if VentureModule.heroHp then
+    if hero and VentureModule.heroHp then
         hero:setHp(VentureModule.heroHp)
     end
     return hero

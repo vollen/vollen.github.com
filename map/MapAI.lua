@@ -16,6 +16,7 @@ function init(self, cfg)
 
     --是否是同步地图
     self.isSyncMap = (self.cfg.type ~= 3)
+    self.isEntered = false
 
     self.monNum = 0
     self.flagNum = 0
@@ -29,17 +30,11 @@ function init(self, cfg)
     self.addTransTime = 0
     self.lastTime = 0
 
-    self.msgFlag        = false
-    self.msgMons        = nil
-    self.msgHero        = nil
-    self.msgSafePlayer  = nil
-    self.msgBattPlayer  = nil
-
     self:enter()
 end
 
 function clear(self)
-    self.msgFlag        = false
+    self.isEntered = false
 end
 
 function update(self, dt)
@@ -51,12 +46,10 @@ function update(self, dt)
         self:onUnit()
     elseif self.state == MAP_ST_MONS then
         self:onMons()
-    elseif self.state == MAP_ST_HERO then
-        self:onHero()
     elseif self.state == MAP_ST_GAME then
         self:onStart()
     elseif self.state == MAP_ST_WAIT then
-        if self.msgFlag then
+        if self.isEntered then
             self.state = MAP_ST_INIT
         end
     end
@@ -80,34 +73,8 @@ function onUnit(self)
 end
 
 function onMons(self)
-    self.state = MAP_ST_HERO
-
-    if self.msgMons then
-        for i,v in ipairs(self.msgMons) do
-            v.ignoreBorn = true
-            self:addMon(v)
-        end
-    end
-
-    if self.msgSafePlayer then
-        for i,v in ipairs(self.msgSafePlayer) do
-            self:addSafePlayer(v)
-        end
-    end
-
-    if self.msgBattPlayer then
-        for i,v in ipairs(self.msgBattPlayer) do
-            self:addBattPlayer(v)
-        end
-    end
-end
-
-function onHero(self)
     self.state = MAP_ST_GAME
 
-    if self.msgHero then
-        self:addHero(self.msgHero)
-    end
 end
 
 function onLoop(self, dt)
@@ -159,7 +126,7 @@ function onPause(self)
     self.ui:hideCountDown()
     BasePausePanel:show()
     BasePausePanel:addResumeBtn()
-    BasePausePanel:addBtn("返回主城", Game.gotoMain, Game)
+    BasePausePanel:addBtn("返回主城", Game.gotoMain, Game, 0, MAP_LEAVE_GIVEUP)
 end
 
 function onResume(self)
@@ -170,6 +137,7 @@ function enter(self)
     local p = Net.map_enter_c2s()
     p.mapid = Map.id
     p.inst  = Map.inst
+    p.reason = Map.reason
     Net:send(p)
 end
 
@@ -182,14 +150,17 @@ function onEnterSafe(self, msg)
     --uint32:	msg.status_data	[状态额外数据]	[loop]
     --p_safeplayer:	msg.players	[附近的玩家列表]	[loop]
 
-    self.msgSafePlayer  = msg.players
-    self.msgHero        = msg
-    self.msgHero.sync   = ROLE_SYNC_SEND
-    self.msgHero.quad   = true--发送格子信息
-
     Map.inst = msg.inst
-
-    self.msgFlag = true
+    
+    for i,v in ipairs(msg.players) do
+        self:addSafePlayer(v)
+    end
+    
+    msg.sync   = ROLE_SYNC_SEND
+    msg.quad   = true--发送格子信息
+    self:addHero(msg)
+    
+    self.isEntered = true
 end
 
 function onEnterBatt(self, msg)
@@ -203,13 +174,20 @@ function onEnterBatt(self, msg)
     --p_battplayer:	msg.players	[玩家列表]	[loop]
     --p_mon:	msg.mons	[怪物列表]	[loop]
     --p_unit:	msg.units	[机关列表]	[loop]
-
-    self.msgBattPlayer  = msg.players
-    self.msgMons        = msg.mons
-    self.msgHero        = msg
-    self.msgHero.sync   = ROLE_SYNC_SEND
-
-    self.msgFlag = true
+    
+    for i,v in ipairs(msg.mons) do
+        v.ignoreBorn = true
+        self:addMon(v)
+    end
+    
+    for i,v in ipairs(msg.players) do
+        self:addBattPlayer(v)
+    end
+    
+    msg.sync = ROLE_SYNC_SEND
+    self:addHero(msg)
+    
+    self.isEntered = true
 end
 
 function onEnterVenture(self, msg)
@@ -218,10 +196,10 @@ function onEnterVenture(self, msg)
         local transIn = self.cfg.mapdata.transInList[1]
         x, y = transIn.x, transIn.y
     end
-    self.msgHero = {x = x, y = y, career = VentureModule.heroCareer}
-    self.msgHero.sync   = ROLE_SYNC_NONE
 
-    self.msgFlag = true
+    self:addHero({x = x, y = y, career = VentureModule.heroCareer, sync = ROLE_SYNC_NONE})
+    
+    self.isEntered = true
 end
 
 function onFigureChange(self, msg)
@@ -247,9 +225,9 @@ function onSetStatus (self, id, status, data)
     local role = Role:get(id)
     if role then
         if status == 0 then
-
+            role:addFxStatus()
         elseif status == 1 then
-
+            role:addFxStatus("effect/zhandouzhong")
         end
     end
 end
@@ -355,7 +333,7 @@ function addHero(self, msg, class)
     Role.hero:setSync(msg.sync or sync, msg.quad or quad)
     Role.hero:setXY(msg.x or x, msg.y or y)
     Role.hero:setZ(-200)
-    Map:setFollow(Role.hero, winSize.width/2, winSize.height/3)
+    Map:setFollow(Role.hero)
 
     local pet = PetModule:getPetByCareer(career)
     if pet then
@@ -372,8 +350,9 @@ end
 
 function addSafePlayer(self, msg, class)
 	if SettingsModule:hidePlayer() then
-		return
+		return nil
 	end
+    
     class = class or Hero
 
     local x,y
@@ -411,6 +390,7 @@ function addSafePlayer(self, msg, class)
 end
 
 function addBattPlayer(self, msg, class)
+
     class = class or Hero
     local x,y
     local role = Role:get(msg.player_id)
@@ -436,8 +416,9 @@ function addBattPlayer(self, msg, class)
         }
         self.pvpList[msg.player_id] = info
     end
-    
+
     if msg.hero_attr_list then
+        info.heroList = {}
         for i,v in ipairs(msg.hero_attr_list) do
             local attr = AttrVo:new()
             attr.hp = v.hp
@@ -451,18 +432,31 @@ function addBattPlayer(self, msg, class)
             info.heroList[v.career] = {attr = attr}
         end
     end
-    
+
     if msg.hero_show_list then
         for i,v in ipairs(msg.hero_show_list) do
            info.showList[v.career] = v
         end
     end
 
-    info.career = msg.career or info.orderList[1]
+    if msg.career then
+        info.career = msg.career
+    else
+        for i,c in ipairs(info.orderList) do
+            if info.heroList[c] then
+                info.career = c
+                break
+            end
+        end
+    end
+    
     info.show = info.showList[info.career]
     info.attr = FightUtil:getFightAttr(info.career, info.heroList, info.orderList)
+    if not info.attr then
+        return nil
+    end
     info.hp  = info.attr.hp
-    
+
     role = class:new(info)
     role:setSync(ROLE_SYNC_RECV)
     role:setXY(msg.x or x, msg.y or y)

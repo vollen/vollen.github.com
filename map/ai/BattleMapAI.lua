@@ -48,6 +48,5 @@ function addHero(self, msg, class)
         end
     end
 
-    local hero = super.addHero(self, msg, class)
-    return hero
+    return super.addHero(self, msg, class)
 end

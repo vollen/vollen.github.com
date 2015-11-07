@@ -15,19 +15,20 @@ function onInit(self)
     Touch:setCtlId(1001)
 
     CaptureModule:checkResult()
+
+    self:addNpc()
 end
 
 function addHero(self, msg)
-    self:addNpc()
-
     local hero = super.addHero(self, msg, HeroForSafeMap)
+    if not hero then return end
     hero.hpBar:setVisible(false)
     --设置初始位置
     local pos = Map.lastPosList[Map.id]
     if pos then
         hero:setXY(pos.x, pos.y)
         hero:netSyncStand()
-        Map:setFollow(hero, winSize.width/2, winSize.height/3)
+        Map:setFollow(hero)
     end
 
     --设置跟随队长

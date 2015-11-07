@@ -8,7 +8,7 @@
 module("Map", package.seeall)
 defclass("Map", Map)
 
-function enter(self, mapid, inst, params, forceEnter)
+function enter(self, mapid, inst, params, forceEnter, reason)
     if self.lastPosList == nil then
         self.lastPosList = {}
     end
@@ -19,6 +19,7 @@ function enter(self, mapid, inst, params, forceEnter)
 
     self.tempId     = mapid
     self.tempInst   = inst
+    self.tempReason  = reason or self.enterReason or 0
     self.isForceEnter = forceEnter
 
     if forceEnter then
@@ -43,7 +44,7 @@ function doEnter(self)
 
     if self.id then
         local cfg = SysMap:get(self.id)
-        if cfg and cfg.type == 1 then
+        if cfg and cfg.type == 1 and Role.hero then
             local tab = {}
             tab.inst = self.inst
             tab.x = Role.hero.x
@@ -55,6 +56,8 @@ function doEnter(self)
 
     self.id     = self.tempId
     self.inst   = self.tempInst
+    self.reason = self.tempReason
+    self.enterReason = nil --不同于tempReason和reason 此变量用于进入原因得到的时机早于enter的时机时的一个临时变量
     self.cfg    = SysMap:get(self.id)
     if self.inst == 0 and self.cfg.type == 1 and self.lastPosList[self.id] then
         self.inst = self.lastPosList[self.id].inst
@@ -118,6 +121,13 @@ function initData(self)
 
     self.viewW  = visibleOrigin.x + visibleSize.width
     self.viewH  = visibleOrigin.y + visibleSize.height
+    
+    local phys = SysMapPhysics:get(self.cfg.physics)
+    self.phyVg = phys.vg
+    self.phyKx = phys.kx
+    self.phyKy = phys.ky
+    self.phyCamX = winSize.width * phys.cam_x
+    self.phyCamY = winSize.height * phys.cam_y
 
     self.x = 0
     self.y = 0
@@ -280,8 +290,8 @@ end
 
 function setFollow(self, target, offsetX, offsetY, moveSmooth)
     self.followTarget = target
-    self.followOffsetX = offsetX or winSize.width/2
-    self.followOffsetY = offsetY or winSize.height/3
+    self.followOffsetX = offsetX or Map.phyCamX
+    self.followOffsetY = offsetY or Map.phyCamY
 
     if self.followTarget and not moveSmooth then
         local tarX, tarY
@@ -385,14 +395,13 @@ end
 --[[镜头移动]]
 --移动到目标点(到了会发送一个消息出去)
 function moveTo(self, desX, desY, time, func, camX, camY)
+    camX = camX or Map.phyCamX
+    camY = camY or Map.phyCamY
+    
     local node = cc.Node:create()
-    self.view:addChild(node)
-    if not camX or not camY then
-        camX, camY = self:getCameraOffset()
-    end
-
     node:setPosition(-self.x + camX / self.scale, -self.y + camY / self.scale)
-
+    self.view:addChild(node)
+    
     local onFinish = function ()
         self:setFollow(nil)
         Msg:send(MAP_MOVE_FINISH)
@@ -413,11 +422,6 @@ end
 
 --镜头回归(镜头移回主角)
 function moveBack(self)
-    local offsetX, offsetY = self:getCameraOffset()
-    self:setFollow(Role.hero, offsetX, offsetY, true)
+    self:setFollow(Role.hero, nil, nil, true)
 end
 
---返回镜头偏移
-function getCameraOffset(self)
-    return winSize.width/2, winSize.height/3
-end
