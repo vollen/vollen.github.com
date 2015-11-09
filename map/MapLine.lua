@@ -42,10 +42,11 @@ function item(data)
     end
 
     if data[3] then
-        tt = tt .. "{x1=" .. tostring(data[3].x1) .. ",x2=" .. tostring(data[3].x2) .. ",y=" .. tostring(data[3].y) .. "},"
+        -- tt = tt .. "[3] = {x1=" .. tostring(data[3].x1) .. ",x2=" .. tostring(data[3].x2) .. ",y=" .. tostring(data[3].y) .. "},"
+        tt = tt .. "[3] = {x1=" .. tostring(data[3].x1) .. ",x2=" .. tostring(data[3].x2) .. "},"
 
         if data[4] then
-            tt = tt .. "{op=" .. tostring(data[4].op)
+            tt = tt .. " [4] = {op=" .. tostring(data[4].op)
             if data[4].vx then
                 tt = tt .. ",vx=" .. tostring(math.floor(data[4].vx))
             end

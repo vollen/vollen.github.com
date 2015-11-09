@@ -1,355 +1,257 @@
 
+module("MapTerrain", package.seeall)
 
--- [[
--------------------------------------------------------------------
--- 初始化寻路数据
--------------------------------------------------------------------
-function initLineMap(self)
-    self.lineEnd = {}
-    self.lineMap = {}
-    for i,line in ipairs(self.lines) do
-        line.i = i
-        self:setLineEnd(line.x1, line.y1)
-        self:setLineEnd(line.x2, line.y2)
-    end
-    for i,line1 in ipairs(self.lines) do
-        self.lineMap[i] = {}
-        for j,line2 in ipairs(self.lines) do
-            self.lineMap[i][j] = self:setLineMap(line1, line2) 
-        end
-    end
 
-    printMapLine()
+function selectLine(self, _v1, _v2)
+    v1 = _v1
+    v2 = _v2
+    self.pMinX2     =   nil
+    self.pMaxX1     =   nil
+
+    self.pRelateX1    = nil
+    self.pRelateX2    = nil
+
+    self.hasInterX = false
+
+    self:getInterRangeW()
+    self:getInterRangeH()
+
+    --test
+    local action = self:canSlide()
+    action = action or self:canJump()
+    if action then
+        action.p = 100
+        return action
+    end
 end
 
-function setLineEnd(self, x, y)
-    --local key = x .. "_" .. y
-    --local n = self.lineEnd[key] or 0
-    --self.lineEnd[key] = n + 1
-
-    table.insert(self.lineEnd, {x, y})
-end
-
-function getLineEnd(self, x, y)
-    --local key = x .. "_" .. y
-    --return self.lineEnd[key] or 0
-    
-    local c = 0
-    for i,p in ipairs(self.lineEnd) do
-        if math.abs(p[1] - x) < 30 and math.abs(p[2] - y) < 30 then
-            c = c + 1
-        end
+function getInterRangeW(self)
+    if v1.x1 > v2.x1 then
+        self.pMaxX1 = {x = v1.x1, y = v1.y1, i = LINE_1}
+    else
+        self.pMaxX1 = {x = v2.x1, y = v2.y1, i = LINE_2}
     end
-    return c
+
+    if v1.x2 < v2.x2 then
+        self.pMinX2 = {x = v1.x2, y = v1.y2, i = LINE_1}
+    else
+        self.pMinX2 = {x = v2.x2, y = v2.y2, i = LINE_2}
+    end
+
+    --Y轴无交叉
+    if self.pMaxX1.x < self.pMinX2.x then
+        self.hasInterX = true
+    end
 end
 
---相连的
-function isConnected(self, v1, v2)
+function getInterRangeH(self)
+    if not self.hasInterX then return end
+    self.pRelateX1 = self:_getRelateInter(self.pMaxX1)
+    self.pRelateX2 = self:_getRelateInter(self.pMinX2)
+end
+
+function _getRelateInter(self, inter)
+    local line, index
+    if inter.i == LINE_1 then
+        line = v2
+        index = LINE_2
+    else
+        line = v1
+        index = LINE_1
+    end
+
+    local y = self:calcLineY(inter.x, line)
+    return {x = inter.x, y = y, i = index}
+end
+
+function canSlide(self)
     --相连接，直接走过去
     if v1.group == v2.group then
         if math.abs(v1.x1 - v2.x2) < 20 or math.abs(v1.x2 - v2.x1) < 10 then
             return {{x1 = v2.x1 + 5, x2 = v2.x2 - 5}, p = math.min(50, (v2.x2 - v2.x1)/2)}
         else
-            return nil
+            return
         end
     end
-end
 
-function isTooHigh(self, v1, v2)
-    --太高的平台不可到达
-    local y1 = (v1.y1 + v1.y2)/2
-    local y2 = (v2.y1 + v2.y2)/2
-    if y2 - y1 > sec_jump_max_y then
-        for i,ladder in ipairs(self.ladders) do
-            if y2 + 30 > ladder.bottom and 
-                y2 - 30 < ladder.top and
-                v2.x1 < ladder.right and
-                v2.x2 > ladder.left and
-                ladder.bottom - y1 < sec_jump_max_y - 10
-            then
-                local action = self:getLadderAction(ladder, v1)
-                if action then
-                    return action
+    if self.hasInterX then
+        if self:isHigher(self.pMaxX1, self.pRelateX1) then
+            local edge = self:checkFall(self.pMaxX1.x, self.pMaxX1.y, self.pRelateX1.y, true)
+            if not edge or edge < self.pMaxX1.x - fall_gap  then
+                local action = {}
+                action[1] = {x1 = self.pMaxX1.x - ten_add_fall_gap, x2 = self.pMaxX1.x - fall_gap}
+                if edge then
+                    action[3] = {x1 = edge + fall_gap, x2 = v2.x2}
                 end
-            end
-        end
-        return nil
-    end
-end
-
-function canPassL(self, v1, v2)
-    local minX = math.max(v1.x1 - sec_jump_max_x, 10)
-    for tx = v1.x1 - fall_gap, minX,  -10 do
-        local tline, ty = self:getDownLine(tx, v1.y1 + jump_max_y)
-        if tline == v2 then
-            return tx
-        end
-    end
-    
-    return false
-end
-
-function canPassR(self, v1, v2)
-    local maxX = math.min(v1.x2 + sec_jump_max_x, self.width - 10)
-    for tx = v1.x2+ fall_gap, maxX, 10 do
-        local tline, ty = self:getDownLine(tx, v1.y2  + jump_max_y)
-        if tline == v2 then
-            return tx
-        end
-    end
-
-    return false
-end
-
-function hasLadder(self, v1, v2)
-    for i,ladder in ipairs(self.ladders) do
-        if y1 + 30 > ladder.bottom and 
-            y1 - 30 < ladder.top and
-            v1.x1 < ladder.right and
-            v1.x2 > ladder.left and
-            v2.x1 < ladder.right and
-            v2.x2 > ladder.left and
-            ladder.bottom - y2 < sec_jump_max_y - 10
-        then
-            local action = self:getLadderAction(ladder, v1)
-            if action then
                 return action
             end
         end
-    end
-end
 
-function hasLadder2(self, v1, v2)
-    for i,ladder in ipairs(self.ladders) do
-        if y1 + 30 > ladder.bottom and 
-            y1 - 30 < ladder.top and
-            v1.x1 < ladder.right and
-            v1.x2 > ladder.left and
-            v2.x1 < ladder.right and
-            v2.x2 > ladder.left
-        then
-            local lx = (ladder.left + ladder.right)/2
-            local ly = (ladder.top + ladder.bottom)/2
-            local tline, ty = self:getDownLine(lx, ly)
-            if tline == v2 then
-                return {t = 2, {x1 = lx - 10, x2 = lx + 10}, {op = 2}, p = ly - y2}
+        if self:isHigher(self.pMinX2, self.pRelateX2) then
+            local edge = self:checkFall(self.pMinX2.x, self.pMinX2.y, self.pRelateX2.y, false)
+            local action = {}
+            action[1] = {x1 = self.pMinX2.x + fall_gap, x2 = self.pMinX2.x + ten_add_fall_gap}
+            if edge then
+                if edge <= self.pMinX2.x + fall_gap then
+                    return
+                end
+                action[3] = {x1 = v1.x1, x2 = edge - fall_gap}
             end
+            return action
         end
-    end
-end
 
-function setLineMap(self, v1, v2)
-    if v1 == v2 then
-        return nil
-    end
-
-    self:isConnected()
-    self:isTooHigh()
-    
-    local passL = false
-    local passR = false
-    if y1 - y2 > 20 then
-        passL = self:canPassL()
-        passR = self:canPassR()
-        if passL == false and passR == false then
-            self:hasLadder()            
-            return nil
-        end
-    end
-    
-    --上下是否有交叉
-    local x1 = math.max(v1.x1, v2.x1)
-    local x2 = math.min(v1.x2, v2.x2)
-    local sy, dy 
-    if x2 - x1 > -10 then
-        if y1 < y2 then
-        else
-            if passL and self:getLineEnd(math.max(v1.x1, 10), v1.y1) == 1 then
-                return {{x1 = v1.x1 - 30, x2 = v1.x1 - 10}, p = y1 - y2}
-            elseif passR and self:getLineEnd(math.min(v1.x2, self.width - 10), v1.y2) == 1 then
-                return {{x1 = v1.x2 + 10, x2 = v2.x2 + 30}, p = y1 - y2}
+        return
+    else
+        local dx, dy = self:getDiffXY(LINE_1, self.pMaxX1, self.pMinX2)
+        --从高处往下走
+        if dy < 0 and math.abs(dx) < self:getFallX(dy) then
+            local ps, pe = self.pMaxX1, self.pMinX2
+            local o1, o2  = fall_gap, ten_add_fall_gap
+            if dx > 0 then
+                ps, pe = pe, ps
             else
-                self:hasLadder2()
+                o1, o2 = -ten_add_fall_gap, -fall_gap
             end
-        end
-    end
 
-    return self:getLineAction(v1, v2, passL or passR)
+            local edge = self:checkFall(ps.x, ps.y, pe.y, dx < 0)
+
+            if edge then
+                if dx < 0 then
+                    if edge > pe.x then
+                        return nil
+                    end
+                else
+                    if edge < pe.x then
+                        return nil
+                    end
+                end
+            end
+            local action = {}
+            action[1] = {x1 = ps.x + o1, x2 = ps.x + o2}
+            return action
+        end
+
+        return
+    end
 end
 
 
-function getLadderAction(self, ladder, line)
-    local x1, x2, y1, y2, op, side
-    if line.x1 > ladder.right then
-        x1, y1 = line.x1, line.y1
-        x2, y2 = ladder.right, ladder.bottom
-        side = SIDE_LEFT
-    elseif line.x2 < ladder.left then
-        x1, y1 = line.x2, line.y2
-        x2, y2 = ladder.left, ladder.bottom
+
+module("MapTerrain", package.seeall)
+
+
+function canJump(self)
+    if self.hasInterX then
+        local dx, dy = self:getDiffXY(LINE_1, self.pMaxX1, self.pRelateX1)
+        local action = self:_getVerticalJump(dy)
+        if action then
+            return action
+        end
+
+        dx, dy = self:getDiffXY(LINE_1, self.pMinX2, self.pRelateX2)
+        action = self:_getVerticalJump(dy)
+        if action then
+            return action
+        end
+
+        return
     else
-        x1 = (ladder.left + ladder.right) / 2
-        y1 = self:_calcLineY(x1, line)
-        x2 = x1
-        y2 = ladder.bottom
-        side = SIDE_RIGHT
-
-        if y1 > y2 then
-            op = 2
-        end
-    end
-
-    return self:getAction(x1, x2, y1, y2, side, op)
-end
-
-function getLineAction(self, v1, v2, passX)
-    local x1, x2, y1, y2, side
-
-    if passX then
-        x2 = passX
-        y2 = self:_calcLineY(x2, v2)
-        if x2 > v1.x2 then
-            x1 = v1.x2
-            y1 = v1.y2
-        else
-            x1 = v1.x1
-            y1 = v1.y1
-        end
-    else
-        --往左走
-        if v1.x1 > v2. x2 then
-            x1, y1 = v1.x1, v1.y1
-            x2, y2 = v2.x2, v2.y2
-            side = SIDE_LEFT
-        --往右走
-        elseif v1.x2 < v2.x1 then
-            x1, y1 = v1.x2, v1.y2
-            x2, y2 = v2.x1, v2.y1 
-            side = SIDE_RIGHT
-        else
-            --找出更短的那根
-            local lv, sv = v1, v2
-            if v1.x2 - v1.x1 < v2.x2 - v2.x1 then
-                lv, sv = sv, lv
-            end
-
-            x1 = (sv.x1 + sv.x2) / 2
-            if x1 > lv.x1 and x1 < lv.x2 then
-            elseif sv.x1 > lv.x1 and sv.x1 < lv.x2 then
-                x1 = sv.x1
-            elseif sv.x2 > lv.x1 and sv.x2 < lv.x2 then
-                x1 = sv.x2
-            end
-
-            x2 = x1
-            y1 = self:_calcLineY(x1, v1)
-            y2 = self:_calcLineY(x1, v2)
-        end
-    end
-
-
-    --跳跃，检查上方障碍
-    local dx =  math.abs(x1 - x2)
-    if  y1 - y2 < 300 or dx > fall_max_x then
-        --检查跳跃最高点
-        local tline, ty = self:getDownLine((x1+ x2) / 2, y1 + jump_max_y)
-        if ty > y1 and tline ~= v2 then
-            return nil
-        end
-        --检查跳跃落点
-        local tline, ty = self:getDownLine(x2, y1 + 40)
-        if ty > y2 and tline ~= v2 then
-            return nil
-        end
-        --检查二段跳最高点
-        if dx > jump_max_x then
-            tline, ty = self:getDownLine((x1+ x2) / 2, y1 + sec_jump_max_y)
-            if ty > y2 and tline ~= v2 then
-                return nil
-            end
-        end
-    end
-
-    return self:getAction(x1, x2, y1, y2, side)
-end
-
-function getAction(self, x1, x2, y1, y2, side, op)
-    if y1 > y2 and self:getLineEnd(x1, y1) > 1 then
-        return nil
-    end
-
-    local dx = x2 -x1
-    local dy = y2 - y1
-    local vx = dx >= 0 and jump_vx or -jump_vx
-    local op = op or 1
-    local midx = (x1 + x2) / 2
-
-    local multiFlagX, multiFlagY
-    if dy > sec_jump_max_y then
-        return nil
-    elseif dy > jump_max_y then
-        multiFlagY = true
-    end
-
-    dx = math.abs(dx)
-    if dx > sec_jump_max_x then
-        return nil
-    elseif dx > jump_max_x then
-        vx = vx * dx / 2 / jump_max_x
-        multiFlagX = true
-    else
-        --可以直接掉下去
-        if dy < -300 then
-            if side == SIDE_LEFT then side = SIDE_RIGHT
-            elseif side == SIDE_RIGHT then side = SIDE_LEFT end
-            op = 0
-        end
-
-        vx = vx * dx / jump_max_x
-    end
-
-    --左右误差
-    local diffL, diffR = 10, 10
-    if side == SIDE_LEFT then
-        diffL = -5
-        diffR = 15
-    elseif side == SIDE_RIGHT then
-        diffL = 25
-        diffR = -5
-    end
-
-    local p = math.abs(dx) + math.max(dy, 0)
-    if multiFlagX or multiFlagY then
-        local y
-        if x1 == x2 then
-            y = (y1 + y2) / 2
-        end
-
-        return {{x1 = x1 - diffL, x2 = x1 + diffR}, {op = op, vx = vx, vy = jump_vy},
-        {x1 = midx - diffL, x2 = midx + diffR, y = y}, {op = op, vx = vx, vy = sec_jump_vy}, 
-        p = p}
-    else
-        if op == 0 then
-            return {{x1 = x2 - diffL, x2 = x2 + diffR}, p = p}
-        else
-            return {{x1 = x1 - diffL, x2 = x1 + diffR}, {op = op, vx = vx, vy = jump_vy}, p = p}
-        end
+        local dx, dy = self:getDiffXY(LINE_1, self.pMaxX1, self.pMinX2)
+        return self:_canJump(dx, dy)
     end
 end
 
-jump_vx = 400
-jump_vy = 700
-sec_jump_vy = 600
+function _canJump(self, dx, dy)
+    local multiX, multiY = false, false
 
-fall_max_x = 260
-sec_jump_max_x = 550
-sec_jump_max_y = 250
-jump_max_x = 260
-jump_max_y = 150
---走出平台线，至少位移距离
-fall_gap = 120
+    if math.abs(dx) > self:getJumpX() then
+        multiX = true
+    end
 
-SIDE_LEFT = 1
-SIDE_RIGHT = 2
+    if dy > self:getJumpY() then
+        multiY = true
+    end
 
---]]
+
+    local ps, pe = pMaxX1, pMinX2
+    if pe.i == LINE_1 then
+        ps, pe = pe, ps
+    end
+
+    -- local k = (dx < 0) and 1 or -1
+    -- local offset = 
+    --
+    if multiX or multiY then
+        return self:checkSecJump(ps, pe)
+    else
+        return self:checkJump(ps, pe)
+    end
+end
+
+function _getVerticalJump(self, dy)
+    if dy < 0 or dy > self:getSecJumpY(0) then
+        return
+    end
+
+    if dy < self:getJumpY(0) then
+        return {{x1 = self.pMaxX1.x, x2 = self.pMinX2.x}, {op = 1}}
+    elseif dy < self:getSecJumpY(0) then
+        return {{x1 = self.pMaxX1.x, x2 = self.pMinX2.x}, {op = 1}, {x1 = self.pMaxX1.x, x2 = self.pMinX2.x}, {op = 1}}
+    end
+end
+
+function checkSecJump(self, ps, pe)
+    local midx = (ps.x + pe.x) / 2
+    local topY = ps.x + self:getSecJumpY(0)
+    local edge = self:_checkJumpCross(ps.x, midx, ps.y, topY)
+    if edge then
+        return
+    end
+
+    edge = self:_checkJumpCross(midx, pe.x, topY, pe.y)
+    if edge then
+        return
+    end
+
+    return {{x1 = ps.x - 10, x2 = ps.x + 10}, {op = 1}, {x1 = ps.x, x2 = pe.x}, {op = 1}}
+end
+
+function checkJump(self, ps, pe)
+    local midx = (ps.x + pe.x) / 2
+    local topY = ps.x + self:getJumpY(0)
+    local edge = self:_checkJumpCross(ps.x, midx, ps.y, topY)
+    if edge then
+        return
+    end
+
+    edge = self:_checkJumpCross(midx, pe.x, topY, pe.y)
+    if edge then
+        return
+    end
+
+    return {{x1 = ps.x - 10, x2 = ps.x + 10}, {op = 1}, {x1 = v2.x1, x2 = v2.x2}}
+end
+
+
+
+function _checkJumpCross(self, x1, x2, y1, y2)
+    y1, y2 = self:_sortAsc(y1, y2)
+
+    local _start = x1
+    local _end = x2 
+    local dt = (x1 > x2) and -10 or 10
+
+    local edge
+    local t = math.floor(y2 / YSTEP) + 1
+    local retLine, retY
+    for _x=_start, _end, dt do
+        retLine, retY = self:_getDownLine(_x, y2, t, y1)
+        if retLine then
+            edge = _x
+            break
+        end
+    end
+
+    return edge
+end
+

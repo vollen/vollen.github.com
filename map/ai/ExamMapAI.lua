@@ -4,7 +4,6 @@
 -- [CODE] BY ghgame
 -- [MARK] NONE
 -----------------------------------------------
-
 module("ExamMapAI", package.seeall)
 defclass("ExamMapAI", ExamMapAI, SafeMapAI)
 
@@ -14,8 +13,14 @@ function init(self, cfg)
 end
 
 
-function onInit (self)
+function onInit(self)
 	super.onInit(self)
 
 	-- 
+	self.ui = BaseFightUI
+    self.ui:init()
+    FightHead:setChangeable(false)
+
+    --
+    ExamModule:show()
 end

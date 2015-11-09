@@ -172,3 +172,19 @@ function getSceneLight(self)
         return self.light
     end
 end
+--将场景变黑 突出人物
+function setSceneMask (self, bool)
+    if self.mask == nil then
+        self.mask = cc.LayerColor:create(cc.c4b(0, 0, 0, 0), Map.width + 200, Map.height + 200)
+        self.mask:setPosition(-100, -100)
+        Map.roleLayer:addChild(self.mask, -1)
+    end
+    if bool then
+        Map.tgLayer:setVisible(false)
+        self.mask:setOpacity(0)
+        self.mask:runAction(cc.FadeTo:create(0.2, 200))
+    else
+        Map.tgLayer:setVisible(true)
+        self.mask:runAction(cc.FadeTo:create(0.2, 0))
+    end
+end

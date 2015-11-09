@@ -172,7 +172,7 @@ function initView(self)
 
     self.tgLayer = cc.Node:create()
     self.view:addChild(self.tgLayer)
-
+    
     self.roleLayer = cc.Node:create()
     self.fgLayer:addChild(self.roleLayer, 100)
 
@@ -193,6 +193,9 @@ function initView(self)
     self.roleLayer:addChild(self.unitFrontLayer, 100)
     self.roleLayer:addChild(self.unitLayer, -10)
     self.roleLayer:addChild(self.unitBehideLayer, -100)
+    
+    self.shadowLayer = cc.Node:create()
+    self.roleLayer:addChild(self.shadowLayer, -1)
 end
 
 

@@ -7,7 +7,9 @@
 
 require("map/MapConst")
 require("map/MapTerrain")
--- require("map/MapTerrain1")
+require("map/MapTerrain4")
+require("map/MapTerrain3")
+require("map/MapTerrain2")
 require("map/MapRender")
 require("map/MapAI")
 require("map/Map")

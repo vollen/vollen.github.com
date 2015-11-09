@@ -44,6 +44,7 @@ function addHero(self, msg)
 end
 
 function addSafePlayer(self, msg, class)
+    do return end
     local player = super.addSafePlayer(self, msg, class)
     if player then
         player.hpBar:setVisible(false)
@@ -58,4 +59,12 @@ function addNpc(self)
         end
     end
     TaskModule:setNpcTask()
+end
+
+
+function onPause(self)
+    BasePausePanel:show()
+    BasePausePanel:addResumeBtn()
+    BasePausePanel:addBtn("返回主城", Game.gotoMain, Game, 0, MAP_LEAVE_GIVEUP)
+    BasePausePanel:pauseGame()
 end

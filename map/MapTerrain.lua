@@ -53,7 +53,7 @@ function init(self, cfg)
         for i,line in ipairs(cfg.mapdata.lines) do
             self:initLine(line)
         end
-        self:initLine({x1 = -600, y1 = -300, x2 = self.width + 600, y2 = -300, block = LINE_DOWN})
+        -- self:initLine({x1 = -600, y1 = -300, x2 = self.width + 600, y2 = -300, block = LINE_DOWN})
     end
 
     -- initLadder
@@ -310,6 +310,7 @@ function _getDownLine(self, x, y, i, retY)
             end
         end
     end
+
     if retLine then
         return retLine, retY
     else
@@ -707,11 +708,16 @@ function initLineMap(self)
         line.i = i
     end
 
+    local cnt = #self.lines
+    self.lineCnt = cnt
+    for i, ladder in ipairs(self.ladders) do
+        ladder.i = cnt + i
+    end
+
     self.lineMap = require("config/scene/"..self.mapid.."path")
 end
 
-
--- [[
+--[[
 -------------------------------------------------------------------
 -- 初始化寻路数据
 -------------------------------------------------------------------
@@ -726,7 +732,9 @@ function initLineMap(self)
     for i,line1 in ipairs(self.lines) do
         self.lineMap[i] = {}
         for j,line2 in ipairs(self.lines) do
-            self.lineMap[i][j] = self:setLineMap(line1, line2) 
+            if i ~= j then
+                self.lineMap[i][j] = self:selectLine(line1, line2)
+            end
         end
     end
 
@@ -753,7 +761,9 @@ function getLineEnd(self, x, y)
     end
     return c
 end
+--]]
 
+--[[
 function setLineMap(self, v1, v2)
     if v1 == v2 then
         return nil
