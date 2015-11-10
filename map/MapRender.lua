@@ -15,6 +15,10 @@ function init(self, cfg)
     self:setupMg(cfg)
     self:setupFg(cfg)
     self:setupTg(cfg)
+
+    self.mask = cc.LayerColor:create(cc.c4b(0, 0, 0, 0), Map.width + 200, Map.height + 200)
+    self.mask:setPosition(-100, -100)
+    Map.roleLayer:addChild(self.mask, -1)
 end
 
 function clear()
@@ -175,9 +179,7 @@ end
 --将场景变黑 突出人物
 function setSceneMask (self, bool)
     if self.mask == nil then
-        self.mask = cc.LayerColor:create(cc.c4b(0, 0, 0, 0), Map.width + 200, Map.height + 200)
-        self.mask:setPosition(-100, -100)
-        Map.roleLayer:addChild(self.mask, -1)
+        return 
     end
     if bool then
         Map.tgLayer:setVisible(false)

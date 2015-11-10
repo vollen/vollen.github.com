@@ -16,11 +16,13 @@ end
 function onInit(self)
 	super.onInit(self)
 
-	-- 
+	-- 标准组件
 	self.ui = BaseFightUI
     self.ui:init()
     FightHead:setChangeable(false)
 
-    --
-    ExamModule:show()
+    -- 考试内容
+    self.exam_panel = ExamMapPanel
+    self.exam_panel:init()
 end
+

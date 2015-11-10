@@ -16,11 +16,10 @@ function selectLine(self, _v1, _v2)
     self:getInterRangeW()
     self:getInterRangeH()
 
-    --test
     local action = self:canSlide()
     action = action or self:canJump()
     if action then
-        action.p = 100
+        self:_fixAction(action)
         return action
     end
 end
@@ -39,7 +38,7 @@ function getInterRangeW(self)
     end
 
     --Y轴无交叉
-    if self.pMaxX1.x < self.pMinX2.x then
+    if (self.pMinX2.x - self.pMaxX1.x) > 10 then
         self.hasInterX = true
     end
 end
@@ -68,39 +67,19 @@ function canSlide(self)
     --相连接，直接走过去
     if v1.group == v2.group then
         if math.abs(v1.x1 - v2.x2) < 20 or math.abs(v1.x2 - v2.x1) < 10 then
-            return {{x1 = v2.x1 + 5, x2 = v2.x2 - 5}, p = math.min(50, (v2.x2 - v2.x1)/2)}
+            return {{v2.x1 + 5, v2.x2 - 5}, p = math.min(50, (v2.x2 - v2.x1)/2)}
         else
             return
         end
     end
 
+    local action
     if self.hasInterX then
-        if self:isHigher(self.pMaxX1, self.pRelateX1) then
-            local edge = self:checkFall(self.pMaxX1.x, self.pMaxX1.y, self.pRelateX1.y, true)
-            if not edge or edge < self.pMaxX1.x - fall_gap  then
-                local action = {}
-                action[1] = {x1 = self.pMaxX1.x - ten_add_fall_gap, x2 = self.pMaxX1.x - fall_gap}
-                if edge then
-                    action[3] = {x1 = edge + fall_gap, x2 = v2.x2}
-                end
-                return action
-            end
+        action = self:_checkSlideCross(self.pMaxX1, self.pRelateX1, true)
+        if not action then
+            action = self:_checkSlideCross(self.pMinX2, self.pRelateX2, false)
         end
-
-        if self:isHigher(self.pMinX2, self.pRelateX2) then
-            local edge = self:checkFall(self.pMinX2.x, self.pMinX2.y, self.pRelateX2.y, false)
-            local action = {}
-            action[1] = {x1 = self.pMinX2.x + fall_gap, x2 = self.pMinX2.x + ten_add_fall_gap}
-            if edge then
-                if edge <= self.pMinX2.x + fall_gap then
-                    return
-                end
-                action[3] = {x1 = v1.x1, x2 = edge - fall_gap}
-            end
-            return action
-        end
-
-        return
+        return action
     else
         local dx, dy = self:getDiffXY(LINE_1, self.pMaxX1, self.pMinX2)
         --从高处往下走
@@ -137,9 +116,6 @@ end
 
 
 
-module("MapTerrain", package.seeall)
-
-
 function canJump(self)
     if self.hasInterX then
         local dx, dy = self:getDiffXY(LINE_1, self.pMaxX1, self.pRelateX1)
@@ -168,7 +144,7 @@ function _canJump(self, dx, dy)
         multiX = true
     end
 
-    if dy > self:getJumpY() then
+    if dy > self:getJumpY(dx) then
         multiY = true
     end
 
@@ -202,7 +178,7 @@ end
 
 function checkSecJump(self, ps, pe)
     local midx = (ps.x + pe.x) / 2
-    local topY = ps.x + self:getSecJumpY(0)
+    local topY = ps.y + self:getSecJumpY(ps.x - pe.x)
     local edge = self:_checkJumpCross(ps.x, midx, ps.y, topY)
     if edge then
         return
@@ -218,7 +194,7 @@ end
 
 function checkJump(self, ps, pe)
     local midx = (ps.x + pe.x) / 2
-    local topY = ps.x + self:getJumpY(0)
+    local topY = ps.y + self:getJumpY(0)
     local edge = self:_checkJumpCross(ps.x, midx, ps.y, topY)
     if edge then
         return
@@ -231,7 +207,6 @@ function checkJump(self, ps, pe)
 
     return {{x1 = ps.x - 10, x2 = ps.x + 10}, {op = 1}, {x1 = v2.x1, x2 = v2.x2}}
 end
-
 
 
 function _checkJumpCross(self, x1, x2, y1, y2)
@@ -255,3 +230,27 @@ function _checkJumpCross(self, x1, x2, y1, y2)
     return edge
 end
 
+
+function _checkSlideCross(self, p1, p2, toLeft)
+    if p1.i == LINE_1 then
+        if p1.y > p2.y then
+            local k = toLeft and -1 or 1
+            local edge = self:checkFall(p1.x, p1.y, p2.y, toLeft)
+            local _start = p1.x + k * fall_gap
+            --正下方就有障碍，算不可达
+            if edge and edge == _start then
+                return
+            end
+
+            local _end = toLeft and v2.x1 or v2.x2
+            local action = {}
+            action[1] = {p1.x + k * ten_add_fall_gap, _start}
+            --障碍在中间
+            if (_start - edge) * (_end - edge) < 0 then
+                action[3] = {edge - k * fall_gap, toLeft and v2.x2 or v2.x1}
+            end
+
+            return action
+        end
+    end
+end

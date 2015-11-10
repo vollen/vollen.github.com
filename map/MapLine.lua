@@ -1,6 +1,6 @@
 function printMapLine()
     local data = MapTerrain.lineMap
-    local maxn = #MapTerrain.lines
+    local maxn = #MapTerrain.lines + #MapTerrain.ladders
 
     local str = "return {\n"
     for i = 1, maxn do
@@ -57,6 +57,10 @@ function item(data)
             tt = tt .. "},"
         end
         
+    end
+
+    if data.ladder then
+        tt = tt .. "ladder=" .. tostring(data.ladder) .. ","
     end
 
     if data.p then

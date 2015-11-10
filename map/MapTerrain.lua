@@ -642,6 +642,7 @@ function findPath(self, src, dst)
     local deadList = {}
     
     local function calc(i, j)
+        do return 0 end
         local v1 = self.lines[i]
         local v2 = self.lines[j]
         local dx = ((v1.x1 + v1.x2) - (v2.x1 + v2.x2))/2
@@ -717,7 +718,7 @@ function initLineMap(self)
     self.lineMap = require("config/scene/"..self.mapid.."path")
 end
 
---[[
+-- [[
 -------------------------------------------------------------------
 -- 初始化寻路数据
 -------------------------------------------------------------------
@@ -735,6 +736,17 @@ function initLineMap(self)
             if i ~= j then
                 self.lineMap[i][j] = self:selectLine(line1, line2)
             end
+        end
+    end
+
+    local cnt = #self.lines
+    local index
+    for i,ladder in ipairs(self.ladders) do
+        index = cnt + i
+        ladder.i = index
+        self.lineMap[index] = {}
+        for j,line in ipairs(self.lines) do
+            self:setLadderMap(ladder, line, i)
         end
     end
 

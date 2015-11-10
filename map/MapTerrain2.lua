@@ -8,16 +8,13 @@ function isHigher(self, pEnd, pRelate)
 end
 
 --返回高度差
-function getDiffXY(self, i, pEnd, pRelate)
-    local p1, p2 = self:sortByY(pEnd, pRelate)
-    local dy = p2.y - p1.y
+function getDiffXY(self, i, p1, p2)
     local dx = p2.x - p1.x
-    if p2.i == i then
-        dy = -dy
-    else
+    local dy = p2.y - p1.y
+    if p1.i == i then
         dx = -dx
+        dy = -dy
     end
-
     return dx, dy
 end
 
@@ -36,11 +33,6 @@ function getFallX(self, y)
     return fall_max_x
 end
 
---
-function getJumpY(self, x)
-    return jump_max_y
-end
-
 function getJumpX(self, dy)
     return jump_max_x
 end
@@ -49,11 +41,27 @@ function getSecJumpX(self, dy)
     return sec_jump_max_x
 end
 
-function getSecJumpY(self, dx)
-    if dx > sec_jump_max_x then
+--返回跳跃高度
+function getJumpY(self, x)
+    x =  math.abs(x)
+    if x > jump_max_x then
         return 0
+    elseif x > half_jump_x then
+        return jump_max_y - (x - half_jump_x) * jump_y_per_x
+    else
+        return jump_max_y
     end
-    return sec_jump_max_y
+end
+
+function getSecJumpY(self, dx)
+    x =  math.abs(x)
+    if x > sec_jump_max_y then
+        return 0
+    elseif x > half_sec_jump_x then
+        return sec_jump_max_y - (x - half_sec_jump_x) * sec_jump_y_per_x
+    else
+        return sec_jump_max_y
+    end
 end
 
 function checkFall(self, x, y1, y2, toLeft)
@@ -89,10 +97,18 @@ LINE_1  =   1
 LINE_2  =   2
 
 fall_max_x = 260
-sec_jump_max_x = 550
-sec_jump_max_y = 250
 jump_max_x = 260
 jump_max_y = 150
+
+sec_jump_max_x = 550
+sec_jump_max_y = 250
+
+--跳跃距离一半
+half_jump_x = jump_max_x / 2
+half_sec_jump_x = sec_jump_max_x / 2
+--跳跃每x对应y
+jump_y_per_x = jump_max_y / half_jump_x
+sec_jump_y_per_x = sec_jump_max_y / half_sec_jump_x
 --走出平台线，至少位移距离
 fall_gap = 30
 ten_add_fall_gap = fall_gap + 10
