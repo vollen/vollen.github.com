@@ -35,6 +35,8 @@ tags: [word]
 
 
 # a
+* accessor  访问器
+
 # b
 * bail      保释
 
@@ -70,6 +72,7 @@ tags: [word]
 # q
 # r
 * radically     根本上
+* resolution    分辨率
 
 # s
 * shrink    收缩
