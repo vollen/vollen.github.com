@@ -1,0 +1,40 @@
+title: mac-小技巧
+tags:[mac, 效率]
+---
+
+使用了一段时间的macos，跟windows，linux 还都是有很多的不一样的，这里对mac下的一些小技巧做记录，方便日后查阅。
+
+[程序员如何优雅的使用Mac](http://www.zhihu.com/question/20873070)
+* 窗口自适应
+ 	[option] + 窗口上的绿色按钮
+
+ <!--more-->
+
+ * 我的改键
+ 	将 Caps lock 和 control 键 修改了映射.方便小拇指直接按ctrl键
+
+ * 快捷键
+ 	[快捷键整理](http://www.techweb.com.cn/ucweb/news/id/2142460_1)
+ 	+ 通过 Command+点击在新窗口中打开 Finder 侧边栏上的项目
+ 	+ Command+鼠标拖拽可以移动后方的窗口，同时不影响前端窗口
+ 	+ Command+点击 Dock 上的图标可以打开应用在 Finder 中的位置
+ 	+ 在finder中 	Command + up 返回上层目录
+ 					Command + k  可连接到服务器
+
+ * 软件
+
+ 	+ brew [官网](http://brew.sh/index_zh-cn.html)
+ 		可用于帮助安装各种软件，类似于ubuntu 下的 apt-get
+ 		常用命令： brew install 	/ unintsall 	/ search	/ list	/ update	/ info	/ deps	
+
+* terminal 命令自动补全
+	打开终端, 输入： 
+		nano .inputrc
+
+	在打开的文件里输入以下语句
+	```bash
+		set completion-ignore-case on 
+		set show-all-if-ambiguous on
+		TAB: menu-complete
+	```
+	ctrl + O 保存，重启终端。大功告成。YES~
