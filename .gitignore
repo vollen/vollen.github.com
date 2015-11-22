@@ -5,7 +5,3 @@ db.json
 node_modules/
 public/
 .deploy*/
-package.json
-scaffolds/
-code/
-
