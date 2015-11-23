@@ -1,5 +1,5 @@
 title: mac-小技巧
-tags:[mac, 效率]
+tags: [mac, 效率]
 ---
 
 使用了一段时间的macos，跟windows，linux 还都是有很多的不一样的，这里对mac下的一些小技巧做记录，方便日后查阅。
