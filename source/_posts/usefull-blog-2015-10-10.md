@@ -22,3 +22,6 @@ tags: blog
 ## ACM
 [kuangbin](http://www.kuangbin.net/)
 [某岛](http://www.shuizilong.com/house/)
+
+## android
+[有些android比较好的文章](http://blog.csdn.net/imyfriend)
