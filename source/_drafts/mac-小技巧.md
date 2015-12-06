@@ -38,3 +38,17 @@ tags: [mac, 效率]
 		TAB: menu-complete
 	```
 	ctrl + O 保存，重启终端。大功告成。YES~
+
+
+* 又找到一个好用的教程
+	[mac使用入门](http://simplyy.space/blog/article/mac%20入门教程:日常使用篇)
+	Ctrl + Cmd + F 	新建工作区
+
+* 常用触摸板操作
+	详见 	系统偏好设置  -> 触控板  里面有各种手势和操作
+
+* Dash
+	[dash基本介绍](http://scriptfans.iteye.com/blog/1543219)
+* Alfred
+	[alfred基本介绍](http://bbs.feng.com/read-htm-tid-6398178.html)
+	[alfred另一个介绍](http://www.cnblogs.com/chijianqiang/p/alfred.html)
