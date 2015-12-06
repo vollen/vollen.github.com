@@ -52,3 +52,6 @@ tags: [mac, 效率]
 * Alfred
 	[alfred基本介绍](http://bbs.feng.com/read-htm-tid-6398178.html)
 	[alfred另一个介绍](http://www.cnblogs.com/chijianqiang/p/alfred.html)
+
+* Zsh
+	[zsh小记](http://www.cnblogs.com/bamanzi/p/zsh-simple-guide.html)
