@@ -25,3 +25,6 @@ tags: blog
 
 ## android
 [有些android比较好的文章](http://blog.csdn.net/imyfriend)
+
+## opengl
+[shader基础](http://blog.csdn.net/candycat1992)

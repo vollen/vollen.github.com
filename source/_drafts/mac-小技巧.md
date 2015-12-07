@@ -27,19 +27,6 @@ tags: [mac, 效率]
  		可用于帮助安装各种软件，类似于ubuntu 下的 apt-get
  		常用命令： brew install 	/ unintsall 	/ search	/ list	/ update	/ info	/ deps	
 
-* terminal 命令自动补全
-	打开终端, 输入： 
-		nano .inputrc
-
-	在打开的文件里输入以下语句
-	```bash
-		set completion-ignore-case on 
-		set show-all-if-ambiguous on
-		TAB: menu-complete
-	```
-	ctrl + O 保存，重启终端。大功告成。YES~
-
-
 * 又找到一个好用的教程
 	[mac使用入门](http://simplyy.space/blog/article/mac%20入门教程:日常使用篇)
 	Ctrl + Cmd + F 	新建工作区
@@ -55,3 +42,4 @@ tags: [mac, 效率]
 
 * Zsh
 	[zsh小记](http://www.cnblogs.com/bamanzi/p/zsh-simple-guide.html)
+	[将命令行终端转换为zsh](http://get.ftqq.com/992.get)
