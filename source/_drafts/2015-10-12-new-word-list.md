@@ -62,13 +62,17 @@ tags: [word]
 # k
 # l
 # m
-*matrix     矩阵
+* matrix     矩阵
 
 # n
 # o
-*orthoganal 正交的
+* orthoganal 正交的
+* opaque    不透明的
 
 # p
+* previous  --以前的
+* preview   --预览
+
 # q
 # r
 * radically     根本上
@@ -80,7 +84,7 @@ tags: [word]
 # t
 * transpose 转置
 * tolerance     公差
-
+* transparent 透明的
 # u
 # v
 * vertex    顶点
