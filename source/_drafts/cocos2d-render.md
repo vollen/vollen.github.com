@@ -10,13 +10,16 @@ tags: [cocos2d, renderer]
 + GLProgramState
 + RendererState     --渲染状态
 + RenderCommand     --渲染命令基类
-    * TrianglesCommand
-    * QuadCommand
-    * PrimitiveCommand
-    * MeshCommand
-    * GroupCommand
-    * CustomCommand
-    * BatchCommand
+    * TrianglesCommand			--渲染三角形
+    * QuadCommand				--渲染四边形（相当于保存了两个三角形）
+    * PrimitiveCommand			--图元
+    * MeshCommand				--用于3d蒙皮渲染
+    * GroupCommand				--组渲染（一系列渲染指令保存在一个新的渲染队列，单独渲染，可用于渲染到图片）
+    * CustomCommand				--用户自定义操作		
+    * BatchCommand				--批渲染
++ CCGLProgram
++ VertexAttribBinding
+
 
 + ccGLStateCache    定义命名空间GL，封装了一些OPENGL相关的全局函数， 用法：GL::XXX
 

@@ -55,6 +55,15 @@ tags: [opengl]
 * void glDisable(GLenum cap​)
     - 启用/停用 cap指定状态
 
+# SHADER
+* GLuint glCreateShader(GLenum shadertype)
+    -- 创建一个新的shader
+* void glShaderSource(GLuint shader, GLsizei size, GLvoid * data, --todo)
+* void glCompileShader(GLuint shader)
+* void glAttachShader(GLuint prog, GLuint shader)
+    -- 给prog程序增加一个着色器shader
+* void glDeleteShader(GLuint shader)
+
 * void glBlendFunc(GLenum sfactor, GLenum dfactor)
 * void glBlendFunci(GlUint buf, GLenum sfactor, GLenum dfactor)
     - 设置[指定缓存]颜色混合逻辑
