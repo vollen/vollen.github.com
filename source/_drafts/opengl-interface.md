@@ -121,7 +121,6 @@ tags: [opengl]
 * void glDeleteShader(GLuint shader)
 
 * void glBlendFunc(GLenum sfactor, GLenum dfactor)
-
 * void glBlendFunci(GlUint buf, GLenum sfactor, GLenum dfactor)
     - 设置[指定缓存]颜色混合逻辑
 *  void glBlendFuncSeparate(GLenum srcRGB​, GLenum dstRGB​, GLenum srcAlpha​, GLenum dstAlpha​)
