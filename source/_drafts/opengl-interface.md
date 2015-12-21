@@ -8,10 +8,13 @@ tags: [opengl]
 * void glBindVertexArray(GLuint array​)
     - 绑定VAO
 * void glEnableVertexAttribArray(GLuint index​)
+
 * void glDisableVertexAttribArray(GLuint index​)
     - 启用或禁用指定VAO
 * void glDeleteVertexArrays(GLsizei n, const GLuint * arrays)
     - 根据 arrays 数组中的索引， 删除n个VAO
+* void glVertexAttribPointer(GLuint index​, GLint size​, GLenum type​, GLboolean normalized​, GLsizei stride​, const GLvoid * pointer​)
+    - 
 
 # VBO
 * void glGenBuffers(GLsizei n, GLuint * buffers)
@@ -39,9 +42,61 @@ tags: [opengl]
     void glDepthFunc(GLenum func)
     - 指定深度测试时使用的函数类型， func必须是[深度测试函数](#ENUM_DEPTH_TEST_FUNC)中的一个。
 
+[Shader and Program编程基本概念](http://blog.csdn.net/myarrow/article/details/7737313)
+# SHADER
+* GLuint glCreateShader()
+
+* void glShaderSource(GLuint prog, GLsizei size, const GLchar** source, const Glint * length)
+
+* void glCompileShader(GLuint shader)
+
+* void glGetShaderiv(GLuint shader, GLenum pname, GLint * params)
+    - 获取指定shader的[pname](ENUM_SHADER_PARAM)属性
+* void glGetShaderSource(GLuint shader, GLsizei bufSize, GLsizei* length, GLchar* source)
+    - 将shader的源码写入source， bufSize 为缓冲区长度，length为返回的代码长度
+
+# PROGRAM
+* GLuint glCreateProgram()
+
+* void glAttachShader(GLuint prog, GLuint shader)
+
+* void glLinkProgram(GLuint prog)
+
+* void glUseProgran(GLuint prog)
+
+* void glGetProgramiv(GLuint prog, GLenum panme, GLint* params)
+
+* void glGetActiveAttrib(GLuint program​, GLuint index​, GLsizei bufSize​, GLsizei *length​, GLint *size​, GLenum *type​, GLchar *name​)
+
+* void glGetActiveUniform(GLuint program​, GLuint index​, GLsizei bufSize​, GLsizei *length​, GLint *size​, GLenum *type​, GLchar *name​)
+
+* void glGetProgramInfoLog(GLuint program​, GLsizei maxLength​, GLsizei *length​, GLchar *infoLog​)
+
+*  GLuint glGetUniformLocation(GLuint prog, const GLchar* name)
+
+* void glUniform{1234}{fdi ui}(GLint location, TYPE value)
+  void glUniform{1234}{fdi ui}v(GLint location, GLsizei count, const TYPE* values)
+  void glUniformMatrix{234}{fd}v(GLint location, GLsizei count, GLboolean transpose, const GLfloat* values)
+        --对角矩阵
+  void glUniformMatrix{2x3,2x4,3x2,3x4,4x2,4x3}{fd}v(GLint location, GLsizei count, GLboolean transpose, const GLfloat* values)
+        -- 设置与locate索引位置对应的uniform变量的值,其中向量形式的函数会载入count个数据的集合
+        --transpose 为GL_TRUE, 已行主序读入，为GL_FALSE则以列主序读入。
+
+# 变量储存限定符
+* attribute     --顶点着色器中声明的变量, 可使用函数glAttrib*来操作
+    + void glBindAttribLocation(GLuint prog, GLuint index, const Glchar* name)
+        * 将prog程序中的name变量关联到index上
+    + void glGetAttribLocation(GLuint prog, const GLchar* name)
+
+* uniform       --由应用程序指定，所有着色器共享但无法更改的变量，可使用glUniform*操作
+
+* varying       --顶点着色器声明赋值，片元着色器使用的变量
+
 # [TEXTURE](https://www.opengl.org/wiki/Texture)
 * void glActiveTexture(GLenum texture​)
+
 * void glBindTexture(GLenum target​, GLuint texture​)
+
 * void glDeleteTextures(GLsizei n​, const GLuint * textures​)
 
 # DRAW
@@ -52,6 +107,7 @@ tags: [opengl]
 * void glGetXXX(GLenum pname, type)
     - 返回pname属性的当前设置
 * void glEnable(GLenum cap​)
+
 * void glDisable(GLenum cap​)
     - 启用/停用 cap指定状态
 
@@ -65,10 +121,12 @@ tags: [opengl]
 * void glDeleteShader(GLuint shader)
 
 * void glBlendFunc(GLenum sfactor, GLenum dfactor)
+
 * void glBlendFunci(GlUint buf, GLenum sfactor, GLenum dfactor)
     - 设置[指定缓存]颜色混合逻辑
 *  void glBlendFuncSeparate(GLenum srcRGB​, GLenum dstRGB​, GLenum srcAlpha​, GLenum dstAlpha​)
- void glBlendFuncSeparatei(GLuint buf​, GLenum srcRGB​, GLenum dstRGB​, GLenum srcAlpha​, GLenum dstAlpha​)
+
+* void glBlendFuncSeparatei(GLuint buf​, GLenum srcRGB​, GLenum dstRGB​, GLenum srcAlpha​, GLenum dstAlpha​)
     - 逐分量设置[指定缓存]颜色混合逻辑
 *  void glBlendEquation(GLenum mode​)      --todo 不甚了解，大概是设置混合方程？
 
@@ -85,11 +143,14 @@ tags: [opengl]
     + GL_ALWAYS     **无条件**通过
 
 + <span id="ENUM_BUFFER_TARGET">缓冲区类型</span>
+
 + <span id="ENUM_BUFFER_USAGE">缓冲区使用限定</span>
+
 + <span id="ENUM_ACCESS">访问策略</span>
     * GL_READ_ONLY      只能从该地址读取数据
     * GL_WRITE_ONLY     只能向该地址写入数据
     * GL_READ_WRITE     既可以从地址读数据，也可以向地址写数据
+
 + <span id="ENUM_PRIMITIVE">[图元类型](https://www.opengl.org/wiki/Primitive)</span> 
     * GL_POINTS                 点(直接使用顶点数据)
     * GL_LINES                  线(每两个连续的点绘制成一条线段[01],[23])
@@ -106,7 +167,12 @@ tags: [opengl]
     * GL_TRIANGLES_ADJACENCY    包含6个顶点， 第1,3,5个顶点构成三角形，第2,4,6个保存邻接信息
     * GL_TRIANGLE_STRIP_ADJACENCY 需要配合图例解释，详见以上链接
 
-
++ <span id="ENUM_SHADER_PARAM">Shader属性</span>
+    * GL_SHADER_TYPE            shader类型
+    * GL_DELETE_STATUS          shader是否待删除
+    * GL_COMPILE_STATUS         shader编译状态，返回GL_TRUE表示编译成功
+    * GL_INFO_LOG_LENGTH        shader LOG信息长度
+    * GL_SHADER_SOURCE_LENGTH   shader源码长度
 
 # 参考资料
 1.[官方文档](www.opengl.org/wiki/GLAPI)

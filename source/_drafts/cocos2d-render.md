@@ -7,7 +7,6 @@ tags: [cocos2d, renderer]
 # 类分析
 + RenderQueue   --渲染队列
 + CCRenderer    
-+ GLProgramState
 + RendererState     --渲染状态
 + RenderCommand     --渲染命令基类
     * TrianglesCommand			--渲染三角形
@@ -17,9 +16,12 @@ tags: [cocos2d, renderer]
     * GroupCommand				--组渲染（一系列渲染指令保存在一个新的渲染队列，单独渲染，可用于渲染到图片）
     * CustomCommand				--用户自定义操作		
     * BatchCommand				--批渲染
-+ CCGLProgram
 + VertexAttribBinding
-
++ GLProgram       --封装的glProgram对象
++ GLProgramCache  --提供了一个静态对象，来管理可能用到的各种类型的glProgram，减少频繁创建和释放glProgram对象
++ GLProgramState  --GLProgram的代理器，由它负责与外部直接沟通
++ GLProgramStateCache   --类似GLProgramCache， 不过是管理GLProgramState
++ Texture2D
 
 + ccGLStateCache    定义命名空间GL，封装了一些OPENGL相关的全局函数， 用法：GL::XXX
 
