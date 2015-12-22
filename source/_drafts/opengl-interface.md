@@ -100,11 +100,24 @@ tags: [opengl]
 
 * void glDeleteTextures(GLsizei n​, const GLuint * textures​)
 
+* void glPixelStore*(GLenum pname, type, param)
+
+* void glTexParameter*(GLenum target​, GLenum pname​, Type param​)
+
+* void glCompressedTexImage2D(GLenum target​, GLint level​, GLenum internalformat​, GLsizei width​, GLsizei height​, GLint border​, GLsizei imageSize​, const GLvoid * data​)
+
+* void glTexSubImage2D(GLenum target​, GLint level​, GLint xoffset​, GLint yoffset​, GLsizei width​, GLsizei height​, GLenum format​, GLenum type​, const GLvoid * data​)
+
+* void glGenerateMipmap(GLenum target​)
+
+
+
 
 
 # DRAW
 * void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices) 
     - 使用 GL_ELEMENT_ARRAY_BUFFER中起始偏移为indeices的count个顶点索引来绘制[mode](#ENUM_PRIMITIVE)图元
+* void glDrawArrays(GLenum mode​, GLint first​, GLsizei count​);
 
 # STATE
 * void glGetXXX(GLenum pname, type)

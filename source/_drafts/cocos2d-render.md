@@ -2,11 +2,12 @@ title: cocos2d_render
 tags: [cocos2d, renderer]
 ---
 
+--TODO 暂时先转向研究ANDROID相关，这部分暂时中断 --[2015-12-22]
 从头梳理一下cocos2d渲染器相关的代码，并借此熟悉OopenGL相关内容。
 
 # 类分析
 + RenderQueue   --渲染队列
-+ CCRenderer    
++ Renderer    
 + RendererState     --渲染状态
 + RenderCommand     --渲染命令基类
     * TrianglesCommand			--渲染三角形
@@ -21,7 +22,10 @@ tags: [cocos2d, renderer]
 + GLProgramCache  --提供了一个静态对象，来管理可能用到的各种类型的glProgram，减少频繁创建和释放glProgram对象
 + GLProgramState  --GLProgram的代理器，由它负责与外部直接沟通
 + GLProgramStateCache   --类似GLProgramCache， 不过是管理GLProgramState
-+ Texture2D
++ Texture2D         --封装的纹理类
++ TextureAtlas      --纹理集(对于大量使用同一纹理的情况，使用纹理集可避免纹理切换，提高效率，如粒子系统等)
++ TextureCache      --静态类，用于管理缓存的纹理。
++ RenderState       --
 
 + ccGLStateCache    定义命名空间GL，封装了一些OPENGL相关的全局函数， 用法：GL::XXX
 
