@@ -20,4 +20,11 @@ tags: [android]
 [Android图形系统之Surface、SurfaceView、SurfaceHolder及SurfaceHolder.Callback之间的联系](http://www.linuxidc.com/Linux/2012-08/67619.htm)
 [Android笔记：SurfaceView与SurfaceHolder对象](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2012/1201/658.html)
 
+# Environment
++ getExternalStorageDirectory()
+    * 返回SD卡的绝对路径
+
+# Context
++ getPackageName()
+    * 返回包名
 
