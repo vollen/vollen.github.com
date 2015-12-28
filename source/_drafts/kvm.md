@@ -1,0 +1,19 @@
+title: kvm
+tags:
+---
+
+* 查看硬件是否支持虚拟化 
+    `egrep -c '(svm|vmx)' /proc/cpuinfo`
+
+* 安装KVM
+    `sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager`
+
+* 只有root 用户或者 libvirtd 用户组里的用户才有权限使用KVM，所以我们需要将我们的用户添加到 libvirtd 用户组 
+    `sudo adduser name libvirtd`
+
+* 重新登陆shell, 然后查看虚拟机列表
+    `virsh -c qemu:///system list`
+    如果，结果显示，什么都没有，那就对了。因为你还没有创建过虚拟机
+
+* 从dash里找到 Virtual Machine Manager , 然后打开它，用它新建一个虚拟机,给他分配资源，装系统什么的
+* 最后使用Virtual Machine Manager来管理他
