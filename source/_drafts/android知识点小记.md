@@ -30,7 +30,7 @@ tags: [android]
 + public abstract Object getSystemService (String name)
     * 获取一些系统相关的管理器
 
-## 返回 应用在 【内置存储/SDCARD】 上的【数据目录/缓存目录】
+## 返回 应用在 【内置存储/SDCARD】 上的【数据目录files/缓存目录cache】
 + getCacheDir()
 + getFilesDir()
 + getExternalFilesDir(
