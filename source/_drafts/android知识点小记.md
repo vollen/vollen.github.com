@@ -11,6 +11,13 @@ tags: [android]
 + setFocusableInTouchMode()
     [Android的Touch Mode](http://www.cnblogs.com/frydsh/archive/2012/10/15/2724909.html)
 
+## [Activity](http://developer.android.com/intl/zh-cn/guide/components/activities.html)
+
+## [Fragment](http://developer.android.com/intl/zh-cn/guide/components/fragments.html)
+
+## Button
+### ToggleButton 双状态按钮
+
 ## Surface
 
 ## SurfaceView
@@ -91,6 +98,14 @@ public String getDiskCacheDir(Context context) {
 
 # SECURITY
 ## [KeyStore](http://developer.android.com/training/articles/keystore.html)
-
+## KeyFactory
+## [Java使用RSA加密解密签名及校验](http://blog.csdn.net/wangqiuyun/article/details/42143957)
 
 # IO
+
+# [JAVA-加密解密](http://wenku.baidu.com/link?url=9PvkJo7fjXDrpUElyC_67GyUQrp4kJIL-zHeQUpoR8Hfgrc_X56ukC2XN-oCplHD89HfdFhUemcVtETAduLoLLuRYIkBCcD5L7G5zJcACNu)
+
+# Runable
+## AsyncTask
+## TimerTask
+ 
