@@ -11,6 +11,11 @@ tags: [android]
 + setFocusableInTouchMode()
     [Android的Touch Mode](http://www.cnblogs.com/frydsh/archive/2012/10/15/2724909.html)
 
+## ViewGroup
+### LayoutParams
+[RelativeLayout相关属性](http://www.cnblogs.com/xiaoluo501395377/p/3397680.html)
+[android布局介绍](http://blog.csdn.net/neu_yousei/article/details/22044035)
+
 ## [Activity](http://developer.android.com/intl/zh-cn/guide/components/activities.html)
 
 ## [Fragment](http://developer.android.com/intl/zh-cn/guide/components/fragments.html)
