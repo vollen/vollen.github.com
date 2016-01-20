@@ -16,6 +16,13 @@ tags: [android]
 ## [Fragment](http://developer.android.com/intl/zh-cn/guide/components/fragments.html)
 
 ## Button
+Button 的源码只有简单几个构造器，默认设置了一个 `com.android.internal.R.attr.buttonStyle` 的style.
+
+遇到问题：
+
++ 对于其他所有属性都相同的情况下， Button 的高度比TextView 的 高度要高不少，而且Button内的字体有被切边，显示不全的情况。
+    * 解决方案： 调用`setPadding(0, 0, 0, 0)`， 估计是因为上述Style中有设置按钮的默认padding， 日后查看源码。 
+
 ### ToggleButton 双状态按钮
 
 ## Surface
