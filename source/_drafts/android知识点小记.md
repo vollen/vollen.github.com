@@ -11,6 +11,11 @@ tags: [android]
 + setFocusableInTouchMode()
     [Android的Touch Mode](http://www.cnblogs.com/frydsh/archive/2012/10/15/2724909.html)
 
+## ViewGroup
+### LayoutParams
+[RelativeLayout相关属性](http://www.cnblogs.com/xiaoluo501395377/p/3397680.html)
+[android布局介绍](http://blog.csdn.net/neu_yousei/article/details/22044035)
+
 ## [Activity](http://developer.android.com/intl/zh-cn/guide/components/activities.html)
 
 ## [Fragment](http://developer.android.com/intl/zh-cn/guide/components/fragments.html)
@@ -44,7 +49,7 @@ Button 的源码只有简单几个构造器，默认设置了一个 `com.android
 + public abstract Object getSystemService (String name)
     * 获取一些系统相关的管理器
 
-## 返回 应用在 【内置存储/SDCARD】 上的【数据目录/缓存目录】
+## 返回 应用在 【内置存储/SDCARD】 上的【数据目录files/缓存目录cache】
 + getCacheDir()
 + getFilesDir()
 + getExternalFilesDir(
