@@ -67,8 +67,11 @@ nginx 是一个应用比较广, 功能比较强大的web服务器.
         export PATH=$NGINX_HOME:$PATH
     ```
 + 配置的修改主要是修改 nginx.conf
-每个字段含义
-//todo
+    1. index 配置在 http 段, 这样可以避免 在每个server段写重复的index字段
+    2. root 配置在 server段, 不用在每个 location 段 单独配置
+    3.  + 在conf目录下新建 conf.d 文件夹, 每个不同的站点, 配置不同的conf文件.
+        + 在 nginx.conf http段最后添加 `require conf.d/*.conf`, 这样就可以把所有配置引用到
+    4.  
 
 + rewrite
 [nginx rewrite 指令](http://www.94cto.com/index/Article/content/id/196.html)
@@ -116,3 +119,26 @@ upstream 支持的服务器状态参数:
     * fail_timeout      到达最大失败次数后,停用时长
 **TIPS**:当使用ip_hash算法时, 服务器不能是backup的
 
+## 同一端口,不同站点
++ site1.conf:
+```
+    server {
+        listen       80;
+        server_name site1;
+    }
+```
+
++ site2.conf:
+```
+    server {
+        listen       80;
+        server_name site2;
+    }
+```
+
++ /etc/hosts
+```
+    127.0.0.1 site1
+    127.0.0.1 site2
+```
+当用户访问site1时, 便会匹配到第一个配置, 使用site1.conf

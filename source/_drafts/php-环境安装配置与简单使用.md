@@ -1,0 +1,24 @@
+title: php-环境安装配置与简单使用
+tags:
+---
+
+# 安装
+1. 从官网下载安装包,
+2. 解压,进入解压目录
+3. 执行configure
+```bash
+./configure --prefix=/usr/local/php --enable-fpm --with-mcrypt \
+--enable-mbstring --disable-pdo --with-curl \
+--disable-debug --disable-rpath --enable-inline-optimization \
+--with-bz2 --with-zlib --enable-sockets --enable-sysvsem \
+--enable-sysvshm --enable-pcntl --enable-mbregex --with-mhash \
+--enable-zip --with-pcre-regex --with-mysql --with-mysqli \
+--with-gd --with-jpeg-dir
+```
+4. 安装
+```bash
+    make all insatll
+```
+**Tips**: 中途有缺少的包,一个个的补上
+
+[nginx中配置php-FPM教程详解](http://www.111cn.net/sys/nginx/64044.htm)
