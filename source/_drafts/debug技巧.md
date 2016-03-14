@@ -1,0 +1,20 @@
+title: debug技巧
+tags:
+---
+
+
+
+
+# [通过进程信息，检查内存泄露](http://www.lua.ren/topic/5/%E9%80%9A%E8%BF%87%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF-%E6%A3%80%E6%9F%A5%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2)
+原理: 在linux 的 /proc 目录下, 有与系统进程同名的目录, 其中有此进程的各种相关信息. 通关查看这些信息,获取就能找到问题线索. 
+
+1. 找到要调试的进程pid
+    `ps -elf | grep [pname]`
+2. 查看内存使用情况
+    `cat /proc/[pid]/status`
+3. 打印时间戳和内存占用
+    `clear;date;cat /proc/[pid]/status | grep VmData;sleep 3;echo "######";date;echo "######";cat /proc/[pid]/status | grep VmData`
+4. 查看进程当前使用的文件句柄
+    `ls -anl /proc/[pid]/fd`
+
+# lua 单元测试 工具 (busted)

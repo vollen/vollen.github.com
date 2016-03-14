@@ -1,0 +1,48 @@
+title: redis-安装与基本操作
+tags:
+---
+
+redis 是一个轻量级key-value 数据库。 它常驻于内存中，也可以持久化。常用于当做缓存数据库， 与mysql 配合使用。[快速入门][快速入门][Redis: 三十分钟从入门到精通][三十分钟从入门到精通]
+[Redis与Memcached的区别][与Memcached不同][redis 持久化与备份策略][redis 持久化与备份策略]
+## 安装
+sudo apt-get install redis-server
+
+## 配置
+[redis配置文件详解][redis配置文件详解]
+### 配置文件
++ **/etc/redis/redis.conf**
+    默认的redis 的配置入口， 用于配置redis的一些运行参数。
++ redis-server "conf path"
+    在启动redis的时候，传入
+
+### 服务文件
++ **/etc/init.d/redis-server**
+    * 运行 redis-server 来启动 redis 服务， 
+        - 加上`&` 让它在后台运行。
+        - 加上`文件路径`， 使用指定的配置来启动
+    * sudo service redis-server {start|stop|restart|force-reload|status}
+        通用的ubuntu管理服务的方式
+
+### redis 数据类型
++ Strings
+    一对一 的存储结构， 以string为key， 任何数据类型为value
++ Hashs
+    使用hash来存储键值对， 当你需要频繁对数据进行修改的时候，可以使用它
++ Lists
+    列表将 一个数组与key映射， 可以对数组进行一些常用操作
++ Sets
+    集合与列表很类似，但是它不允许重复的数据存在。集合之间可以作交集/并集操作
++ Sorted Sets
+    有序集合， 在插入时， 你必须给它指定一个权值， 然后redis根据这个权值，保证其中所有数据都是有序的。 默认是升序的。    
+
+### redis-cli
+[Redis-cli 命令总结][Redis-cli 命令总结]
+可以在redis shell 中， 使用help命令来查看相关命令说明。
+
+
+[快速入门]:http://www.yiibai.com/redis/redis_quick_guide.html
+[三十分钟从入门到精通]:http://www.ituring.com.cn/article/668
+[Redis-cli 命令总结]:http://blog.chinaunix.net/uid-25691489-id-5185847.html
+[与Memcached不同]:http://blog.csdn.net/tonysz126/article/details/8280696/
+[redis 持久化与备份策略]:http://blog.csdn.net/is_zhoufeng/article/details/10210353
+[redis配置文件详解]:http://running.iteye.com/blog/2065351
