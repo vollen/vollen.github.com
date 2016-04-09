@@ -142,3 +142,40 @@ upstream 支持的服务器状态参数:
     127.0.0.1 site2
 ```
 当用户访问site1时, 便会匹配到第一个配置, 使用site1.conf
+
+## php-fpm
+配置方式 
+```
+location ~ [^/]\.php(/|$) {
+    #fastcgi_pass 127.0.0.1:9000;
+    fastcgi_pass unix:/dev/shm/php-cgi.sock;
+    fastcgi_index index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include fastcgi.conf;
+}
+```
+nginx 连接fastcgi有两种方式:
+
++ tcp/ip
+    修改`/usr/local/php/etc/php-fpm.conf`文件.
+        `listem 127.0.0.1:9000`
+    修改 nginx.conf
+    `fastcgi_pass 127.0.0.1:9000;`
+重启php-fpm, nginx
+
++ unix domain socket
+unit domain socket 用于同一个操作系统下多个进程间通信用.
+与internet socket 类似,只是它不是用网络底层协议通信.
+配置方式:
+修改`/usr/local/php/etc/php-fpm.conf`文件.
+```
+    listen = /tmp/php-cgi.sock
+    listen.owner = service
+    listen.group = service
+    ;listen.mode = 0660
+```
+修改 nginx.conf
+`fastcgi_pass unix:/tmp/php-cgi.sock;`
+重启php-fpm, nginx
+
+

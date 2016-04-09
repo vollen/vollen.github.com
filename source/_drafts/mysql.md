@@ -7,6 +7,30 @@ tags:
 [Nginx服务器上安装并配置PHPMyAdmin的教程][]
 
 2. 使用phpmyadmin 管理
+    nginx 添加配置:
+    ```
+        server {
+            listen 4040;
+            server_name  phpmyadmin;
+            access_log  logs/phpmyadmin-access.log  main;
+            root html/phpmyadmin;
+            index index.php;
+
+            location / {
+            }
+
+            location ~ \.php$ {
+                fastcgi_pass   127.0.0.1:9000;                 
+                fastcgi_index  index.php;
+                fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                include     fastcgi_params;
+            }
+
+            location ~ /\.ht {
+                deny  all;
+            }
+        }
+        ```
     无需多言, 各种可视化操作. 但是用多了容易不记得命令.
 3. 命令行管理
     [mysql 文档][]

@@ -38,5 +38,18 @@ sublime是一个超级好用的编辑器, 可以根据个人喜好来配置,因�
     }
 ```
 
+
+#perl 快速调试
+Tools->Build System->New Build System.输入以下内容:
+```
+{
+"cmd": ["perl", "-w", "$file"],
+"file_regex": ".* at (.*) line ([0-9]*)",
+"selector": "source.perl"
+}
+```
+
+保存为文件名Perl.sublime-build
+
 # SourceCodePro 字体下载
 [链接](https://github.com/adobe-fonts/source-code-pro)

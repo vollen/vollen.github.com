@@ -1,0 +1,30 @@
+title: vps_性能测试
+tags: [vps, 性能测试]
+---
+
+在拿到一台服务器的时候, 不免要测试一下, 看看它的性能如何, 方便学则和后续使用. 
+[参考资料][5个简单实用的VPS性能测试方法-老左]
+
+# CPU,内存,硬盘
+```bash
+    cat /proc/cpuinfo   #查看cpu信息
+    cat /proc/meminfo   #查看内存信息
+    df -lh              #查看硬盘信息
+```
+
+# IO速度
+`dd if=/dev/zero of=test bs=64k count=4k oflag=dsync`
+`dd if=/dev/zero of=test bs=8k count=256k conv=fdatasync`
+
+# 下载速度
+`wget http://cachefly.cachefly.net/10mb.test`
+#连接速度
+`ping 主机的公网ip`
+# unixbench 测试
+```bash
+    wget http://teddysun.com/wp-content/uploads/unixbench.sh
+    chmod +x unixbench.sh
+    ./unixbench.sh
+```
+
+[5个简单实用的VPS性能测试方法-老左]:http://www.laozuo.org/1592.html
