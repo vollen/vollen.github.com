@@ -14,6 +14,7 @@ tags:
                 --without-http_redis2_module \
                 --with-http_postgres_module \
                 --with-lua51 \
+                --with-luajit\
                 --with-http_drizzle_module \
                 --with-http_postgres_module \
                 --with-http_iconv_module
