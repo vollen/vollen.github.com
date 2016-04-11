@@ -12,12 +12,13 @@ tags:
     ```shell
         ./configure\
                 --without-http_redis2_module \
-                --with-http_postgres_module \
                 --with-luajit\
                 --with-http_drizzle_module \
                 --with-http_postgres_module \
                 --with-http_iconv_module
     ```
+
+    #--prefix=/home/leng/server/openresty 指定安装目录， 默认在 /usr/local/openresty
     其中依赖的各种,只能一个个添加了.(哭)
 + 安装 `sudo make && make install`
 
