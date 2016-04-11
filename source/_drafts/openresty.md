@@ -10,10 +10,9 @@ tags:
 + 进入解压目录
 + 配置
     ```shell
-        ./configure --prefix=/home/leng/server/openresty\
+        ./configure\
                 --without-http_redis2_module \
                 --with-http_postgres_module \
-                --with-lua51 \
                 --with-luajit\
                 --with-http_drizzle_module \
                 --with-http_postgres_module \
