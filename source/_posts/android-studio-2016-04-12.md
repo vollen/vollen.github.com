@@ -1,6 +1,6 @@
 title: android_studio
 date: 2016-04-12 15:00:04
-tags:
+tags:[android, tools]
 ---
 
 
@@ -8,6 +8,7 @@ tags:
 
 # 快捷键
 [Android Studio常用快捷键](http://www.cr173.com/html/24051_1.html)
+<!--more-->
 
 ## 文件查找
 + Ctrl + Shift + N 打开文件

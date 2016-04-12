@@ -17,6 +17,7 @@ date: 2016-04-12 15:00:11
 * void glDeleteVertexArrays(GLsizei n, const GLuint * arrays)
     - 根据 arrays 数组中的索引， 删除n个VAO
 * void glVertexAttribPointer(GLuint index​, GLint size​, GLenum type​, GLboolean normalized​, GLsizei stride​, const GLvoid * pointer​)
+<!--more-->
     - 
 
 # VBO

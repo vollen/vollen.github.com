@@ -1,6 +1,6 @@
 title: openresty
 date: 2016-04-12 15:00:12
-tags:
+tags:[openresty, service]
 ---
 
 
@@ -10,6 +10,7 @@ tags:
 + 在官网下载安装包
 + 解压
 + 进入解压目录
+<!--more-->
 + 配置
     ```shell
         ./configure\

@@ -1,6 +1,6 @@
 title: JavaScript基础入门
 date: 2016-04-12 14:49:51
-tags:
+tags:[javascript]
 ---
 
 
@@ -14,6 +14,7 @@ tags:
 `document.getElementById("demo").innerHTML="str"`
 + 改变图像
 `document.getElementById("demo").src="a.png"`
+<!--more-->
 
 
 # Windows

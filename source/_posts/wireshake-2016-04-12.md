@@ -1,6 +1,6 @@
 title: wireshake
 date: 2016-04-12 15:00:17
-tags:
+tags:[debug, network]
 ---
 
 
@@ -8,6 +8,7 @@ tags:
 
 # 安装
 + 在ubuntu 中，可直接通过命令 ```sudo apt-get install wireshake``` 来安装
+<!--more-->
 
 # 运行
 + 最简便的方法，是直接使用root用户来运行。 ```sudo wireshake```
