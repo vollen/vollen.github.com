@@ -1,6 +1,8 @@
 title: openresty
 date: 2016-04-12 15:00:12
-tags:[openresty, service]
+tags:
+    - openresty
+    - service
 ---
 
 

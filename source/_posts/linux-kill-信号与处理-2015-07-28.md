@@ -1,6 +1,9 @@
 title: linux kill 信号与处理
 date: 2015-07-28 15:13:59
-tags: [linux, kill, 信号] 
+tags:
+    - linux 
+    - kill 
+    - 信号
 ---
 
 # 关于linux命令发送的信号,以及信号监听处理
