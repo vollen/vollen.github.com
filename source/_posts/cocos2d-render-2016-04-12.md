@@ -1,6 +1,10 @@
 title: cocos2d_render
-tags: [cocos2d, renderer]
+tags:
+  - cocos2d
+  - renderer
+date: 2016-04-12 15:00:05
 ---
+
 
 --TODO 暂时先转向研究ANDROID相关，这部分暂时中断 --[2015-12-22]
 从头梳理一下cocos2d渲染器相关的代码，并借此熟悉OopenGL相关内容。

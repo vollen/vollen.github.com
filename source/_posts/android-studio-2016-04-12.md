@@ -1,6 +1,8 @@
 title: android_studio
+date: 2016-04-12 15:00:04
 tags:
 ---
+
 
 [基础教程](http://stormzhang.com/devtools/2014/11/25/android-studio-tutorial1/)
 

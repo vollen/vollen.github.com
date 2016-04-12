@@ -1,6 +1,9 @@
 title: opengl_interface
-tags: [opengl]
+tags:
+  - opengl
+date: 2016-04-12 15:00:11
 ---
+
 
 # VAO
 * void glGenVertexArrays(GLsizei n, Gluint * arrays)
