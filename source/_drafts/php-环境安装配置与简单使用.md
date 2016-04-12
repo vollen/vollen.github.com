@@ -15,6 +15,10 @@ tags:
 --enable-zip --with-pcre-regex --with-mysql --with-mysqli \
 --with-gd --with-jpeg-dir
 ```
+
+sudo apt-get install libmcrypt-dev \
+&& sudo apt-get install libmysql++-dev \
+&& sudo apt-get install libxslt1-dev \
 4. 安装
 ```bash
     make all insatll
