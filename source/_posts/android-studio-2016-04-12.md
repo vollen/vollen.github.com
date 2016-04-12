@@ -1,6 +1,8 @@
 title: android_studio
 date: 2016-04-12 15:00:04
-tags:[android, tools]
+tags: 
+    - android
+    - tools
 ---
 
 
