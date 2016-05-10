@@ -1,5 +1,6 @@
-title: amazonec2
-tags: [vps]
+title: amazon_ec2
+tags: 
+    - vps
 ---
 
 

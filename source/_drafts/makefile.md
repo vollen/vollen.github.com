@@ -1,5 +1,6 @@
 title: makefile
-tags: [makefile]
+tags: 
+    - makefile
 ---
 
 * wildcard 搜索指定目录下的符合条件的文件,并返回文件列表
