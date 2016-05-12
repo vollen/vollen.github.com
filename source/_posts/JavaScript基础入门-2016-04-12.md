@@ -47,6 +47,7 @@ tags: [javascript]
         - `$([herf]$=".png")    #选取包含herf以'png'结尾的元素`
     * css 选择器
         - `$(p).css("back-ground-color", "red") #把所有 p 元素的背景颜色更改为红色`
+    * `$(".target:nth-child(n)")  #第n个class为target的结点`  
 + [事件](http://www.w3school.com.cn/jquery/jquery_ref_events.asp)
     * `$(document).ready(function)     #将函数绑定到文档的就绪事件（当文档完成加载时）`
     * `$(selector).click(function)      #触发或将函数绑定到被选元素的点击事件`    
