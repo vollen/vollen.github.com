@@ -10,6 +10,8 @@ tags:
 ###Bootstrap 
 [官网](http://getbootstrap.com/)
 [中文网](http://www.bootcss.com/)
+[精简教程](http://www.cnblogs.com/fnng/p/4446047.html)
+[教程](http://www.w3schools.com/bootstrap)
 bootstrap 是一个前端css/html框架, 封装了一系列实用的工具.
 
 ```html

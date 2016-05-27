@@ -31,3 +31,10 @@ tags:
 
 ## 重构
 + shift + F6    快速重命名[各种对象]
+
+## 安装插件
+File -> Setting -> Plugins -> Brower Repositories -> 找到你要安装的插件, 然后Install
+### genymotion 插件
+[模拟器加速](http://www.cnblogs.com/JohnTsai/p/4132252.html
+)
+用于快速从android studio 中启动genymotion模拟器.
