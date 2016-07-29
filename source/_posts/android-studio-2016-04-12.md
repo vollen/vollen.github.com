@@ -8,7 +8,7 @@ tags:
 
 [基础教程](http://stormzhang.com/devtools/2014/11/25/android-studio-tutorial1/)
 
-# 快捷键
+# 快捷功能
 [Android Studio常用快捷键](http://www.cr173.com/html/24051_1.html)
 <!--more-->
 
@@ -31,6 +31,10 @@ tags:
 
 ## 重构
 + shift + F6    快速重命名[各种对象]
++ 移动函数 
+    选中函数块， 右键 --> Move --> 调整目标类 --> OK. 
+    可以快速的将一个方法从一个类移动到另一个类， 并修改它的所有引用。
++ 
 
 ## 安装插件
 File -> Setting -> Plugins -> Brower Repositories -> 找到你要安装的插件, 然后Install
