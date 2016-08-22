@@ -39,6 +39,45 @@ sublime是一个超级好用的编辑器, 可以根据个人喜好来配置,因�
 ```
 
 
+#Package Control
+[https://packagecontrol.io/installation#st3]()
+## 常用插件
+### markdown 
++ Markdown Preview
++ Markdown Edit
+
+# 自定义快捷键与Plugin
+## [快速插入当前时间](http://www.phperz.com/article/14/1125/37633.html)
+1. Tools->Delelop->New Plugins 
+添加插件, 另存为 addTitle.py
+```python
+import datetime
+import sublime, sublime_plugin
+
+class addTitleCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        self.view.run_command("insert_snippet", {
+                "contents":"-----------------------------------------------\n"
+                "-- [FILE] $TM_FILENAME\n"
+                "-- [DATE] %s\n" %datetime.datetime.now().strftime("%Y-%m-%d") + ""
+                "-- [CODE] BY gaofeng\n"
+                "-- [MARK] NONE\n"
+                "-----------------------------------------------\n\n"
+            })
+```
+2. Preferences->Key Bindings -Users 绑定快捷键
+```
+    {
+        "command": "add_title",
+        "keys":[
+            "ctrl+shift+,"
+        ]
+    }
+```
+## 自定义插件， 右键菜单
+[sublime 插件开发](http://www.programgo.com/article/84793243447/)
+
+
 #perl 快速调试
 Tools->Build System->New Build System.输入以下内容:
 ```
