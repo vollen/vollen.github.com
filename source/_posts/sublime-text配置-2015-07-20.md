@@ -44,6 +44,10 @@ sublime是一个超级好用的编辑器, 可以根据个人喜好来配置,因�
 ## 常用插件
 ### markdown 
 + Markdown Preview
+绑定快捷键
+```json
+{ "keys": ["alt+m"], "command": "markdown_preview", "args": { "target": "browser"} }
+```
 + Markdown Edit
 
 # 自定义快捷键与Plugin
