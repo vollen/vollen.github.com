@@ -129,3 +129,121 @@ V8中， 内存主要分为新生代和老生代。新生代为存活时间短�
 1. 当一个对象多次在拷贝过程中存活。
 2. 目标内存块利用率超过25%，因为该内存块是接下来的使用块， 所以内存占比过高， 会影响接下来的内存分配。
 #### Mark-Sweep + Mark-Compact
+新生代回收时全停顿
+老生代增加了增量标记，延迟清理与增量整理等策略，来防止应用逻辑中断时间过长。
+### 垃圾回收日志
+在启动时添加`--trace_gc`参数，可以在标准输出中打印垃圾回收的日志信息。
+启动时添加`--prof`参数， 可得到`V8`的性能分析数据， 其中包括垃圾回收占用时间。可以在目录下得到一个`V8.log`文件。
+使用`linux-ticj-processor`工具打开该日志文件可以统计日志信息，windows对应文件为`windows-tick-processor.bat`。
+
+## 高效使用内存
+### 作用域
+作用域链
+变量主动释放： 使用delete 或者给变量赋值为undefined。
+### 闭包
+闭包有可能会导致作用域内的变量无法被回收。
+## 内存指标
+### 查看内存使用情况
+process.memoryUsage()
+os.totalmem()
+os.freemem()
+#### 堆外内存
+Buffer对象不同于其他对象， 不经过V8的内存分配机制，有Node自行分配，所以不会有内存大小限制。
+## 内存泄漏
+### 缓存
+缓存一般使用键值对来实现，这样当缓存内容过多的时候， 如果没有合适的清理机制， 缓存会占用大量内存不会被释放。
+而且进程间无法共享内存，所以多个进程的缓存不会共享， 这也会造成内存浪费。
+应该使用redis或者memcache等缓存数据库。
+### 未及时消费的队列
+采用更高效的队列消费方案
+监控并限制队列的长度，当发生堆积时，产生警报并通知相关人员。
+异步调用添加超时机制， 限定时间未完成， 则通过回调传递超时异常。
+### 作用域未释放
+## 内存泄漏排查
+V8-profiler
+node-heapdump
+node-mtrace
+dtrace
+node-memwatch
+## 大内存应用
+stream 模块
+fs.createReadStream()
+fs.createWriteStream()
+
+# Buffer
+## 结构
+### 模块结构
+Buffer模块是一个典型的JavaSctipt与C++结合的模块， 性能相关部分用C++实现，非性能部分使用JavaScript实现。
+### Buffer 对象
+Buffer存储结构类似于数组，它的元素是16进制的两位数， 范围从0-255.不同编码的字符占用的元素个数不相同，汉字占3个元素，字母占1个元素。
+Buffer对象初始化之后，其中是一个0-255之间的随机值。
+可以通过下标给Buffer赋值，它会将该值取余到 0-255之间，并取整，然后存入数组。
+### 分配内存
+C++层面申请内存， javascript层面分配内存， 分配策略使用slab机制。
+每次至少分配8K的内存， Node以8K为界限来区分Buffer是大对象还是小对象。
+#### 小BUffer对象
+对于小Buffer对象， Node会先分配一个8K的SlowBuffer， 这就是一个slab单元，使用一个局部变量pool指向它。
+然后将buffer对象的parent属性指向该pool，并记录下起始使用位置。
+之后再次分配的时候，会去检查slab对象中是否还有足够的空间，如果有，则继续从这个slab对象中分配内存给buffer对象使用。
+如果剩余空间不足，则重新分配一个slab单元，并标记。
+#### 大Buffer对象
+对于大Buffer对象，则会直接分配一个指定大小的SlowBuffer对象为slab单元， 这个slab单元会被这个Buffer对象独占。
+## Buffer转换
+Buffer对象可以与字符串之间相互转换，目前支持的字符串编码类型有以下几种：
++ ascall
++ utf-8
++ utf-16le/ucs-2
++ Base64
++ Binary
++ Hex
+### 字符串转Buffer
+```new Buffer(str, [encoding]);```
+encoding 不传递时， 默认使用utf-8编码进行转码和存储。
+同一个Buffer对象可以存储不同编码类型的字符串转码， 可以通过write()方法实现。
+buff.write(string, [offset], [length], [encoding])
+### Buffer转字符串
+Buffer对象的toString()可以将Buffer对象转换为字符串。
+```buff.toString([encoding],[start],[end]);```
+可以指定编码，和起止位置。 这样可以达到整体或局部转换的效果。
+如果Buffer对象由多种编码写入，就需要在局部指定不同的编码， 才能转换成正常的编码。
+### Buffer不支持的编码类型
+Buffer.isEncoding(encoding)
+#### iconv
+调用C++库libiconv完成。
+#### iconv-lite
+纯JavaScript实现， 比iconv更轻量， 更高效。
+## Buffer 拼接
+```javascript
+data += buffer
+//等价于
+data = data.toString() + buffer.toString()
+```
+当buffer使用宽字符的时候，有可能存在被截断的情况，就会出现乱码。
+### setEncoding() 与string_decoder()
+```readable.setEncoding(encoding)```
+该方法的作用是让data事件传递的不再是Buffer对象， 而是使用指定编码编码后的字符串， 所以不会出现乱码问题。
+setEncoding 时， 内部会保存一个string_decoder对象， 该对象在编码时， 如果有发现被截断的部分， 会保存在内部， 下次write时，再追加在一起编码。
+但是它目前只能处理utf-8, base64和ucs-2/utf-16le这三种编码， 所以不能根本性解决问题。
+### 终极方案
+用数组来存储收到的所有Buffer片段， 并记录下所有片段的总长度， 然后调用`Buffer.concat()`合成为一个大Buffer对象。
+然后在使用指定的编码方式或者iconv转换成字符串。
+```javascript
+    let chunks=[];
+    let size = 0;
+    res.on('data', （chunk）=>{
+        chunks.push(chunk);
+        size += chunk.length;
+    });
+    res.on('end', ()=>{
+        const buffer = Buffer.concat(chunks, size);
+        const str = iconv.decode(buffer, 'utf8');
+        console.log(str);
+    })
+
+```
+## Buffer 与性能
+在网络传输中使用Buffer能大幅提高传输速率。
+### 静态内容
+静态内容预先转换为Buffer 的方式， 直接读取传输， 不需要做额外的转换， 能减少CPU的重复运算。
+### 文件读取 与 highWaterMark 参数
+对于大文件而言， highWaterMark越大， 读取速度越快。
