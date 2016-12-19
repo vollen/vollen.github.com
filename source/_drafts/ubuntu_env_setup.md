@@ -4,6 +4,8 @@
 # apt-get
  + nautilus-open-terminal
     右键打开终端
+ + subversion
+ + git
  + 
 # node
 [NPM安装](http://n.thepana.com/2013/09/21/nodejs_install/)
