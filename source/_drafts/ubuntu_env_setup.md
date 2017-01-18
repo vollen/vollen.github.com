@@ -6,7 +6,8 @@
     右键打开终端
  + subversion
  + git
- + 
+ + build-essential
+ + meld
 # node
 [NPM安装](http://n.thepana.com/2013/09/21/nodejs_install/)
 ## 从源码安装

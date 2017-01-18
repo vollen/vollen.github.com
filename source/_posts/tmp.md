@@ -41,3 +41,53 @@ api.call.subscribe(handle)
 
 
 
+
+
+
+
+
+
+
+
+View
+
+    add
+    remove
+    update
+    click
+    
+Modules
+    req
+    res
+
+Data 
+    add
+    remove
+    update
+    get
+
+DataManager
+
+
+ModMgr{
+    init
+    addMod
+    watch(mod, id, watcher)
+    unWatch()
+}
+
+Mod{
+    showPanel
+    datas
+    
+}
+
+WatcherManager{
+
+    tick();
+}
+
+DataWatcher
+    new(dataId)
+    onUpdate()
+    clear()
