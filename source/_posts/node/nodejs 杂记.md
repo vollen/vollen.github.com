@@ -19,4 +19,4 @@ npm 常用命令
     npm uninstall express   卸载
 
     npm config list 查看npm 配置
-    npm config set prefix="xx" 修改npm 全局安装目录
+    npm config set prefix="xx" 修改npm 全局安装目录s
