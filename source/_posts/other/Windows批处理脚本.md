@@ -29,7 +29,7 @@ echo {[on | off]} [message]
 ## rd
 删除目录
 ## del
-删除置顶文件
+删除指定文件
 ## ren
 重命名文件
 ## cls
@@ -82,9 +82,15 @@ echo {[on | off]} [message]
 - %~zi 扩充到文件的大小
 - %~$PATH:i 查找PATH环境变量指向的目录， 并获得第一个完全合格的名称。
 ## setlocal， endlocal
-设置和取消[命令扩展名 和 延缓环境变量扩充]
+设置和取消[命令扩展名 和 延缓变量扩展]
 ```SETLOCAL ENABLEEXTENSIONS```
 ```SETLOCAL ENABLEDELAYEDEXPANSION```
+[enabledelayedexpansion](http://www.jb51.net/article/29323.htm)
+批处理是逐条命令读取的，for循环内部块算作一条， 在读取的过程中， 会将变量填充补全。 
+所以for循环内部的set命令， 不会对之后的命令生效。
+如果启用了变量延迟， 则读取命令的时候，不对变量填充，而是在执行之前计算。
+但是要是用变量填充， 需要将%p% 换成!p!,否则仍然不会延迟计算。
+
 ## set
 set 显示目前可用变量
 set p 显示p开头的变量

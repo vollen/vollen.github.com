@@ -1,9 +1,13 @@
 nvm 管理node
+[https://github.com/creationix/nvm](nvm git)
+
 npm 管理包
     npm --registry=https://xxx  指定npm源
 
-https://registry.npm.taobao.org 淘宝提供的npm 镜像 
-cnpm 
+[http://www.cnblogs.com/kaiye/p/4937191.html](使用nvm管理npm包)
+
+https://registry.npm.taobao.org 淘宝提供的npm 镜像源
+npm install -g cnpm --registry=https://registry.npm.taobao.org 安装cnpm
 
 
 module.exports 和 exports
@@ -17,6 +21,17 @@ npm 常用命令
     npm install -g express  安装， -g表示全局安装
     npm update express      更新
     npm uninstall express   卸载
+    npm dedupe  
 
     npm config list 查看npm 配置
     npm config set prefix="xx" 修改npm 全局安装目录s
+
+
+typings 在vscode中使用代码提示
+
+babel
+    babel-cli
+    babel-eslint
+    babel-preset-es2015
+    
+    babel -w src -d build -s 默认编译命令
