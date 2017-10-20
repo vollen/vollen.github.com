@@ -27,3 +27,6 @@ C:\Documents and Settings\当前登录用户名\AppData\Local\Google\Chrome\User
 [下载地址](http://www.nirsoft.net/utils/chrome_cache_view.html)
 Video cache view 可以下载缓存下来的视频, 可以处理IE/Chrome 得多种浏览器的缓存.
 暂时没有使用
+
+## Chrome 插件目录
+    C:\Users\当前登录用户名\AppData\Local\Google\Chrome\User Data\Default\Extensions
