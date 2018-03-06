@@ -12,3 +12,12 @@ tags:
 * 游戏加速(Android) 
     通过对比gettimeofday() 返回的系统时间， 与System.nanoTime()返回的CPU时间的增长速率。
     当增长速率差距过大时， 即可判定使用了变速软件。
+
+
+
+
+--整理更新版本管理机制， 并发文
+--整理H5优化点
+
+-- 输出带调试信息的字节码
+luajit -blg [filename]

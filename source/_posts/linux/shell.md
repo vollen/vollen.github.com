@@ -8,3 +8,6 @@ shell.md
 
 # 切换 shell
 `chsh -s {shell path} {username}`
+
+# if
+[shell if](http://www.cnblogs.com/276815076/archive/2011/10/30/2229286.html)

@@ -21,3 +21,19 @@ robocopy "C:\Users" "D:\Users" /E /COPYALL /XJ
 rmdir "C:\Users" /S /Q
 mklink /J "C:\Users" "D:\Users"
 ```
+
+
+#注册表编辑
+[在windows右键菜单中加入自己的程序](http://blog.csdn.net/marklr/article/details/4006356)
+Windows Registry Editor Version 5.00
+如果卸载注册表键值，只在记事本中的[HKEY_CLASSES_xxx]的前面加“-”号即可。 [HKEY_CLASSES_ROOT\XXXActiveControl]修改为
+[-HKEY_CLASSES_ROOT\XXXActiveControl]
+
+reg /?
+reg add/delete
+
+//右键， 打开命令行
+@="CMD.EXE /K CD %1"  
+
+shellNew
+    NullFile 空

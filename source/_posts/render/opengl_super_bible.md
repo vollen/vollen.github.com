@@ -58,3 +58,13 @@ GL_TRIANGLES
     glFrontFace(GL_CW) 函数可以设置哪个方向的环绕是正面， GL_CCW 为逆时针方向, GL_CW 为顺时针方向.
 GL_TRIANGLE_STRIP
 GL_TRIANGLE_FAN
+
+背面剔除
+glEnable(GL_CULL_FACE)
+void glCullFace(GLenum face); // face : GL_FRONT, GL_BACK, GL_FRONT_AND_BACK
+
+深度测试
+glEnable(GL_DEPTH_TEST)
+
+多边形填充规则
+glPolygonMode(GLenum face, GLenum mode); // mod : GL_FILL, GL_LINE, GL_POINT
