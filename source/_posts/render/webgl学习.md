@@ -184,3 +184,25 @@ gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
 uniform sampler2D u_sampler;
 gl_FragColor = texture2D(u_sampler, v_textureCoord);
 ```
+
+# 三维世界
+## 视点和视线
+视点：观察者坐标(eyeX, eyeY, eyeZ)
+观察目标点： 被观察目标所在点(atX, atY, atZ)
+上方向： 最终绘制在屏幕上的影像中的向上的方向 (upX, upY, upZ)
+
+视图矩阵： 通过上面三个矢量， 计算出的物体绘制时的变换矩阵
+模型矩阵： 模型通过各种仿射变换之后得到的最终变换矩阵
+模型视图矩阵： 视图矩阵 * 模型矩阵， 因为对于同一模型的所有顶点都一样， 所以预乘节省运算
+
+# 投影
+正视投影
+透视投影
+MVP矩阵 = 投影矩阵 * 视图矩阵 * 模型矩阵
+
+# 深度缓冲
+gl.enable(gl.DEPTH_TEST);
+gl.clear(gl.DEPTH_BUFFER_BIT);
+
+# 多边形便宜
+gl.enable(gl.POLYGON_OFFSET_FILL)
