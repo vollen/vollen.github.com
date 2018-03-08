@@ -206,3 +206,22 @@ gl.clear(gl.DEPTH_BUFFER_BIT);
 
 # 多边形便宜
 gl.enable(gl.POLYGON_OFFSET_FILL)
+
+# 光照
+## 光源
+点光源
+平行光
+环境光
+## 反射
+color = color_diffuse + color_ambient
++ 环境光
+color = light_color * face_color
++ 平行光
+color = light_color * face_color * cos(a)
+cos(a) = v_normal * v_light_direct
++ 点光源
+
+## 平面法向量
+从平面的正方向看去， 顶点顺序是顺时针的。 可以使用左手握拳， 找到法向量方向。
+
+## 逆转置
