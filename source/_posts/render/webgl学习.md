@@ -220,8 +220,16 @@ color = light_color * face_color
 color = light_color * face_color * cos(a)
 cos(a) = v_normal * v_light_direct
 + 点光源
+需要计算光源到顶点的方向， 然后按照平行光的公式处理
+记住计算处理的方向要归一化
+v_light_direct = normalize(a_light_position - a_position)
 
 ## 平面法向量
 从平面的正方向看去， 顶点顺序是顺时针的。 可以使用左手握拳， 找到法向量方向。
 
 ## 逆转置
+逆转置矩阵可以用于计算平面法向量的变化。
+
+## 逐片元光照
+对顶点进行光照处理，可能表现效果会不那么自然。 可以在片元器里处理光照，表现的更自然。
+这需要通过varying变量， 将 v_Color, v_Normal, v_Position, v_Light等信息传递到片元着色器。
