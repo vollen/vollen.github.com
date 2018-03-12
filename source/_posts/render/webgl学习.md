@@ -233,3 +233,47 @@ v_light_direct = normalize(a_light_position - a_position)
 ## 逐片元光照
 对顶点进行光照处理，可能表现效果会不那么自然。 可以在片元器里处理光照，表现的更自然。
 这需要通过varying变量， 将 v_Color, v_Normal, v_Position, v_Light等信息传递到片元着色器。
+
+
+# 着色器程序
+```js
+var shader = gl.createShader(gl.VERTEX_SHADER || gl.FRAGMENT_SHADER)
+gl.deleteShader(shader);
+gl.shaderSource(shader, source);
+gl.compileShader(shader);
+gl.getShaderParameter(shader, pname); //查看shader状态
+gl.getShaderInfoLog(); //获取shader输出的日志信息
+gl.createProgram();
+gl.deleteProhram(program);
+gl.attachShader(program, shader);
+gl.detachShader(program, shader);
+gl.linkProgram(program);
+gl.useProgram(program);
+gl.getProgramParameter(program, pname);
+gl.getProgramInfoLog(program);
+```
+
+# 获取指定范围内的颜色值
+```js
+gl.readPixels(x, y, w, h, format, type, pixels);
+//example
+var w = 1, h = 1;
+var pixels = new Uint8Array(w * h * 4);
+gl.readPixels(x, y, w, h, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+```
+
+# 其他高级策略
+## 检查物体是否被点击
+点击时通过uniform传递一个参数到着色器程序， 将物体绘制成指定颜色，然后从缓冲区读取点击点的颜色， 判断是否为指定颜色， 如果是， 表示选中了。
+检查完之后， 记得将对应的参数重置， 然后重新绘制。
+## 检查表面是否被点击
+可以将表面信息传入到着色器中， 然后根据不同表面绘制不同的颜色， 思路跟上面类似， 通过检查指定点颜色来判断。
+## 平视显示器
+将两个canvas叠加， 2D信息部分用一个canvas显示， 叠加在3D图像上。
+## 将3D物体显示在2d内容上
+类似上例， 不过需要将上面的3dcanvas 的背景色alpha值设为0
+## 雾化
+```js
+    float factor = (a_end - distance) /(a_end - a_start);
+    v_Color = 光照之后的颜色 * factor + a_FrogColor * ( 1 - factor);
+```
