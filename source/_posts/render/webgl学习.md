@@ -19,6 +19,10 @@ gl.clear()
 draw()
 ```
 
+[MSDN WEBGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API)
+Khronos Group 开放标准的应用程序接口API 
+[khronos webgl](https://www.khronos.org/webgl/)
+
 [webgl编程指南示例地址](https://sites.google.com/site/webglbook/)
 [webgl编程指南代码库地址](http://rodger.global-linguist.com/webgl/lib)
 #勘误
@@ -43,6 +47,7 @@ gl.vertexAttrib[1234][fi][?v](location, params)
 ###内置变量
 vec4 gl_FragColor; //片元颜色
 vec2 gl_FragCoord; //片元坐标
+vec2 gl_PointCoord; //片元在被绘制的点内的坐标
 
 ### attribute 变量
 ```js
@@ -197,7 +202,22 @@ gl_FragColor = texture2D(u_sampler, v_textureCoord);
 
 # 投影
 正视投影
+```js
+[
+    2/(right - left),       0,          0,      -(right + left) / (right -left),
+    0,                2/(top-bottom),   0,      -(top + bottom) / (top - bottom),
+    0,                    0,    -2/(far - near), -(far + near) / (far - near),
+]
+```
 透视投影
+```
+[
+    1/(aspect * tan(fov/2)),    0, 0, 0,
+    0, 1/tan(fov/2), 0, 0,
+    0, 0, -(far + near)/(far - near), -2* far * near/(far - near),
+    0, 0, -1, 0
+]
+```
 MVP矩阵 = 投影矩阵 * 视图矩阵 * 模型矩阵
 
 # 深度缓冲
@@ -226,6 +246,7 @@ v_light_direct = normalize(a_light_position - a_position)
 
 ## 平面法向量
 从平面的正方向看去， 顶点顺序是顺时针的。 可以使用左手握拳， 找到法向量方向。
+使用平面任意两向量叉乘可计算出平面法向量
 
 ## 逆转置
 逆转置矩阵可以用于计算平面法向量的变化。
@@ -248,7 +269,7 @@ gl.deleteProhram(program);
 gl.attachShader(program, shader);
 gl.detachShader(program, shader);
 gl.linkProgram(program);
-gl.useProgram(program);
+gl.useProgram(program); //可以使用该函数， 在不同的着色器程序之间来回切换
 gl.getProgramParameter(program, pname);
 gl.getProgramInfoLog(program);
 ```
@@ -276,4 +297,143 @@ gl.readPixels(x, y, w, h, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 ```js
     float factor = (a_end - distance) /(a_end - a_start);
     v_Color = 光照之后的颜色 * factor + a_FrogColor * ( 1 - factor);
+    //使用w分量来近似视点的距离
+    //在视图坐标系中，w = 顶点的视图坐标z分量* -1, 视点在原点， 所以可以通过w来近似距离。
+    v_Dist = gl_Position.w;
 ```
+
+## 混合
+在绘制的时候， 可以设置颜色混合策略
+```js
+gl.enable(gl.BLEND);
+gl.blendFunc(src_factor, dst_factor);
+//color = src_color * src_factor + dst_color * dst_factor;
+//最常用的, a_color = color_src * a_src + color_dest * (1 - a_src) 
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+```
+混合参数可选值
+gl.ZERO, gl.ONE, gl.SRC_COLOR, gl.ONE_MINUS_SRC_COLOR, gl.DST_COLOR, gl.ONE_MINUS_DRS_COLOR, 
+gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.DST_ALPHA, gl.ONE_MINUS_DST_ALPHA,
+gl.SRC_ALPHA_SATURATE
+
+使用颜色混合的时候需要关闭深度缓存， 否则前面的颜色直接覆盖了后面的颜色， 也就无从混合了。
+### 如何同时使用深度缓存和颜色混合呢？
+```js
+//开启深度缓存
+gl.enable(gl.DEPTH_TEST);
+//绘制所有透明度 >= 1.0 的物体
+//锁定深度缓存区， 使之只读
+gl.depthMask(true);
+//绘制所有半透明物体
+//解锁深度缓存区
+gl.depthMask(false);
+
+//当不透明的物体后面有透明物体时， 因为深度缓存的原因， 会直接被遮挡。 而不透明的颜色则可以继续混合。
+```
+## 渲染到纹理
+### 帧缓冲区对象和渲染缓冲区对象
+帧缓冲区对象包含三种不同的对象， 用于实现不同的功能， 颜色关联对象用于代替颜色缓冲区，深度关联对象用于代替深度缓冲区， 模板关联对象用于代替模板缓冲区。
+这几种对象可以是两种类型的： 纹理对象或渲染缓冲区对象。
+```js
+//如何配置一个离屏渲染的帧缓冲区
+//1.创建帧缓冲区对象
+var framebuffer = gl.createFrameBuffer();
+//2.创建纹理对象并设置其尺寸和参数
+var texture = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, texture);
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+//gl.texParameteri();
+//3.创建渲染缓冲区对象
+var depthBuffer = gl.createRenderbuffer();
+//4.绑定渲染缓冲区对象并设置其尺寸
+gl.bindRenderbuffer(gl.RENDERBUFFER, depthBuffer);
+gl.renderbufferStorage(gl.RENDERBUFFER, g.DEPTH_COMPONENT16, width, height);
+//5.绑定帧缓冲区
+gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+//5.将帧缓冲区的颜色关联对象指定为纹理对象
+gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACTMENT0, gl.TEXTURE_2D, texture, 0);
+//6.将帧缓冲区的深度关联对象指定为渲染缓冲区对象
+gl.framebufferRenderbuffer(gl.FRAMEBUFFER, GL.DEPTH_ATTACHMENT, gl.RENDER_BUFFER, depthBuffer);
+//7.检查帧缓冲区是否正确配置
+gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+//8.绘制到帧缓冲区
+gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+gl.viewport(0, 0, width, height);
+
+//切换会默认的颜色缓冲区
+gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+//帧缓冲区对象可以被删除
+gl.deleteFrameBuffer(frameBuffer);
+//渲染缓冲区对象也可以被删除
+gl.deleteRenderbuffer(depthBuffer)
+```
+
+## 阴影
+思路： 使用两对着色器，第一对着色器，用于生成阴影贴图。第二对着色器根据片元在光照坐标系上的z值与光照贴图的值比较， 如果z值较大， 则处于阴影之中。 
+1. 将视点移至光源位置， 然后使用着色器1绘制。 这里将要被绘制的片元都是被光照到的最前面的，将该片元的z值通过帧缓冲区绘制到阴影贴图中。
+2. 将视点移回原来的位置， 然后使用着色器2绘制。计算出片元在光源坐标系下的z值， 与阴影贴图上的记录的z值比较是否被光照到。
+
+Tips: 比较的时候， 需要在读取出来的z值上加上 0.005, 否则可能会出现马赫带。
+    马赫带出现的原因是因为纹理贴图上的颜色分量精度为1/256， 而着色器的精度值为1/65535。所以可能会出现完全相同的坐标，阴影贴图的z值比着色器中的小， 而误以为它是阴影区域。所以需要在读出来的z值上添加一个略大于精度值单位的值。
+
+将z值全部放在一个分量上可能会遇到分量值域太小不够用的情况， 我们可以考虑将颜色的4个分量都用来存储。
+```js
+    const vec4 bitShift = vec4(1.0, 256.0, 256.0 * 256.0, 256.0 * 256.0 * 256.0);
+    const vec4 bitMask = vec4(1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0, 0.0);
+    vec4 rgbaDepth = fract(gl_FragCoord.z * bitShift);
+    rgbaDepth -= rgbaDepth.gbaa * bitMask;
+    gl_FragColor = rgbaDepth;
+
+    function unpackDepth(const in vec4 rgbaDepth){
+        const vec4 bitShift = vec4(1.0, 1.0 / 256.0, 1.0/(256.0 * 256.0), 1.0/(256.0 * 256.0 * 256.0));
+        float depth = doc(rgbaDepth, bitShift);
+        return depth;
+    }
+```
+
+## 加载三维模型
+### Blender建模软件
+### Obj格式
+```js
+# //注释 
+mtllib filename //引用mtl文件
+o name  //声明一个名为name的模型
+v vertexs //顶点们
+usemtl Material //使用材质Material
+f indexes  //使用了材质的表面， 表面是由纹理坐标和法线的索引序列定义的， 索引从1开始
+```
+### mtl 文件格式
+```js
+newmtl Material //定义新的材质
+Ka 0.000000 0.000000 0.000000 //环境色
+Kd 1.000000 0.000000 0.000000 //漫射色
+Ks 0.000000 0.000000 0.000000 //高光色
+Ns 96.078431                  //高光色权重
+Ni 1.000000                   //表面光学密度
+d 1.000000                    //透明度
+illum 0                       //光照模型
+```
+
+## 上下文丢失
+通过监听webglcontextlost, webglcontextrestored 这两个事件来响应上下文丢失和恢复的情况。
+在恢复时，重新设置webgl状态
+```js
+    canvas.addEventListener("webglcontextlost", function(ev){
+        cancelAnimationFrame(requestId);
+        //默认是不在触发restore事件， 所以要阻止默认行为
+        ev.preventDefault();
+    }, false);
+    canvas.addEventListener("webglcontextrestored", function(ev){
+        //重新设置webgl 相关状态， 变量位置
+    }, false);
+```
+
+## opengl 默认的裁剪空间中， 使用的左手坐标系
+常用的第三方库使用的是右手坐标系。
+可以通过在投影矩阵的z轴缩放因子上 * -1, 将传统库使用的右手坐标系， 转变为裁剪坐标系需要的左手坐标系。
+
+## 逆转置矩阵
+逆转置矩阵可以用与将平面的法向量变换到正确的值。
+当不包含 缩放因子不一致 的缩放变换时， 可以直接使用模型矩阵的3x3子矩阵来变化法向量。
+当包含缩放因子不一致 的缩放变换时，则必须使用逆转置矩阵来变换。

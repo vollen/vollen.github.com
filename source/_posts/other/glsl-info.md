@@ -195,3 +195,41 @@ precision 精度限定字 类型名称;
 ```
 GL_ES
 GL_FRAGMENT_PRECISION_HIGH 片元着色器支持highp精度
+
+
+《OpenGl着色语言》 笔记
+
+作者： Randi Rost
+
+## 基础知识
+ARB: OpenGL Architecture Review Board
+扩展: 最开始添加的时候， 扩展添加厂家后缀，被更多厂家实现之后添加EXT前缀, 完全经过ARB审查之后， 添加ARB前缀, 再然后才会被添加到OpenGL规范中。
+`glGetString(GL_EXTENSION)`可以返回当前实现所支持的扩展。
+客户（应用程序）- 服务器(OpenGL实现) 模型。
+数据绑定发生在发出命令时，之后对该数据的更改不影响存储在OpenGL内的数据。
+帧缓冲区
+双重缓冲区
+    深度缓冲区
+    模板缓冲区
+    积聚缓冲区 比颜色缓冲区更高的精度，允许几幅图像积聚在一起， 可以用来显示动态模糊效果。
+    多重采样缓冲区
+
+状态机 OpenGL有非常多的状态来控制绘制过程， 这些状态是彼此正交的。
+glEnable/glDisable 用来开启或关闭某种状态
+glEnableClientState/glDisableClientState
+glPushAttrib/glPopAttrib
+glPushClientAttrib/glPopClientAttrib
+glGet*
+
+渲染管线
+
+### 绘制几何对象
+两种方式：逐顶点 和 顶点数组
+### 逐顶点
+glBegin 开始一个图元
+glVertx， glColor, glNormal 等函数配置顶点属性
+glEnd 结束改图元
+### 顶点数组
+在顶点数组中存储顶点属性， 然后使用 glDrawArray, glDrawElements等接口一次性绘制大量图元。
+glColorPointer 指定顶点颜色值数组
+glVertexPointer 指定顶点位置值数组
