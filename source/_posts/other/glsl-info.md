@@ -87,6 +87,9 @@ struce name {
 不可以使用const 修饰
 只支持整型常量表达式和uniform变量作为索引
 不能在声明时一次性初始化， 只能用索引显式的对每个元素初始化
+在以下两种情况下， 数组声明时可以不指定大小。
+1. 在引用数组之前， 再次声明同类的指定大小的数组
+2. 所有引用数组的索引值都是编译时常量， 编译器会自动给它分配使用到的最大大小
 
 # 取样器
 只能是uniform变量 或者访问纹理的函数的参数
@@ -152,6 +155,7 @@ texture2dProjLod
 声明在函数外部的是全局变量
 函数内部的是局部变量
 attribute uniform varying 变量必须是全局变量
+for 循环可以声明变量， 但是if 闭门会
 
 ## 变量限定字
 ### const
@@ -233,3 +237,35 @@ glEnd 结束改图元
 在顶点数组中存储顶点属性， 然后使用 glDrawArray, glDrawElements等接口一次性绘制大量图元。
 glColorPointer 指定顶点颜色值数组
 glVertexPointer 指定顶点位置值数组
+
+模型空间
+世界空间
+
+一维纹理 二维纹理 三维纹理 立方贴图纹理(每个主轴方向有一个二维纹理)
+纹理单元
+
+### glsl 特点
+glsl 是一种高级过程语言
+顶点着色器和片元着色器使用相同的语言(很小一部分不一样)
+基于C和C++语法以及流控制
+生来支持矢量和矩阵操作
+类型比C和C++更严格， 调用必须有返回值
+使用类型限定符而不是读取和写入操作来管理输入和输出
+着色器长度没有限制
+
+### 顶点着色器
+属性变量(attribute) 一致变量(uniform) 易变变量(varying)
+顶点着色器输出的 varying变量数量可以多于片元着色器接收的。
+
+### 比C增加的
+添加矢量vec*和矩阵mat*类型
+可以使用 xyzw rgba 等分量来直接访问数据。
+sampler 类型
+输入输出限定符
+
+
+### glslviewer
+[github](https://github.com/patriciogonzalezvivo/glslViewer)
+[viewer + sublime](https://zhuanlan.zhihu.com/p/32443564)
+
+GPU 工作方式： 单指令多线程， 同一个指令控制器， 多个线程执行同样的指令。

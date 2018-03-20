@@ -32,6 +32,16 @@ Windows Registry Editor Version 5.00
 reg /?
 reg add/delete
 
+在windows 右键菜单添加命令行入口
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Folder\shell\cmd]
+@="打开命令行"
+
+[HKEY_CLASSES_ROOT\Folder\shell\cmd\command]
+@="cmd.exe /K CD %1"
+```
 //右键， 打开命令行
 @="CMD.EXE /K CD %1"  
 

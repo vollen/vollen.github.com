@@ -49,6 +49,9 @@ sublime是一个超级好用的编辑器, 可以根据个人喜好来配置,因�
 { "keys": ["alt+m"], "command": "markdown_preview", "args": { "target": "browser"} }
 ```
 + Markdown Edit
+### glslviewer
+### glsl
+### auto-save
 
 # 自定义快捷键与Plugin
 ## [快速插入当前时间](http://www.phperz.com/article/14/1125/37633.html)

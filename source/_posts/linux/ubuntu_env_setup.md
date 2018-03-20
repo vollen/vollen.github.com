@@ -2,6 +2,11 @@
 
 
 # apt-get
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install libglfw3-dev git-core
+```
  + nautilus-open-terminal
     右键打开终端
  + subversion
