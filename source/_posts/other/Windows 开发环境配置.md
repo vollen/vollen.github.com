@@ -9,6 +9,13 @@ tags:
 # Power Shell
 # Node
 [nodejs](https://nodejs.org/zh-cn/)
+# 其他
+SVN
+lua
+make
+nginx
+python
+
 
 # fiddler2
 抓取手机数据包
@@ -47,3 +54,13 @@ Windows Registry Editor Version 5.00
 
 shellNew
     NullFile 空
+
+
+## 可能需要的软件
+nox 模拟器
+fildder
+filezilla
+tiled
+vscode
+synergy
+notepad++

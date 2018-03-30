@@ -38,16 +38,25 @@ gl.drawArrays(mode, first, count)
 #着色器
 ##顶点着色器
 ###内置变量
+特殊的输出变量
 vec4 gl_Position
-float gl_Point_size
+float gl_PointSize
+float gl_ClipDistances[]
 ####传参函数族
 gl.vertexAttrib[1234][fi][?v](location, params)
 
 ##片元着色器
 ###内置变量
-vec4 gl_FragColor; //片元颜色
-vec2 gl_FragCoord; //片元坐标
+内置变量
+vec4 gl_FragCoord; //片元坐标
 vec2 gl_PointCoord; //片元在被绘制的点内的坐标
+bool gl_FrontFacing; //是否正面， 非多边形图元上的点都视为正面。
+输出变量
+vec4 gl_FragColor; //片元颜色
+gl_FragDepth
+
+## 内置uniform 变量
+uniform gl_DepthRangeParameters gl_DepthRange;
 
 ### attribute 变量
 ```js

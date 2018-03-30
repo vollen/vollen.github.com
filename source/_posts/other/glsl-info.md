@@ -141,7 +141,7 @@ pow, exp, log, exp2, log2, sqrt, inversesqrt
 ### 通用数学函数
 asb min max mod sign floor ceil clamp mix step smoothstep fract
 ### 几何函数
-length distance dot cross normalize reflect faceforward
+length distance dot cross normalize faceforward reflect反射 refract折射
 ### 矩阵函数
 matrixCmpmult
 ### 矢量函数
@@ -150,6 +150,16 @@ any all not
 ### 纹理查询函数
 texture2D textureCube texture2DProj texture2DLod textureCubeLod 
 texture2dProjLod
+### 噪音函数
+noise1 noise2 noise3 noise4
+这几个噪音函数的特点：
+1. 返回值[-1, 1], 
+2. 在[-0.6, 0.6]之间符合高斯分布
+3. 总的平均值为0
+4. 可重入姓， 同样的输入始终返回同样的结果
+5. 旋转和平移不影响它的统计学特征
+6. 平移会影响结果
+7. 所有地方都是C1连续的（一阶导数连续）
 
 # 全局变量， 局部变量
 声明在函数外部的是全局变量
@@ -196,10 +206,30 @@ precision 精度限定字 类型名称;
 
 //配置glsl es 版本， 只有两个值可选
 #version 100 | 101 
+
+//内置宏
+__LINE__
+__FILE__
+__VERSION__
+#error message 返回一个错误， 并将message放入信息日志
+#pragma optimize(bool)
+#pragma debug(bool)
 ```
 GL_ES
 GL_FRAGMENT_PRECISION_HIGH 片元着色器支持highp精度
-
+## 预处理器表达式
+```c
+//一元
++ - ~ ! defined
+//四则
++ - * /
+//关系
+>  < <= >= == !=
+//位运算
+>> <<  & | ^  
+// 逻辑
+! && ||
+```
 
 《OpenGl着色语言》 笔记
 
@@ -256,8 +286,14 @@ glsl 是一种高级过程语言
 ### 顶点着色器
 属性变量(attribute) 一致变量(uniform) 易变变量(varying)
 顶点着色器输出的 varying变量数量可以多于片元着色器接收的。
+gl_VertexID; 当前顶点在数组中的索引
+gl_InstanceID; 当前图元索引， 如果没有使用instance, 则为0.
 
-### 比C增加的
+varying 变量的修饰符， 修饰易变变量怎么差值：
+smooth  noperspective flat
+
+
+### 与C,C++ 不同的
 添加矢量vec*和矩阵mat*类型
 可以使用 xyzw rgba 等分量来直接访问数据。
 sampler 类型
@@ -269,3 +305,25 @@ sampler 类型
 [viewer + sublime](https://zhuanlan.zhihu.com/p/32443564)
 
 GPU 工作方式： 单指令多线程， 同一个指令控制器， 多个线程执行同样的指令。
+
+### 内置常量
+各种属性的数量限制， 这里为最低配置。
+const int gl_MaxVertexAttribs = 16;
+const int gl_MaxVertexUniformComponents = 1024;
+const int gl_MaxVaryingComponents = 64;
+const int gl_MaxVertexTextureImageUnits = 16;
+const int gl_MaxCombinedTextureImageUnits = 16;
+const int gl_MaxTextureImageUnits = 16;
+const int gl_MaxFragmentUniformComponents = 1024;
+const int gl_MaxDrawBuffers = 8;
+const int gl_MaxClipDistances = 8;
+
+invariant 修饰符， 修饰
+## 功能开关枚举
+GL_VERTEX_PROGRAM_POINT_SIZE  点模式
+
+## 开始写着色器
+### 顶点着色器
+1. 哪些数据是需要每个顶点计算的呢？  attribute
+2. 哪些数据是图元中多个顶点共享的呢？ uniform
+3. 哪些数据是需要顶点着色器计算的呢？ varying
