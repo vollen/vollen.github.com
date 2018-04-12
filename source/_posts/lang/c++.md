@@ -102,3 +102,12 @@ using Base::func;
 
 ## final 
 禁止继承
+
+# 多线程
+std::thread
+std::mutex
+std::lock_guard
+std::unique_lock
+std::future
+std::packaged_task 
+std::condition_variable
