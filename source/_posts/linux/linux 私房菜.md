@@ -30,4 +30,67 @@ GPT 使用34个 LBA 区块来记录分区信息， 第 1 个是 MBR, 第二个�
 3. 加载其他 Loader, 将开机管理程序交给其他 loader, 用于多系统。
 
 如果要装双系统的话， 应该先装 Windows 在安装 linux, 否则 Windows 会覆盖 MBR, 而且没法识别 linux.
-# 
+
+## FHS 文件系统结构标准
+### / 根目录
+根目录
++ /bin  放置常用与用户无关的命令
++ /boot 放置启动相关文件
+- /boot/grub2 grub2 开机程序目录
++ /dev 设备与接口文件
++ /etc 一些配置文件， 通常所有用户都可以查看， 只有 root 可修改
+- /etc/opt 第三方辅助软件 /opt 的配置
+- /etc/x11  与 x window 相关的配置
+- /etc/sgml
+- /etc/xml 与 xml 格式相关的配置
++ /lib 开机需要的库文件， 或者 /bin /sbin 目录的程序用到的库文件
+- /lib/modules 放置可替换式核心交互模块、驱动程序
++ /media 可移除设备
++ /mnt 暂时挂载的目录
++ /opt 第三方辅助软件
++ /run 程序运行后产生的各种信息
++ /sbin root 用户才能使用的设定系统环境的一些命令
++ /srv 一些网络服务程序启动后需要访问的目录
++ /tmp 程序运行时产生的临时文件， 需要时常清理
++ /usr 见下文
++ /var 见下文
+#### 建议存在的目录
++ /home  用户目录
++ /lib<qual> 与 /lib 目录不一样的二进制函数库， 如 /lib64 
++ /root  root 用户目录
+
+#### 其他 linux 目录
++ /lost+found ext2/ext3/ext4 文件系统下有的， 用于保存文件系统错误时，丢失的数据片段
++ /proc 一个虚拟文件系统， 所有的数据都是在内存中的。
++ /sys 与 /proc 类似， 不过记录的是 核心与系统硬件相关的信息。 
+
+### /usr 目录
+unix software resource 与软件安装执行有关， 里面的文件属于 可分享、 不可变动的。
++ /usr/bin
++ /usr/lib
++ /usr/sbin
++ /usr/local
++ /usr/share
+#### 建议有的
++ /usr/include
++ /usr/src
+### /var 目录
+variable 与系统运行有关， 里面的文件属于 不可分享，可变动的。
++ /var/cache
++ /var/log 登录相关
++ /var/lock --> /run/lock
++ /var/run  --> /run
++ /var/spool
++ /var/mail
+
+## 文件与目录管理
++ basename \`pwd\` 查看当前目录名
++ dirname \`pwd\`  当前目录父目录名
++ cat  由第一行開始顯示檔案內容
++ tac  從最後一行開始顯示，可以看出 tac 是 cat 的倒著寫！
++ nl   顯示的時候，順道輸出行號！
++ more 一頁一頁的顯示檔案內容
++ less 與 more 類似，但是比 more 更好的是，他可以往前翻頁！
++ head 只看頭幾行
++ tail 只看尾巴幾行
++ od   以二進位的方式讀取檔案內容！

@@ -11,6 +11,8 @@ tags:
 C:\Documents and Settings\当前登录用户名\AppData\Local\Google\Chrome\User Data\Default\Cache
 + ubuntu 
     ~/.cache/chrome/Default/Cache
++ mac
+~/Library/Application Support/Google/Chrome
 
 ## 浏览器查看
 在浏览器地址栏输入: `chrome://cache` 可查看chrome 保存下来的缓存, 不过打开之后, 并不是对应格式的源文件, 而是二进制编码文件.

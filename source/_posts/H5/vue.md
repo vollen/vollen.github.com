@@ -21,6 +21,8 @@ computed:{
 ```
 + watch
 侦听属性，watch 的属性为 data 中声明的属性， 当属性值变化的时候，会调用 watch 的方法。
++ components
+
 ## 内置属性方法
 $data
 $el
