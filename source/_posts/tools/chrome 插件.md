@@ -5,6 +5,8 @@
 [Postman]()
 [Octotree]()
 [Cookie Hacker]()
+[WEB前端助手(FeHelper)](https://github.com/zxlie/FeHelper)
+[postman]()
 
 # flashPlayer
 ## mac 下
