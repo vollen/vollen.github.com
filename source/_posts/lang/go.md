@@ -24,3 +24,6 @@ insteadOf = https://git.hortorgames.com/
 insteadOf = http://git.hortorgames.com/
 ```
 
+## goland
+有钱了还是付费的好呀。
+[注册码获取地址](http://idea.lanyus.com/)
