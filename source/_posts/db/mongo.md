@@ -1,4 +1,8 @@
 
+# 安装
+## mac os
+brew install mongodb
+
 ##
 ## 插入数据
 `db.foo.insert({"bar":"baz"})`
