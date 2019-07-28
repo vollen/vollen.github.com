@@ -6,7 +6,7 @@ npm 管理包
 
 [http://www.cnblogs.com/kaiye/p/4937191.html](使用nvm管理npm包)
 
-https://registry.npm.taobao.org 淘宝提供的npm 镜像源
+npm config set registry https://registry.npm.taobao.org  //淘宝提供的npm 镜像源
 npm install -g cnpm --registry=https://registry.npm.taobao.org 安装cnpm
 
 

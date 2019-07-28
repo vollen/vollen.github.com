@@ -3,6 +3,9 @@
 ## mac os
 brew install mongodb
 
+## 远程连接
+[设置远程连接访问mongodb数据库](https://www.cnblogs.com/kimkat/p/9192785.html)
+
 ##
 ## 插入数据
 `db.foo.insert({"bar":"baz"})`

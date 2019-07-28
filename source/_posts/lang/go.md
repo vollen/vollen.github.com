@@ -1,3 +1,9 @@
+# env
+```bash
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/env/go/libs;$HOME/go
+```
+
 # go 包获取
 ## 代理配置
 go 的很多依赖包都是在 golang.org 上, 这个地址因为众所周知的原因, 无法直接访问。
