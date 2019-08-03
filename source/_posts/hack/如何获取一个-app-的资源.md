@@ -16,6 +16,7 @@
 
 ## 获取 ios ipa 方法2
 用手机连上电脑代理， 然后下载游戏安装包， 使用 `charles` 拿到下载地址.
+下载地址格式形如: `http://iosapps.itunes.apple.com/itunes-assets/.*.thinned.signed.dpkg.ipa?accessKey=`
 使用下载地址可以下载到一个  `pre-thinnedxxxxxxx.thinned.signed.dpkg.ipa` 形式的包.
 这个包,直接使用常用的解压工具是解不开的，需要用到下面这个库.
 [解压算法](https://sskaje.me/2017/08/unzip-with-lzfse-support/)
