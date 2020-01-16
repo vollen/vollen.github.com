@@ -25,12 +25,12 @@ logo_word: Adagio
 #         For each navbar item, the text will show in the navbar, and the corresponding url will be linked to.
 navbar: true
 navbar_items:
-  - text: Hexo
-    url: https://hexo.io
-    layout: ~
-  - text: Adagio's author
-    url: http://www.hanlindong.com
-    layout: ~
+  # - text: Hexo
+  #   url: https://hexo.io
+  #   layout: ~
+  # - text: Adagio's author
+  #   url: http://www.hanlindong.com
+  #   layout: ~
 
 # SEO title: It is always attached to page title.
 #            You should specify it if you want your website is more search engine friendly.
@@ -72,7 +72,7 @@ sidebar_tag_cloud: true
 # Add a about me block to the sidebar.
 # Specify the avatar picture url in avatar_link
 # Add some word to the description.
-sidebar_about_me: true
+sidebar_about_me: false
 sidebar_avatar_link: https://via.placeholder.com/200x200.png?text=sidebar_avatar_link
 sidebar_about_description: The owner of this website.
 
@@ -80,7 +80,7 @@ sidebar_about_description: The owner of this website.
 sidebar_social_network: true
 
 # Add contact information to the side bar.
-sidebar_contact: true
+sidebar_contact: false
 sidebar_contact_name: Adagio Author
 sidebar_contact_address: 1 Happy Rd. <br> Utopia
 
@@ -101,7 +101,7 @@ footer_content: Thanks for coming!
 
 # Use valine comment system.
 # For documentation: https://valine.js.org
-valine_comments: true
+valine_comments: false
 valine_appId: xxxxxxxxxx
 valine_appKey: xxxxxxxxxx
 valine_placeholder: ~
