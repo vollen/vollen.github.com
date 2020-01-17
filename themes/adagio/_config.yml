@@ -25,9 +25,9 @@ logo_word: Adagio
 #         For each navbar item, the text will show in the navbar, and the corresponding url will be linked to.
 navbar: true
 navbar_items:
-  # - text: Hexo
-  #   url: https://hexo.io
-  #   layout: ~
+  - text: 首页
+    url: https://leafflow.top
+    layout: ~
   # - text: Adagio's author
   #   url: http://www.hanlindong.com
   #   layout: ~
