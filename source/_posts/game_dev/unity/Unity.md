@@ -39,3 +39,29 @@
 # 脚本
 + unity 中的 c# 环境是经过修改的， 与原生的 c# 不一样。
 
+
+## 本地文档
+[manual](file:///Applications/Unity/2019.3.1f1/Documentation/en/Manual/index.html)
+[api](file:///Applications/Unity/2019.3.1f1/Documentation/en/ScriptReference/index.html)
+
+# 资源
+[游戏蛮牛Unity脚本手册](http://docs.manew.com/Script/index.htm)
+[游戏蛮牛Unity用户手册](http://docs.manew.com/Components/1.html)
+[Unity3D高级编程之进阶主程](http://www.luzexi.com/Unity3D/index.html)
+
+# linq
+[c# LINQ用法](https://www.cnblogs.com/forever-Ys/p/10322130.html)
+[LINQ系列目录](https://www.cnblogs.com/libingql/p/4038821.html)
+# xml
+[C# LINQ to XML](https://www.cnblogs.com/forever-Ys/p/10324833.html)
+
+# gitignore
+[unity ignore](https://github.com/github/gitignore/blob/master/Unity.gitignore)
+
+# 新输入系统 
+[官方文档](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html)
+[Unity新输入系统InputSystem尝鲜](http://dingxiaowei.cn/2020/01/23/)
+ 
+
+ ## unitypackage
+[最佳姿势导出unitypackage](https://zhuanlan.zhihu.com/p/55007069)
