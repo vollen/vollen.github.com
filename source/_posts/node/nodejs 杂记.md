@@ -36,6 +36,9 @@ babel
     
     babel -w src -d build -s 默认编译命令
 
+# npm 版本
+[About semantic versioning](https://docs.npmjs.com/about-semantic-versioning)
+
 
 [基于https的express](http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/)
 

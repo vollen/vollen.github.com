@@ -479,3 +479,7 @@ hd(10);
 不安全代码块是使用了指针变量的代码块。
 ## 多线程
 System.Threading.Thread
+
+
+## C# 反编译
+[推荐.Net、C# 逆向反编译四大工具利器](https://blog.csdn.net/kongwei521/article/details/54927689)

@@ -63,5 +63,13 @@
 [Unity新输入系统InputSystem尝鲜](http://dingxiaowei.cn/2020/01/23/)
  
 
- ## unitypackage
+## unitypackage
 [最佳姿势导出unitypackage](https://zhuanlan.zhihu.com/p/55007069)
+
+## 调试
+### 死循环卡死问题查找
+[快速查找Unity死循环](http://www.voidcn.com/article/p-pkbvsvxi-wk.html)
+使用 VS attach 上unity进程, 启动unity 游戏。
+在卡死的时候, 在VS 中打开 `窗口=>调试=>线程`, 点击调试工具栏的暂停按钮, 线程窗口即可在卡死的代码处中断。
+
+
