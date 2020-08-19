@@ -40,3 +40,16 @@ babel
 [基于https的express](http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/)
 
 # webpack
+# npm 版本
+[About semantic versioning](https://docs.npmjs.com/about-semantic-versioning)
+
+
+[基于https的express](http://blog.mgechev.com/2014/02/19/create-https-tls-ssl-application-with-express-nodejs/)
+
+# webpack
+
+# 调试
+## node js 调试代码
+node --inspect-brk ./server.js
+## electron 调试主进程
+https://electronjs.org/docs/tutorial/debugging-main-process

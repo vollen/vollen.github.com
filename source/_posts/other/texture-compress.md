@@ -1,5 +1,8 @@
 title: texture_compress
-tags: [texture, 压缩, 优化]
+tags:
+    - texture 
+    - 压缩
+    - 优化
 ---
 
 暂时没时间深入，先贴几个相关链接，关键词

@@ -9,7 +9,7 @@
 这个时候切记，不要点击任何按钮！不要点击任何按钮！不要点击任何按钮！（重要的事情说三遍）直接进入第四步！
 
 4. 打开Finder前往文件夹，或者直接快捷键command+shift+G并输入下面路径
-~/Library/Group Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/MobileApps/
+~/Library/Group\ Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/MobileApps/
 可以看到我们需要的包，这个时候拷贝出来（一定要拷贝出来），然后回到第三步点击【停止】会发现刚才目录下的文件也消失了！
 
 5. 拿到包后，就随便你怎么操作了
