@@ -1,4 +1,9 @@
 typescript 笔记汇总
+[tc 39](https://github.com/tc39)
+[ES6、ES7、ES8、ES9、ES10新特性一览](https://juejin.im/post/6844903811622912014)
+[Diff ECMAScript 2019](https://hijiangtao.github.io/2019/07/05/Diff-ECMAScript-2019/)
+[ecma 262 提案仓库](https://github.com/tc39/proposals)
+[java script 当年发布期内已经完结的提案](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
 
 + 声明依赖关系
 `///<reference path="TestA.ts" />`
