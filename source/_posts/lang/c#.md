@@ -383,6 +383,9 @@ System.Reflection.MemberInfo info = typeof(MyClass);
 object[] attributes = info.GetCustomAttributes(true);
 ```
 
+### 实战
+[C# 使用反射获取私有属性的方法](https://blog.csdn.net/lindexi_gd/article/details/89328025)
+
 ## 属性
 属性是类结构或接口中的命名成员， 是域的扩展，它们使用访问其来私有域的值可被读写或操作。
 ### 访问器
@@ -484,3 +487,9 @@ System.Threading.Thread
 
 ## C# 反编译
 [推荐.Net、C# 逆向反编译四大工具利器](https://blog.csdn.net/kongwei521/article/details/54927689)
+
+## C# 动态执行字符串
+使用微软提供的编译接口
+[C#实现将字符串转换成代码并执行](https://www.cnblogs.com/ckym/p/11624947.html)
+自己实现的简单的解析器
+[C#动态执行字符串](https://blog.csdn.net/hsrzq/article/details/4456361)
