@@ -9,6 +9,14 @@ title: usefull_website
     - 类似的网站, 还有[catipsum](http://www.catipsum.com/index.php)等
 * 
 
+# 资源下载
+* [搬书匠](http://www.banshujiang.cn/)
+收录了很多在线的电子书籍。
+
+
+# 图形渲染
+[real time rendering 资源目录](http://www.realtimerendering.com/)
+
 # 物理引擎
 p2
 box2d
