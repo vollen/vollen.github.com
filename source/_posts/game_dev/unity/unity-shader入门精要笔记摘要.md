@@ -119,18 +119,18 @@ unity 支持的常用语义:
 + 漫反射 diffuse
 兰伯特光照模型, 因为漫反射光照符合 `lambert's law`, 反射光强度与表面法线与光源方向之间的夹角的余弦值成正比。
 ```
-    Cdiffuse = (Clight · Mdiffuse) * max(0, n · l)
+    C_diffuse = (C_light · M_diffuse) * max(0, n · l)
 ```
 + 高光反射 specular
 `Phong` 模型
 ```
     r = 2(n · l) * n - l //反射方向
-    Cspecular = (Clight · Mspecular) * pow(max(0, v * r), gloss);
+    C_specular = (C_light · M_specular) * pow(max(0, v * r), gloss);
 ```
 `Blinn` 模型
 避免计算 `r`, 引入 `h = normalize(n + l)`;
 ```
-    Cspecular = (Clight · Mspecular) * pow(max(0, n * h), gloss);
+    C_specular = (C_light · M_specular) * pow(max(0, n * h), gloss);
 ```
 ## 逐顶点还是逐像素
 逐像素着色 `Phong 着色(Phong shading)`
@@ -138,7 +138,7 @@ unity 支持的常用语义:
 ## 半兰伯特(Half Lambert)光照模型
 与`兰伯特模型`相比，它没有直接使用 max 操作来防止点积为负值， 而是使用了一个缩放函数来调整点积结果的范围，通常情况下 `a = b = 0.5`;
 ```
-    Cdiffuse = (Clight · Mdiffuse) * (a * (n · l) + b)
+    C_diffuse = (C_light · M_diffuse) * (a * (n · l) + b)
 ```
 
 # 第 7 章 基础纹理
@@ -219,8 +219,8 @@ unity 支持的常用语义:
 混合等式就是将源颜色，目标颜色以及`混合因子`经过运算之后得到目标颜色的过程。
 下面是使用`加法操作`进行混合是的混合等式。
 ```
-Orgb = SrcFactor x Srgb + DstFactor x Drgb
-Oa = SrcFactorA x Sa + DstFactorA x Da
+O_rgb = SrcFactor x S_rgb + DstFactor x D_rgb
+O_a = SrcFactorA x S_a + DstFactorA x D_a
 ```
 通过 `Blend SrcFactor DstFactor, SrcFactorA DstFactorA` 可以设置混合因子。 `alpha`因子与颜色因子一致时，后半部分可以省略。
 支持的混合因子:
@@ -336,10 +336,365 @@ unity 中所有内置透明度混合的 `Unity Shader`，如 `Transparent/Vertex
 在 unity 中，可以使用 `reflect(-worldViewDir, worldNormal)` 计算得到该顶点出的反射方向。
 ### 折射
 #### 斯涅尔定律(Snell's Law)
-`$x^p_{ij}$`
+当光线从 材质1 以入射角 θ_1 方向斜摄入介质2 是，我们可以用下面的公式来计算折射光线与法线的夹角 θ_2 。
+`η_2 * sin(θ_1) = η_2 * sin(θ_2)`
+在 unity 中，我们使用 CG 的 `refract` 函数来计算折射方向。
+```
+RefractRatio = 入射光线所在材质 与 出射光线所在材质 的折射率之间的比值。
+fixed3 refractDir = refract(-normalize(worldViewDir), normalize(worldNormal), RefractRatio);
+```
+### 菲涅尔反射(Fresnel reflection)
+菲涅尔反射描述了一种光学现象，当光线照射到物体表面上时，一部分发射反射，一部分进入物体发生折射或散射。
+反射光和入射光存在一定比例，这个比例可以通过`菲涅尔等式`来计算。
+真实世界的`菲涅尔等式`是非常复杂的。我们通常使用近似公式来计算。
+常用的近似公式有:
+#### Schlick 菲涅尔近似等式
+```
+F_schlick(v,n) = F_0 + (1 - F_0)(1 - v·n)^5
+其中 F_0 是一个反射系数，用于控制菲涅尔反射的强度。
+```
+#### Empricial 菲涅尔近似等式
+```
+F_empricial(v,n) = max(0, min(1, bias + scale * (1 - v · n)^power))
+其中 bias, scale, power 是控制项。
+```
 
-<!-- 当光线从 材质1 以入射角θ -->
-<!-- $x^p_ {ij}$ -->
-<!-- ``` -->
-<!-- η<sub>2</sub> * sin(θ1) = η2 * sin(θ2) -->
-<!-- ``` -->
+## 渲染纹理 （Render Texture）
+## 程序纹理
+常用 **Substance** 软件在 Unity 外部生成。
+
+# 第 11 章 让画面动起来
+## unity 中的时间变量
++ _Time
+t 是子场景加载开始所进过的时间
+4 个分量值分别为 `(t/20, t, 2t, 3t)`
++ _SinTime， _CosTime
+时间的 sin, cos 值, 4个分量值分别为 `(t/8, t/4, t/2, t)`
++ unity_DeltaTime
+dt 是时间增量，4个分量值分别为`dt, 1/dt, smoothDt, 1/smoothDt`
+
+## 滚动背景
+在顶点着色器中使用时间对顶点的 uv 进行变换
+```
+o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex) + frac(speed * _Time.y)
+speed 为纹理滚动速度
+```
+## 顶点动画
+在顶点着色器中使用时间对顶点坐标进行变换。
+```
+o.pos = UnityObjectToClipPos(v.vertex + offset);
+```
+### 广告牌
+广告牌会根据视角方向来旋转被着色的多变形，然后使它好像总是面向摄像机。
+广告牌技术的核心， 就是要构建出一个旋转矩阵，我们通常使用 `表面法线(normal)`, `指向上的方向(up)`, `指向右的方向(normal)` 三个向量作为基向量来构建这个矩阵。
+1. 通过计算得到`目标的法线方向`(也就是视角方向，因为要始终朝向摄像机) 和 指向上的方向。
+2. 然后使用上面两个向量叉乘，得到向右的方向`right`。
+3. 因为初始的两个向量不一定是垂直的， 所以我们需要选择其一， 然后用它和`right`叉乘得到另一个。
+4. 另外还需要指定一个位置，作为坐标轴的原点， 即旋转中心点。
+
+代码如下:
+```hlsl
+float3 center = float3(0, 0, 0);
+//取视角方向作为法向量
+float3 normal = ObjSpaceViewDir(center);
+normal = normalize(normal);
+//选取一个粗略的上方向， 不能与法线平行
+float3 up = abs(normal.y) > 0.999 ? float3(0, 0, 1) : float3(0, 1, 0);
+float3 right = normalize(cross(normal, up));
+//得到最终的正方向
+up = normalize(cross(right, normal)); 
+
+float3 centerOffset = v.vertex.xyz - center;
+//使用矩阵变化顶点坐标
+float3 localPos = center 
+    + right * centerOffset.x
+    + up * centerOffset.y
+    + normal * centerOffset.z;
+
+o.pos = UnityObjectToClipPos(localPos);
+```
+### 注意事项
++ 批处理会导致模型空间下的顶点计算错误。
+我们可以通过 `"DisableBatching"=True` tag 来对该 Shader 的批处理， 取消了批处理， 可能会带来性能下降。
+另外有一种做法是，把顶点到锚点的距离，存储在顶点颜色中，然后在世界空间下进行计算。
+
++ 顶点动画会导致默认的阴影效果错误。 因此需要重新实现`ShadowCaster`pass。
+
+# 第 12 章 屏幕后处理效果
+## 基础
+当我们在脚本中实现了 `OnRenderImage(RenderTexture src, RenderTexture dest)` 函数之后， unity 会把当前渲染得到的图像储存在第一个参数对应的源渲染纹理上, 经过函数之后，再把目标渲染纹理显示到屏幕上。
+在`OnRenderImage` 函数中，我们通常是利用 `Graphics.Blit` 函数来完成对渲染纹理的处理 
+## 调整屏幕的亮度，饱和度和对比度
+### 亮度
+直接把源颜色乘以亮度系数就可以了。
+```
+fixed3 finalColor = tex.rgb * _Brightness;
+```
+### 饱和度
+首先计算该像素对应的亮度值， 使用该亮度值创建一个饱和度为 0 的颜色值，然后使用系数在两个颜色直接进行插值得到目标颜色。
+```
+fixed luminance = 0.2125 * color.r + 0.7154 * color.g + 0.0721 * color.b;
+fixed3 luminanceColor = fixed3(luminance, luminance, luminance);
+fixed3 finalColor = lerp(luminanceColor, color, _Saturation);
+```
+
+### 对比度
+创建一个对比度为 0 的颜色, 再使用系数进行插值得到目标颜色。
+```
+fixed3 avgColor = fixed3(0.5, 0.5, 0.5);
+fixed3 finalColor = lerp(avgColor, color, _Contrast);
+```
+
+## 卷积
+卷积就是使用一个`卷积核`对一张图像中的每个像素进行一系列操作。卷积核通常是一个四方形网格结构，每个方格内都有一个权重值。对像素进行卷积时，我们会把卷积核的中心放置于该像素上，然后对每个方格计算它的权重与它覆盖的像素值的乘积，并求和，得到的结果就是该位置的卷积值。
+## 边缘检测
+像素与它相邻的像素，在某个属性(通常是颜色，亮度，法线)上的插值，称为`梯度`, 当`梯度`的绝对值大于某个值的时候，可以认为这个像素是一个边缘像素。
+对每个像素使用`边缘检测算子`进行卷积操作，可以得到它的`梯度值`。通常我们会计算像素两个方向的`梯度值`，然后用这两个方向梯度值的平方和的平方根作为整体的梯度值。为了提高效率，通常使用绝对值操作来代替开根号操作。
+```
+G = |G_x| + |G_y|
+```
+### 常用边缘检测算子
+#### sobel 算子
+```         
+G_x             G_y
+-1 -2 -1        -1  0 1
+0  0  0         -2  0 2
+1  2  1         -1  0 1
+```
+
+#### Prewitt 算子
+```         
+G_x             G_y
+-1 -1 -1        -1  0 1
+0  0  0         -1  0 1
+1  1  1         -1  0 1
+```
+
+#### Roberts 算子
+```         
+G_x             G_y
+-1 0            0  -1
+0  1            1   0
+```
+
+## 高斯模糊
+高斯方程:
+```
+G(x, y) = (1 / (2πσ^2)) * e^(-(x^2 + y^2)/2σ^2);
+其中 σ 是标准方差，一般取值为 1, x,y 表示当前位置到卷积核中心的整数距离；
+```
+一维高斯核
+```
+横轴，数轴数值一致
+0.0545 0.2442 0.4026 0.2442 0.0545
+```
+
+## Bloom 眩光效果
+Bloom 特效会让画面中较亮的区域扩散到周围区域中，造成一种朦胧的效果。
+我们首先根据一个阈值提取出图像中的较亮区域，然后把它们存储在一张纹理中。
+再利用高斯模糊对这张渲染纹理进行模糊处理，模拟光线的扩散效果。
+最后再将齐和原图进行混合得到最终的效果。
+
+## 运动模糊
+### 累积缓存
+累积缓存的实现方法是当物体快速移动产生多张图片后， 我们连续采样， 然后取他们的平均值作为最后的运动模糊图像。这种方法性能很差， 因为需要在同一帧渲染多次图像。
+另一种简化的办法是，保存上一帧的图像， 然后再把这一帧的图像绘制上去， 从而实现一种运动轨迹的感觉， 这种办法性能更好，但是模糊效果略有影响
+### 速度缓存
+在一个缓存中存储各个像素当前的运动速度，然后利用该值来决定模糊的方向和大小。
+
+# 深度缓存和法线纹理
+## 基础
+当使用延迟渲染时，深度纹理可以直接访问，因为这些信息都被渲染到了 `G-buffer` 中。
+当无法直接获取到深度缓存时，深度和法线纹理都是通过投射阴影的那个 pass 渲染得到的。
+这其中 unity 使用了`着色器替换`技术。 
+在 unity 中，设置相机的 `depthTextureMode` 可以设置生成深度纹理的规则。
+可以组合多种模式， 让它同时产生一张深度纹理 和 深度+法线纹理。
+生成的深度纹理可以在 shader 中通过 `_CameraDepthTexture` 使用它。
+unity 封装了对深度纹理的采样方法 `SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv)`。
+深度+法线纹理则是 `_CameraDepthNormalTexture`。
+
+对深度纹理采样得到的深度值是非线性的，可以回想一下透视投影将`平截头体`投影到`NDC`的过程。
+unity 提供了两个辅助函数来帮助我们把深度值转换成线性的。
+`LinearEyeDepth` 转换到视角空间下的深度值。
+`Linear01Depth` 返回一个范围在 [0, 1] 之间的线性深度值。
+
+## 基于 深度缓存的运动模糊
+思路是
+1. 根据深度纹理，在片元着色器中为每个像素计算其在世界空间下的位置。
+使用当前的 VP 矩阵的逆矩阵对 NDC 坐标进行转换。
+2. 然后再使用前一帧的 VP 矩阵对其进行变换，可以得到上一帧的 NDC 坐标。
+3. 计算着两帧的位置差，生成该像素的速度。
+4. 根据速度方向， 计算高斯模糊。
+
+## 全局雾效
+### 重建世界坐标
+通过计算像素到摄像机的偏移量， 计算出像素的世界坐标。
+偏移量=深度值 * 像素到摄像机的射线
+像素到摄像机的射线 可以由 顶点着色器输出的 顶点到摄像机的射线 属性插值而来
+顶点到摄像机的射线， 可以在 CPU 计算好，传给 shader.
+
+```
+    halfHeight = near * tan(fov/2);
+    toUp = camera.up * halfHeight;
+    toRight = camera.right * halfHeight;
+
+    TL = camera.forward * near + toTop - toRight;
+    TR = camera.forward * near + toTop + toRight;
+    BL = camera.forward * near - toTop - toRight;
+    BR = camera.forward * near - toTop + toRight;
+
+    scale = |TL| / near
+    Ray_tl = normalize(TL) * scale;
+    Ray_xx = normalize(XX) * scale; //其他四个射线同理
+
+    worldPos = _WorldSpaceCameraPos + linearDepth * Ray_pixel;
+```
+
+### 雾的计算
+雾的计算公式
+```
+    float3 afterFog = f * fogColor + (1 - f) * origColor;
+```
+其中 f 可以有三种计算方式。
+1. 线性
+```
+f = (d_max - |z|) / (d_max - d_min) 
+```
+2. 指数
+```
+f = e^(-d * |z|)
+```
+3. 指数平方
+```
+f = e^(-(d - |z|)^2)
+```
+
+## 基于深度+法线缓存的边缘检测
+因为基于颜色值的边缘检测，可能会受到光照和纹理的影响。 
+为了得到更好的效果，我们可以基于深度+法线缓存来实现基于法线和深度的边缘检测。
+
+# 第 14 章 非真实感渲染
+## 卡通风格的渲染
+### 渲染轮廓线
++ 基于观察角度和表面法线的轮廓线渲染
++ 过程式几何轮廓线渲染
+使用两个 pass 渲染，第一个 pass 渲染背面，并使它的轮廓可见, 第二个 pass 在渲染它的正面。
+我们可以在视角空间下把模型顶点沿着法线方向向外扩张一段距离，以此来让背部轮廓线可见。
+```
+viewPos = viewPos + viewNormal * _outline;
+```
+对于内凹的模型，可能发生背面面片遮挡正面面片的情况， 对于这种情况, 我们可以在扩张背面顶点前，对它的 z 分量进行处理，然后把法线归一化够在对顶点进行扩张，这样可以使扩张后的背面更加扁平化，从而减少了遮挡正面的可能。
+```
+viewNormal.z = -0.5;
+viewNormal = normailize(viewNormal);
+viewPos = viewPos + viewNormal * _outline;
+```
+
++ 基于图像处理的轮廓线渲染
+使用上文的边缘检测技术来识别轮廓边
++ 基于轮廓边检测的轮廓线渲染
+需要先检测出精确的轮廓边，然后直接渲染它们。 
+检测一条边是够是轮廓边，需要检查和这条边相邻的两个面片满足以下条件, 它的本质在于检查两个向量的三角形面片是否一个朝正面，一个朝背面。
+需要在`几何着色器`中实现， 本书中没有涉及。
+除了相对复杂外， 它还有动画连贯性的问题， 在帧与帧之间会出现跳跃性。
+```
+（n_0 · v > 0） != （n_1 · v > 0
+```
+### 高光
+卡通渲染需要有一块块分割明显的纯色区域，为了实现这种效果。 
+```
+fixed w = fwidth(spec) * 2.0; //获取领域像素之间的近似到数值
+fixed spec = dot(worldNormal, worldHalfDir);
+//smoothstep, 当 value 值 < -w 时， 返回0， > w 时， 返回1。否则在 [0, 1]之间插值
+spec = lerp(0, 1, smoothstep(-w, w, spec + _specularScale - 1));
+fixed specular = Color_spec * spec * step(0.0001, _specularScale);
+```
+
+## 素描风格的渲染
+使用多张填充不同笔触密度的线的纹理，然后根据光照结果`(normal · lightDir)`来决定从哪个纹理中采样。
+
+# 第 15 章 噪声
+噪声就是一张提供随机的纹理图, 适当的噪声能让渲染结果更真实，更灵活。
+## 消融效果
+从噪声纹理中采样， 然后取它的 r 通道，并与阈值进行比较，小于时，不显示这个像素。
+随着阈值越来越大, 物体整个的消失掉。
+通过调整噪声纹理的偏移值， 可以达到不同的消融效果。
+## 水波效果
+噪声纹理作为一个法线贴图, 为我们提供凹凸不平的水面效果。
+对采样的坐标做一个随时间变化的偏移， 就可以得到不断波动的效果。
+## 带噪声的全局无效
+使用与消融效果类似的噪声纹理。只不过这个系数作为雾浓度的系数。
+
+# 第 16 章 unity 中的渲染优化
+## 基础
+移动平台的 GPU 架构与 PC 平台有很大的不同，移动设备上的 GPU 架构专注于尽可能使用更小的带宽和功能。
+IOS 上的 PowerVR 芯片使用了基于瓦片的延迟渲染架构，它把所有的图像装入瓦片中，然后由硬件找到可见的片元，只有这些可见的片元才会执行片元着色器。
+Adreno 和 Mali 则会使用 Early-Z 技术进行一个低精度的深度检测， 来剔除那些不需要渲染的片元。
+Tegra 则使用了传统的架构设计，在这些设备上， overdraw 更可能造成性能瓶颈。
+因此，有时候我们需要对不同的硬件做不同的优化，以提高性能。
+## 影响性能的因素
+### CPU
+1. 问题
++ 过多的 drawcall
++ 复杂的游戏逻辑或物理模拟
+2. 优化手段
+使用批处理技术减少 drawcall
+使用遮挡剔除技术，减少要提交渲染的物体
+
+### GPU
+1. 问题
++ 过多的顶点
++ 过多的逐顶点计算
++ 过多的片元
++ 过多的逐片元计算
+2. 优化手段
++ 减少需要处理的顶点数目
+优化几何体
+使用模型的 LOD 技术
+使用遮挡剔除技术
++ 减少需要处理的片元数目
+控制绘制顺序
+警惕透明物体
+减少试试光照
++ 减少计算复杂度
+使用 Shader 的 LOD 技术
+优化代码逻辑
+### 带宽
+1. 问题
++ 使用了过大且未压缩的纹理
++ 分辨率过高的帧缓存
+2. 优化
++ 减少纹理大小
+mip maps, 使用压缩纹理
++ 利用分辨率缩放
+
+## 渲染分析工具
+1. stats 窗口
+2. 性能分析器的渲染部分
+3. FrameDebugger
+4. 特定平台的硬件供应商自家提供的工具
+[unity 移动优化](Unity/2019.3.4f1/Documentation/en/Manual/MobileProfiling.html)
++ Adreno (Qualcomm)
++ NVPerfHUD (NVIDIA)
++ PVRTune, PVRUniSCo (PowerVR)
+
+## 减少 drawcall
+### 动态批处理
+unity 运行时会对共享了同一个材质并满足一些条件的模型进行动态合批。
+主要限制：
++ 顶点数据规模要小于 900
++ 使用 lightmap 的纹理需要注意
++ 多 pass 的 shader 会终端批处理
+### 静态批处理
+场景中勾选了 static 的物体，会被合并到一个网格中。
+### 共享材质
+
+# 第 17 章 表面着色器
+
+## 法线分布函数
+## 阴影遮罩函数
+## gamma 校正
+gamma 校正是因为显示器使用 8位数据来表示一个通道，那么最多只能表示 256 种不同的亮度值。
+为了尽可能多的表示数据，我们利用了人眼对于图像的暗部更加敏感的特点， 对图像数据进行了校正。这样就可以用更多的空间来储存更多的暗部区域；
+
+# 第 18 章 基于物理的渲染
