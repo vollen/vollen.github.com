@@ -1,4 +1,9 @@
-Windows 批处理脚本
+title: Windows 批处理脚本
+tags:
+  - windows
+  - learn
+---
+
 
 [参考资料](http://www.cnblogs.com/taoxu0903/archive/2011/06/28/2092212.html)
 

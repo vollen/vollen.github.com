@@ -26,7 +26,7 @@ logo_word: Adagio
 navbar: true
 navbar_items:
   - text: 首页
-    url: https://leafflow.top
+    url: https://blog.leafflow.top
     layout: ~
   # - text: Adagio's author
   #   url: http://www.hanlindong.com
