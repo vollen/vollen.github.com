@@ -79,3 +79,45 @@
 
 
 ## Unity 
+
+
+## asset bundle
+[官方教程](https://learn.unity.com/tutorial/assets-resources-and-assetbundles)
+[官方手册页](https://docs.unity3d.com/Manual/AssetBundlesIntro.html)
+
+[Addressable Assets](https://docs.unity3d.com/Packages/com.unity.addressables@1.15/manual/index.html)
+
+`Asset Bundle` 就是一个文件合集， 就像一个文件夹一样， 包含了很多不同的文件在里面。
++ 能够处理好互相的依赖。bundle 之间可能有依赖关系。
++ 可以使用压缩算法压缩, (LZMA, LZ4)
++ 
+
+# DOTS
+[Unity DOTS(一） Job System 介绍](https://zhuanlan.zhihu.com/p/66336209)
+[Unity DOTS(二) ECS编码示例](https://zhuanlan.zhihu.com/p/67099436)
+
+## ECS
+[浅谈Unity ECS（一）Uniy ECS基础概念介绍：面向未来的ECS](https://zhuanlan.zhihu.com/p/59879279)
+[浅谈Unity ECS（二）Uniy ECS内存管理详解：ECS因何而快](https://zhuanlan.zhihu.com/p/64378775)
+[浅谈Unity ECS（三）Uniy ECS项目结构拆解：功能要点及案例分析](https://zhuanlan.zhihu.com/p/70782290)
+## Job system
+[Unity C# Job System介绍(一) Job System总览和多线程](https://zhuanlan.zhihu.com/p/56459126)
+[Unity C# Job System介绍(二) 安全性系统和NativeContainer](https://zhuanlan.zhihu.com/p/57626413)
+[Unity C# Job System介绍(三) Job的创建和调度](https://zhuanlan.zhihu.com/p/57859896)
+[Unity C# Job System介绍(四) 并行化Job和故障排除(完结)](https://zhuanlan.zhihu.com/p/58125078)
+
+### NativeContainer
+`NativeContainer`是一种托管的数据类型，为原生内存提供一种相对安全的C#封装。
+它包括一个指向非托管分配内存的指针。当和`Job System`一起使用时，一个`NativeContainer`使得一个`Job`可以访问和主线程共享的数据，而不是在一份拷贝数据上工作。
+除了`NativeContainer`, `Job`中使用的其他数据都是以**数据的拷贝**的形式存在的，无法与主线程交换数据。
+可用的 `NativeContainer` 有: `NativeArray`,`NativeList`,`NativeHashMap`,`NativeMultiHashMap`,`NativeQueue`。
+#### 生命周期
+在创建 `NativeContainer`时，我们需要为它指定 `Alloctor`, 不同的 `Alloctor` 有不同的内存管理方式，已经分配速度。
+共有三种可用的 `Alloctor`: `Allocator.Temp`, `Allocator.TempJob`, `Allocator.Persistent`。
+#### IJobParallelFor
+并行化`Job` 会被分配到 CPU 的多个线程中同时执行，每个线程处理一部分数据。
+并行化`Job` 使用一个 `NativeArray` 来存储它的数据源，它的`Excute(int index)`函数包含`index` 参数用于读取数据。
+
+
+## Burst Compiler
+[Unity Burst 用户指南](https://blog.csdn.net/alph258/article/details/83997917)
