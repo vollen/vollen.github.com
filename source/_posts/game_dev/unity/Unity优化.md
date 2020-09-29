@@ -4,3 +4,4 @@
 
 
 [z fighting](3D渲染中的Z-fighting现象)
+[unity 中使用的遮挡剔除技术 Umbra](https://www.cnblogs.com/umbra/archive/2012/07/31/2617456.html)
