@@ -44,3 +44,8 @@ TBR 是把屏幕划分成多个 Tile, 每个 Tile 渲染的时候，把对应 Ti
 
 #### HSR
 当一个像素通过了EarlyZ准备执行PS进行绘制前，先不画，只记录标记这个像素归哪个图元来画。等到这个Tile上所有的图元都处理完了，最后再真正的开始绘制每个图元中被标记上能绘制的像素点。这样每个像素上实际只执行了最后通过EarlyZ的那个PS，而且由于TBR的机制，Tile块中所有图元的相关信息都在片上，可以极小代价去获得。最终零Overdraw，毫无浪费，起飞。
+
+
+## GPU Instancing
+[VR/AR新闻 Unity 5.4的GPU Instancing功能简介](http://www.manew.com/thread-50914-1-1.html)
+[U3D优化批处理-GPU Instancing了解一下](https://zhuanlan.zhihu.com/p/34499251)
