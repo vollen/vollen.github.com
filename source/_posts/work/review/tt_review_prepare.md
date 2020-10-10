@@ -64,6 +64,70 @@ WebGPU是最新的Web 3D图形API，是WebGL的升级版。
 6. 实时阴影
 7. 网络相关， 状态同步与帧同步， protobuff， 长链接短连接
 8. lua 相关功能
+目标是作为一种胶水语言，能够方便的嵌入到一个宿主语言中。整个语言的包特别小，源代码只有 20k 行。打包出来的库只有 200k 左右。
+lua 是由纯C实现， 方便移植。
+
++ 基础数据类型
+nil boolean string number function table thread userdata
++ 元表
+table 的扩展， lua 的核心机制之一。
+setmetatable(table, metatable)
+__index
+__newindex
+__call
+__tostring
+__eq
+__add
+__sub
++ 垃圾回收
+lua 使用自动垃圾回收机制， 程序不需要手动管理内存。 所有不可再被访问到内存都将被释放。所有直接被 Registry, _Global 以及全部变量 引用的内存不会被回收。
+lua 垃圾回收算法为 标记-清除算法。 算法开始时，会标记所有根对象， 然后从这些对象开始，把所有它们引用到的对象全部标记。清除的时候， 所有未被标记的对象被回收。
+有增量回收和代际回收两种机制。
+1. 增量回收，是指垃圾回收与代码逻辑交替执行，每次只标记或回收一部分对象。整个回收过程需要持续很多帧。
+2. 代际回收，分为两部分，新生代回收和全局回收。
+新生代回收只会扫描并回收最近分配的对象。当新生代回收结束时占用内存还大于某一个阈值时，便会开始一个不中断的全局回收。
+每当当前占用内存大于上次全局回收之后的内存 x% 的时候， 会触发一次新生代回收。 
+
++ 弱表
+弱表是包含弱引用的表， 它可以有三种类型，弱键/弱值/弱键值。如果一个值只被一个弱表作为弱值/弱键引用, 那么它可以被回收。
+对于弱表来说，键或值中的任何一个被回收之后， 这个键值对都会被从弱表中删除。
+对于弱表的类型修改，需要到下一次垃圾回收之后才会生效。
+
++ 协程
+[Lua的协程和协程库详解](https://www.cnblogs.com/zrtqsk/p/4374360.html)
+lua 中的协程是比线程更轻量级的一种调度方式。 它有自己的调用堆栈。 同一时刻，只能有一个协程在执行， 执行中的协程只能通过 coroutine.yield 来交出控制权。
+要开始执行一个协程只能使用 coroutine.resume 。
+coroutine.yield(...) 中传入的参数会作为调用 coroutine.resume() 函数的第二个及更多返回值, 第一个返回值为 boolean 表示协程是否执行完毕。
+当函数执行完毕的时候， 函数返回值会作为最后一个 coroutine.resume() 的返回值。
+coroutine.resume(...) 中传入的参数会作为协程中调用 coroutine.yield(...) 函数的返回值。 首次调用的参数会作为协程主函数的参数。 
+```lua
+local c = coroutine.create(function (a, b)
+    print("coroutine: ",  a, b)
+    local c, d = coroutine.yield(a + b)
+    print("coroutine: ", c, d)
+    return c + d
+end)
+print("main：", coroutine.resume(1, 2))
+print("main:", coroutine.resume(3, 4))
+print("main:", coroutine.resume())
+
+
+--[[ 输出
+coroutine: 1 2
+main: True 3
+coroutine: 3 4
+main: true 7
+main: false cannot resume dead coroutine
+]]--
+```
+
++ 与其他语言的交互
+luastack
++ 热更新
+require
+package.loaded[]
++ luajit
+
 
 1. 同屏小怪数量较多， 如何优化渲染开销
 2. 子弹碰撞如何实现，raycast 是怎么做的
@@ -83,5 +147,7 @@ WebGPU是最新的Web 3D图形API，是WebGL的升级版。
 ```
 4. 渲染， 常用光照模型， opengl 渲染管线
 5. 算法题
+
+
 
 

@@ -10,3 +10,6 @@ tags:
 [opengl基础教程](http://www.zeuscmd.com/tutorials/opengl/index.php)
 [opengl-tutorial](http://www.opengl-tutorial.org/)
 [code project](http://www.codeproject.com/Articles/1418/A-class-to-easily-generate-AVI-video-with-OpenGL-a)
+
+
+[OpenGL进阶之Instancing](https://www.cnblogs.com/hellobb/p/8891374.html)

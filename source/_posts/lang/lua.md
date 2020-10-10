@@ -323,3 +323,7 @@ whence 指定如何解释 offset
 + 要监听 `count` 事件，只需要在第三个参数传入数量
 ### 取消钩子
 debug.sethook()
+
+
+# 垃圾回收
+[深入Lua：垃圾回收](https://zhuanlan.zhihu.com/p/100897212)
