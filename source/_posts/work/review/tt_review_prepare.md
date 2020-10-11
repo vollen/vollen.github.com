@@ -124,9 +124,20 @@ main: false cannot resume dead coroutine
 + 与其他语言的交互
 luastack
 + 热更新
-require
-package.loaded[]
+[Lua热更新](https://gameinstitute.qq.com/community/detail/120538)
+require 加载脚本进来， 会保存在 package.loaded 中， 只需要下面这样既可完成简单粗暴的热更。但是这样已经引用了该模块的地方不会被更新。
+```lua
+function reload_module(module_name)
+    package.loaded[modulename] = nil
+    require(modulename)
+end
+```
 + luajit
+[LuaJIT GC64 模式](https://blog.openresty.com.cn/cn/luajit-gc64-mode/)
+
++ lua ffi
+lua ffi 是luajit 提供的一个用于调用 C 接口的库，使用 ffi, 可以在lua 中声明 C 接口和数据结构, 然后直接调用。而不需要写繁琐的绑定代码。
+cocos 使用的lua 绑定工具是基于 tolua++ 的，在上层开发了生成工具( bindings-generator)用于生成 tolua ++ 需要的配置文件。
 
 
 1. 同屏小怪数量较多， 如何优化渲染开销
