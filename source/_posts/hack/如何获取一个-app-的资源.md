@@ -43,4 +43,6 @@ $ ./unzip -d test ../pre-thinned12345678.thinned.signed.dpkg.ipa
 将文件名后缀修改成 zip, 直接解压即可
 ## 提取资源包
 在 windows 下使用 AssetStudio 可以提取。
+[DevX-GameRecovery](http://devxdevelopment.com/)
+一个付费的解包工具， 非常强大， 能直接还原工程。
 mac 下暂时没找到办法

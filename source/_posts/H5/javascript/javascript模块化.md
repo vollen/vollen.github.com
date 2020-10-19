@@ -23,3 +23,5 @@ esm 模块的设计思想是尽量的静态化，使得编译时就能确定模�
 [rollup](https://github.com/rollup/rollup) 可以把 es6/cjs 打包成各种标准的文件.
 
 # webpack
+[创建 library](https://www.webpackjs.com/guides/author-libraries/)
+[TypeScript](https://www.webpackjs.com/guides/typescript/)
