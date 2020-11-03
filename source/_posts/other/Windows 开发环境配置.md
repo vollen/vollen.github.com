@@ -11,6 +11,7 @@ tags:
 [nodejs](https://nodejs.org/zh-cn/)
 # 其他
 SVN
+git
 lua
 make
 nginx
