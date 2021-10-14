@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            nginx基础 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/">nginx基础</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2016-04-12
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=nginx基础&url=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=nginx基础&url=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/&title=nginx基础" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=nginx基础&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/&text=nginx基础" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/nginx/ >nginx</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/service/ >service</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>nginx 是一个应用比较广, 功能比较强大的web服务器.<br>从这里开始, 我们将初步了解一下nginx的安装 和基本的使用.<br>(以下内容基于ubuntu操作系统)<br><a target="_blank" rel="noopener" href="http://nginx.org/en/docs">官方文档</a></p>
+<span id="more"></span>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>安装openssl (nginx依赖)<br>  <code>sudo apt-get install openssl</code></li>
+<li>从<a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">官网</a>下载安装包</li>
+<li><code>tar -zvxf nginx_***.tar.gz</code> 解压</li>
+<li>进入解压后的目录, 执行 <code>./configure --prefix=[dest/dir]  --with-http_ssl_module --with-http_stub_status_module</code></li>
+<li><code>make &amp;&amp; sudo make install</code> 执行安装步骤</li>
+</ul>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="http://blog.itpub.net/29773961/viewspace-1377290/">用非root用户启动Apache|Nginx的方法</a></p>
+<ul>
+<li>进入nginx可执行文件目录(默认是 /usr/local/nginx/sbin/nginx)</li>
+<li><code>sudo chown root:nginx nginx</code></li>
+<li><code>sudo chmod u+s nginx</code>  – 修改文件的SUID位, 使该文件在执行时有root权限</li>
+</ul>
+</li>
+<li><p>启动命令<br><code>nginx -c /usr/local/nginx/conf/nginx.conf</code></p>
+</li>
+<li><p>重启<br>修改了配置文件,需要重启的时候,有以下两种方法</p>
+<ul>
+<li>使用 nginx自带命令(推荐)<br><code>nginx -s reload</code></li>
+<li>找到nginx进程, 使用kill 命令发送信号<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -es | grep nginx</span><br><span class="line">kill -HUP [主进程号]</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>测试配置文件语法是否正确<br><code>nginx -s /usr/local/nginx/conf/nginx.conf</code></p>
+</li>
+<li><p>关闭</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查询nginx主进程号</span></span><br><span class="line">ps -ef | grep nginx</span><br><span class="line"><span class="meta">#</span><span class="bash">从容停止</span></span><br><span class="line">kill -QUIT [主进程号]</span><br><span class="line"><span class="meta">#</span><span class="bash">快速停止</span>   </span><br><span class="line">kill -TERM [主进程号]</span><br><span class="line"><span class="meta">#</span><span class="bash">强制停止</span>   </span><br><span class="line">kill -KILL [主进程号]</span><br></pre></td></tr></table></figure></li>
+<li><p>升级</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ #先用新程序替换旧程序文件</span><br><span class="line">+ `kill -USR2 [旧版程序的主进程号]`</span><br><span class="line">    #此时旧的nginx主进程会把自己的进程文件改名为.oldbin，然后执行新版nginx，此时新旧版本同时运行</span><br><span class="line">+ kill -WINCH [旧版本主进程号]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li><p>修改环境变量, 在<code>PATH</code>变量的最后追加nginx的可执行文件目录</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NGINX_HOME=/usr/local/nginx/sbin</span><br><span class="line">export PATH=$NGINX_HOME:$PATH</span><br></pre></td></tr></table></figure></li>
+<li><p>配置的修改主要是修改 nginx.conf</p>
+<ol>
+<li>index 配置在 http 段, 这样可以避免 在每个server段写重复的index字段</li>
+<li>root 配置在 server段, 不用在每个 location 段 单独配置</li>
+<li><ul>
+<li>在conf目录下新建 conf.d 文件夹, 每个不同的站点, 配置不同的conf文件.</li>
+<li>在 nginx.conf http段最后添加 <code>require conf.d/*.conf</code>, 这样就可以把所有配置引用到</li>
+</ul>
+</li>
+<li></li>
+</ol>
+</li>
+<li><p>rewrite<br><a target="_blank" rel="noopener" href="http://www.94cto.com/index/Article/content/id/196.html">nginx rewrite 指令</a><br><a target="_blank" rel="noopener" href="http://www.nginx.cn/216.html">nginx rewrite 指令</a><br>//todo 待完善</p>
+</li>
+</ul>
+<h2 id="SSL相关"><a href="#SSL相关" class="headerlink" title="SSL相关"></a>SSL相关</h2><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/kunoy/article/details/8239653">nginx配置SSL实现服务器/客户端双向认证</a></p>
+<ul>
+<li><p>生成密钥, 颁发证书</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">用于生成rsa私钥文件</span></span><br><span class="line">openssl genrsa -des3 -out server.key 1024  </span><br><span class="line"><span class="meta">#</span><span class="bash">用于生成证书请求</span></span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br><span class="line"><span class="meta">#</span><span class="bash">利用openssl进行RSA为公钥加密</span></span><br><span class="line">openssl rsa -in server.key -out server_nopwd.key </span><br><span class="line"><span class="meta">#</span><span class="bash">生成证书</span> </span><br><span class="line">openssl x509 -req -days 365 -in server.csr -signkey server_nopwd.key -out server.crt</span><br></pre></td></tr></table></figure></li>
+<li><p>添加nginx证书 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen 443 ssl; </span><br><span class="line">     #证书路径</span><br><span class="line">     ssl_certificate /usr/local/nginx/ssl/server.crt; </span><br><span class="line">     ssl_certificate_key /usr/local/nginx/ssl/server_nopwd.key; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>nginx 的负载均衡由 HTTP Upstream 实现, 可以使用 upstream 关键字来配置.<br>upstream 一共支持六种负载均衡算法:<br>    * 轮询 (default)    每个服务器可以配置weight值, 根据weight 的数值,来决定使用该服务器的几率<br>    * ip_hash           请求按ip地址hash到固定的服务器<br>    * url_hash          请求按访问的url来hash到固定服务器<br>    * fair              请求按响应时间分配服务器<br>    * less_conn         使用当前连接最少的服务器<br>    * hash              包含  普通hash 和 一致性 hash 两种<br>upstream 支持的服务器状态参数:<br>    * down              该服务器不参与负载均衡<br>    * backup            只有当其他非backup服务器都不可用,才启用该服务器<br>    * max_fails         允许请求失败次数<br>    * fail_timeout      到达最大失败次数后,停用时长<br><strong>TIPS</strong>:当使用ip_hash算法时, 服务器不能是backup的</p>
+<h2 id="同一端口-不同站点"><a href="#同一端口-不同站点" class="headerlink" title="同一端口,不同站点"></a>同一端口,不同站点</h2><ul>
+<li><p>site1.conf:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name site1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>site2.conf:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name site2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>/etc/hosts</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 site1</span><br><span class="line">127.0.0.1 site2</span><br></pre></td></tr></table></figure>
+<p>当用户访问site1时, 便会匹配到第一个配置, 使用site1.conf</p>
+</li>
+</ul>
+<h2 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm"></a>php-fpm</h2><p>配置方式 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ~ [^/]\.php(/|$) &#123;</span><br><span class="line">    #fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">    fastcgi_pass unix:/dev/shm/php-cgi.sock;</span><br><span class="line">    fastcgi_index index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include fastcgi.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>nginx 连接fastcgi有两种方式:</p>
+<ul>
+<li><p>tcp/ip<br>  修改<code>/usr/local/php/etc/php-fpm.conf</code>文件.</p>
+<pre><code>  `listen=127.0.0.1:9000`
+</code></pre>
+<p>  修改 nginx.conf<br>  <code>fastcgi_pass 127.0.0.1:9000;</code><br>重启php-fpm, nginx</p>
+</li>
+<li><p>unix domain socket<br>unit domain socket 用于同一个操作系统下多个进程间通信用.<br>与internet socket 类似,只是它不是用网络底层协议通信.<br>配置方式:<br>修改<code>/usr/local/php/etc/php-fpm.conf</code>文件.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">listen = /tmp/php-cgi.sock</span><br><span class="line">listen.owner = service</span><br><span class="line">listen.group = service</span><br><span class="line">;listen.mode = 0660</span><br></pre></td></tr></table></figure>
+<p>修改 nginx.conf<br><code>fastcgi_pass unix:/tmp/php-cgi.sock;</code><br>重启php-fpm, nginx</p>
+</li>
+</ul>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2016/04/12/other/mysql-2016-04-12/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>mysql</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2016/04/12/other/mac-%E5%B0%8F%E6%8A%80%E5%B7%A7-2016-04-12/">
+        <span>mac-小技巧</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2016/04/12/other/nginx%E5%9F%BA%E7%A1%80-2016-04-12/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-number">2.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL%E7%9B%B8%E5%85%B3"><span class="toc-number">4.</span> <span class="toc-text">SSL相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">5.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E4%B8%80%E7%AB%AF%E5%8F%A3-%E4%B8%8D%E5%90%8C%E7%AB%99%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">同一端口,不同站点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-fpm"><span class="toc-number">7.</span> <span class="toc-text">php-fpm</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

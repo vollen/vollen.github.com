@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            linux kill 信号与处理 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/">linux kill 信号与处理</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2015-07-28
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=linux kill 信号与处理&url=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=linux kill 信号与处理&url=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/&title=linux kill 信号与处理" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=linux kill 信号与处理&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/&text=linux kill 信号与处理" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/linux/ >linux</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/kill/ >kill</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E4%BF%A1%E5%8F%B7/ >信号</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="关于linux命令发送的信号-以及信号监听处理"><a href="#关于linux命令发送的信号-以及信号监听处理" class="headerlink" title="关于linux命令发送的信号,以及信号监听处理"></a>关于linux命令发送的信号,以及信号监听处理</h1><h2 id="linux-kill-信号列表"><a href="#linux-kill-信号列表" class="headerlink" title="linux kill 信号列表"></a>linux kill 信号列表</h2><p>在shell中通过使用 kill -l 来查看kill命令能发送的信号列表</p>
+<span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">kill</span> -l</span><br><span class="line"> 1) SIGHUP   2) SIGINT   3) SIGQUIT  4) SIGILL   5) SIGTRAP</span><br><span class="line"> 6) SIGABRT  7) SIGBUS   8) SIGFPE   9) SIGKILL 10) SIGUSR1</span><br><span class="line">11) SIGSEGV 12) SIGUSR2 13) SIGPIPE 14) SIGALRM 15) SIGTERM</span><br><span class="line">16) SIGSTKFLT   17) SIGCHLD 18) SIGCONT 19) SIGSTOP 20) SIGTSTP</span><br><span class="line">21) SIGTTIN 22) SIGTTOU 23) SIGURG  24) SIGXCPU 25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM   27) SIGPROF 28) SIGWINCH    29) SIGIO   30) SIGPWR</span><br><span class="line">31) SIGSYS  34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42)SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1  64) SIGRTMAX   </span><br></pre></td></tr></table></figure>
+
+<p><strong>其中1-31 是传统UNIX支持的信号</strong><br>下面对于这些信号进行讨论</p>
+<ul>
+<li><ol>
+<li>SIGHUP</li>
+</ol>
+<blockquote>
+<p>在终端连接结束时发出,通常实在终端的控制进程结束时,通知同一session内的其他进程</p>
+</blockquote>
+</li>
+<li><ol start="2">
+<li>SIGINT  </li>
+</ol>
+<blockquote>
+<p>程序终止信号,在用户输入INTR字符(Ctrl+C)时发出,用于通知前台进程终止进程</p>
+</blockquote>
+</li>
+<li><ol start="3">
+<li>SIGQUIT  </li>
+</ol>
+<blockquote>
+<p>和SIGINT类似,但是由QUIT字符(Ctrl+\)控制,进程在收到SIGQUIT退出时会产生core文件, 因此这类似于一个程序错误信号</p>
+</blockquote>
+</li>
+<li><ol start="4">
+<li>SIGILL   </li>
+</ol>
+<blockquote>
+<p>执行了非法指令.通常是因为可执行文件本身出错,内存越界,内存溢出都有可能产生</p>
+</blockquote>
+</li>
+<li><ol start="5">
+<li>SIGTRAP</li>
+</ol>
+<blockquote>
+<p>由断点指令或其他trap指令产生, 由debugger使用</p>
+</blockquote>
+</li>
+<li><ol start="6">
+<li>SIGABRT</li>
+</ol>
+<blockquote>
+<p>调用abort函数生成的信号</p>
+</blockquote>
+</li>
+<li><ol start="7">
+<li>SIGBUS   </li>
+</ol>
+<blockquote>
+<p>非法地址,包括内存地址对齐出错.比如访问一个四字长的整数,但其地址不是4的倍数</p>
+</blockquote>
+</li>
+<li><ol start="8">
+<li>SIGFPE   </li>
+</ol>
+<blockquote>
+<p>在发生致命的算术运算错误时发出, 比如 div 0 操作.</p>
+</blockquote>
+</li>
+<li><ol start="9">
+<li>SIGKILL </li>
+</ol>
+<blockquote>
+<p>用来立即结束程序的运行, <strong>该信号不能被阻塞//处理和忽略</strong>. 可用于强制终止进程</p>
+</blockquote>
+</li>
+<li><ol start="10">
+<li>SIGUSR1</li>
+</ol>
+<blockquote>
+<p>留给用户使用</p>
+</blockquote>
+</li>
+<li><ol start="11">
+<li>SIGSEGV </li>
+</ol>
+<blockquote>
+<p>访问未分配给自己的内存,或这试图往没有权限的内存地址写数据</p>
+</blockquote>
+</li>
+<li><ol start="12">
+<li>SIGUSR2 </li>
+</ol>
+<blockquote>
+<p>第二个留给用户使用的信号</p>
+</blockquote>
+</li>
+<li><ol start="13">
+<li>SIGPIPE </li>
+</ol>
+<blockquote>
+<p>管道破裂. 在进程间通信过程中产生</p>
+</blockquote>
+</li>
+<li><ol start="14">
+<li>SIGALRM </li>
+</ol>
+<blockquote>
+<p>时钟信号. 计算的是实际的时间或时钟时间, alarm函数使用该信号</p>
+</blockquote>
+</li>
+<li><ol start="15">
+<li>SIGTERM</li>
+</ol>
+<blockquote>
+<p>程序结束信号. <strong>该信号可以被阻塞和处理</strong>, shell 中的kill命令默认产生这个信号. 如果进程终止不了,我们才会去尝试SIGKILL</p>
+</blockquote>
+</li>
+<li><ol start="16">
+<li>SIGSTKFLT   </li>
+</ol>
+<blockquote>
+<p>Wait for edit</p>
+</blockquote>
+</li>
+<li><ol start="17">
+<li>SIGCHLD </li>
+</ol>
+<blockquote>
+<p>子进程结束时,父进程会收到这个信号</p>
+</blockquote>
+</li>
+<li><ol start="18">
+<li>SIGCONT </li>
+</ol>
+<blockquote>
+<p>让一个stopped 的进程继续执行,<strong>该信号不能被阻塞</strong> </p>
+</blockquote>
+</li>
+<li><ol start="19">
+<li>SIGSTOP </li>
+</ol>
+<blockquote>
+<p>stopped 进程的执行, <strong>该信号不能被阻塞</strong>, <strong>只是挂起该进程,不会结束</strong></p>
+</blockquote>
+</li>
+<li><ol start="20">
+<li>SIGTSTP</li>
+</ol>
+<blockquote>
+<p>停止该进程的运行, 但是可以被处理和忽略. 用户键入SUSP字符时(Ctrl+Z) 时发出这个信号</p>
+</blockquote>
+</li>
+<li><ol start="21">
+<li>SIGTTIN </li>
+</ol>
+<blockquote>
+<p>当后台作业要从用户终端读数据时, 该作业的所有进程会收到SIGTTIN信号, 缺省时这些进程会停止执行</p>
+</blockquote>
+</li>
+<li><ol start="22">
+<li>SIGTTOU </li>
+</ol>
+<blockquote>
+<p>类似于SIGTOUT, 但是在写终端时收到.</p>
+</blockquote>
+</li>
+<li><ol start="23">
+<li>SIGURG  </li>
+</ol>
+<blockquote>
+<p>有”紧急”数据或out-of-band数据到达socket时收到</p>
+</blockquote>
+</li>
+<li><ol start="24">
+<li>SIGXCPU </li>
+</ol>
+<blockquote>
+<p>超过CPU时间资源显示,这个限制可以由 getrlimit/setrlimit来读取/改变.</p>
+</blockquote>
+</li>
+<li><ol start="25">
+<li>SIGXFSZ</li>
+</ol>
+<blockquote>
+<p>进程试图扩大文件以至于超过文件大小资源限制时发出</p>
+</blockquote>
+</li>
+<li><ol start="26">
+<li>SIGVTALRM   </li>
+</ol>
+<blockquote>
+<p>　虚拟时钟信号，类似于　SIGALRM　但是计算的是该进程占用的CPU时间</p>
+</blockquote>
+</li>
+<li><ol start="27">
+<li>SIGPROF </li>
+</ol>
+<blockquote>
+<p>类似于　SIGALRM /IGVTALRM, 但宝货该进程用的ＣＰＵ时间以及系统调用时间</p>
+</blockquote>
+</li>
+<li><ol start="28">
+<li>SIGWINCH    </li>
+</ol>
+<blockquote>
+<p>串口大小改变时发出</p>
+</blockquote>
+</li>
+<li><ol start="29">
+<li>SIGIO   </li>
+</ol>
+<blockquote>
+<p>文件描述符准备就绪，可以开始进行输入输出操作</p>
+</blockquote>
+</li>
+<li><ol start="30">
+<li>SIGPWR</li>
+</ol>
+<p>  ＞　power failure</p>
+</li>
+<li><ol start="31">
+<li>SIGSYS </li>
+</ol>
+<blockquote>
+<p>非法的系统调用</p>
+</blockquote>
+</li>
+</ul>
+<p>其中 SIGKILL 和 SIGSTOP 是不能被捕获的<br>SIGSTOP 和 SIGCONT 用来暂停和继续目标进程.<br>SIGABRT,SIGALRM,SIGFPE,SIGPIPE,SIGINT,SIGHUP,SIGILL,SIGQUIT,SIGSEGV,SIGTERM,SIGUSR1,SIGUSR2这12种信号，如果在进程中没有对其进行捕获处理的话，进程在收到它们时，会终止，当然还有不可捕获的SIGKILL。</p>
+<h2 id="信号的捕获与处理"><a href="#信号的捕获与处理" class="headerlink" title="信号的捕获与处理"></a>信号的捕获与处理</h2><p>在进程中需要等待某个信号时,可以用pause()函数,在pause调用前,一定要有对目标信号的捕获机制,这样在收到目标信号后,程序会继续运行,捕获信号最简单的是signal函数:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*<span class="keyword">sighandler_t</span>)</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">sighandler_t</span> <span class="title">signal</span><span class="params">(<span class="keyword">int</span> signum, <span class="keyword">sighandler_t</span> handler)</span></span>;</span><br><span class="line"><span class="comment">//第一个参数为目标信号, 第二个参数是处理函数,可以是自定义的函数,</span></span><br><span class="line"><span class="comment">//也可以是SIG_IGN(忽略)或SIG_DFL(恢复默认)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handler</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;capture a SIGALRM signal\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   </span><br><span class="line">    signal(SIGALRM,handler); <span class="comment">//捕获SIGALRM信号</span></span><br><span class="line">    <span class="comment">/*struct sigaction act;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     act.sa_handler = handler;</span></span><br><span class="line"><span class="comment">     sigemptyset(&amp;act.sa_mask);</span></span><br><span class="line"><span class="comment">     act.sa_flags = 0;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     sigaction(SIGALRM, &amp;act, 0);*/</span></span><br><span class="line"></span><br><span class="line">    pause();                <span class="comment">//等待信号</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;end\n&quot;</span>);        <span class="comment">//继续执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序会在pause处阻塞, 在收到SIGALRM信号时,执行处理函数,并继续往下执行.</p>
+<p>signal 是一个比较老的函数了,现在通常用 sigaction</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaction</span><span class="params">(<span class="keyword">int</span> signum, <span class="keyword">const</span> struct sigaction *act,struct sigaction *oldact)</span></span>;</span><br><span class="line"><span class="comment">//第一个参数为目标信号，第二个参数为sigaction结构，内有处理机制，信号掩码，和标志。</span></span><br></pre></td></tr></table></figure>
+
+<p>具体测试代码,见以上被注释部分, 运行效果完全一样.</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://www.2cto.com/os/201202/119425.html">linux kill信号列表</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_72e502400100qlx9.html">linux 捕获kill命令的信号</a></li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2015/10/10/other/hexo-%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2-2015-10-10/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>hexo_环境部署</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2015/07/22/other/Power-shell/">
+        <span>[Power-shell]</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2015/07/28/linux/linux-kill-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%A4%84%E7%90%86-2015-07-28/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Elinux%E5%91%BD%E4%BB%A4%E5%8F%91%E9%80%81%E7%9A%84%E4%BF%A1%E5%8F%B7-%E4%BB%A5%E5%8F%8A%E4%BF%A1%E5%8F%B7%E7%9B%91%E5%90%AC%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">关于linux命令发送的信号,以及信号监听处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-kill-%E4%BF%A1%E5%8F%B7%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">linux kill 信号列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%8D%95%E8%8E%B7%E4%B8%8E%E5%A4%84%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">信号的捕获与处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

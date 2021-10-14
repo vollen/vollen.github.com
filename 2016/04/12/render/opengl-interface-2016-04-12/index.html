@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            opengl_interface | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2016/04/12/render/opengl-interface-2016-04-12/">opengl_interface</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2016-04-12
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=opengl_interface&url=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=opengl_interface&url=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/&title=opengl_interface" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=opengl_interface&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2016/04/12/render/opengl-interface-2016-04-12/&text=opengl_interface" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/opengl/ >opengl</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="VAO"><a href="#VAO" class="headerlink" title="VAO"></a>VAO</h1><ul>
+<li><p>void glGenVertexArrays(GLsizei n, Gluint * arrays)</p>
+<ul>
+<li>创建n个VAO对象，并将索引存储在arrays中</li>
+</ul>
+</li>
+<li><p>void glBindVertexArray(GLuint array​)</p>
+<ul>
+<li>绑定VAO</li>
+</ul>
+</li>
+<li><p>void glEnableVertexAttribArray(GLuint index​)</p>
+</li>
+<li><p>void glDisableVertexAttribArray(GLuint index​)</p>
+<ul>
+<li>启用或禁用指定VAO</li>
+</ul>
+</li>
+<li><p>void glDeleteVertexArrays(GLsizei n, const GLuint * arrays)</p>
+<ul>
+<li>根据 arrays 数组中的索引， 删除n个VAO</li>
+</ul>
+</li>
+<li><p>void glVertexAttribPointer(GLuint index​, GLint size​, GLenum type​, GLboolean normalized​, GLsizei stride​, const GLvoid * pointer​)</p>
+<span id="more"></span>
+<p>  - </p>
+</li>
+</ul>
+<h1 id="VBO"><a href="#VBO" class="headerlink" title="VBO"></a>VBO</h1><ul>
+<li><p>void glGenBuffers(GLsizei n, GLuint * buffers)</p>
+<ul>
+<li>创建 n 个VBO, 并将索引存储在buffers 中</li>
+</ul>
+</li>
+<li><p>void glBindBuffer(GLenum target, GLuint buffer)</p>
+<ul>
+<li>绑定buffer到<a href="#ENUM_BUFFER_TARGET">target</a>的缓存， 同一种类型的缓存只能指向一个buffer</li>
+</ul>
+</li>
+<li><p>void glBufferData(GLenum target, GLsizeiptr size, const GLvoid * data, GLenum usage)</p>
+<ul>
+<li>为绑定到<a href="#ENUM_BUFFER_TARGET">target</a>的缓存分配size大小的空间， 如果data不为NULL, 则会被拷贝至目标缓存，用法被限定为<a href="#ENUM_BUFFER_USAGE">usage</a></li>
+</ul>
+</li>
+<li><p>void glBufferSubData(GLenum target, GLintptr offset, GLsizeptr size, const GLvoid * data)</p>
+<ul>
+<li>以data为数据源， 缓存对象 + offset 为目标地址， 拷贝size大小的数据 </li>
+</ul>
+</li>
+<li><p>void * glMapBuffer(GLenum target, GLenum access)</p>
+<ul>
+<li>将当前绑定到<a href="#ENUM_BUFFER_TARGET">target</a>的VBO的地址，使用这个地址可以直接操作缓冲区。 <a href="#ENUM_ACCESS">access</a>该指针指向数据的访问策略</li>
+</ul>
+</li>
+<li><p>GLboolean glUnmapBuffer(GLenum target)</p>
+<ul>
+<li>解除<a href="#ENUM_BUFFER_TARGET">target</a></li>
+</ul>
+</li>
+<li><p>void glDeleteBuffers(GLsizei n, const GLuint * buffers)</p>
+<ul>
+<li>根据 buffers数组中的索引，删除n个VBO</li>
+</ul>
+</li>
+<li><p>深度测试<br>  void glDepthFunc(GLenum func)</p>
+<ul>
+<li>指定深度测试时使用的函数类型， func必须是<a href="#ENUM_DEPTH_TEST_FUNC">深度测试函数</a>中的一个。</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/myarrow/article/details/7737313">Shader and Program编程基本概念</a></p>
+<h1 id="SHADER"><a href="#SHADER" class="headerlink" title="SHADER"></a>SHADER</h1><ul>
+<li><p>GLuint glCreateShader()</p>
+</li>
+<li><p>void glShaderSource(GLuint prog, GLsizei size, const GLchar** source, const Glint * length)</p>
+</li>
+<li><p>void glCompileShader(GLuint shader)</p>
+</li>
+<li><p>void glGetShaderiv(GLuint shader, GLenum pname, GLint * params)</p>
+<ul>
+<li>获取指定shader的<a href="ENUM_SHADER_PARAM">pname</a>属性</li>
+</ul>
+</li>
+<li><p>void glGetShaderSource(GLuint shader, GLsizei bufSize, GLsizei* length, GLchar* source)</p>
+<ul>
+<li>将shader的源码写入source， bufSize 为缓冲区长度，length为返回的代码长度</li>
+</ul>
+</li>
+</ul>
+<h1 id="PROGRAM"><a href="#PROGRAM" class="headerlink" title="PROGRAM"></a>PROGRAM</h1><ul>
+<li><p>GLuint glCreateProgram()</p>
+</li>
+<li><p>void glAttachShader(GLuint prog, GLuint shader)</p>
+</li>
+<li><p>void glLinkProgram(GLuint prog)</p>
+</li>
+<li><p>void glUseProgran(GLuint prog)</p>
+</li>
+<li><p>void glGetProgramiv(GLuint prog, GLenum panme, GLint* params)</p>
+</li>
+<li><p>void glGetActiveAttrib(GLuint program​, GLuint index​, GLsizei bufSize​, GLsizei *length​, GLint *size​, GLenum *type​, GLchar *name​)</p>
+</li>
+<li><p>void glGetActiveUniform(GLuint program​, GLuint index​, GLsizei bufSize​, GLsizei *length​, GLint *size​, GLenum *type​, GLchar *name​)</p>
+</li>
+<li><p>void glGetProgramInfoLog(GLuint program​, GLsizei maxLength​, GLsizei *length​, GLchar *infoLog​)</p>
+</li>
+<li><p> GLuint glGetUniformLocation(GLuint prog, const GLchar* name)</p>
+</li>
+<li><p>void glUniform{1234}{fdi ui}(GLint location, TYPE value)<br>void glUniform{1234}{fdi ui}v(GLint location, GLsizei count, const TYPE* values)<br>void glUniformMatrix{234}{fd}v(GLint location, GLsizei count, GLboolean transpose, const GLfloat* values)</p>
+<pre><code>  --对角矩阵
+</code></pre>
+<p>void glUniformMatrix{2x3,2x4,3x2,3x4,4x2,4x3}{fd}v(GLint location, GLsizei count, GLboolean transpose, const GLfloat* values)</p>
+<pre><code>  -- 设置与locate索引位置对应的uniform变量的值,其中向量形式的函数会载入count个数据的集合
+  --transpose 为GL_TRUE, 已行主序读入，为GL_FALSE则以列主序读入。
+</code></pre>
+</li>
+</ul>
+<h1 id="变量储存限定符"><a href="#变量储存限定符" class="headerlink" title="变量储存限定符"></a>变量储存限定符</h1><ul>
+<li><p>attribute     –顶点着色器中声明的变量, 可使用函数glAttrib*来操作</p>
+<ul>
+<li>void glBindAttribLocation(GLuint prog, GLuint index, const Glchar* name)<ul>
+<li>将prog程序中的name变量关联到index上</li>
+</ul>
+</li>
+<li>void glGetAttribLocation(GLuint prog, const GLchar* name)</li>
+</ul>
+</li>
+<li><p>uniform       –由应用程序指定，所有着色器共享但无法更改的变量，可使用glUniform*操作</p>
+</li>
+<li><p>varying       –顶点着色器声明赋值，片元着色器使用的变量</p>
+</li>
+</ul>
+<h1 id="TEXTURE"><a href="#TEXTURE" class="headerlink" title="TEXTURE"></a><a target="_blank" rel="noopener" href="https://www.opengl.org/wiki/Texture">TEXTURE</a></h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/lixiang996/article/details/6859575">OpenGL学习笔记（一） 纹理基础知识</a></p>
+<ul>
+<li><p>void glActiveTexture(GLenum texture​)</p>
+</li>
+<li><p>void glBindTexture(GLenum target​, GLuint texture​)</p>
+</li>
+<li><p>void glDeleteTextures(GLsizei n​, const GLuint * textures​)</p>
+</li>
+<li><p>void glPixelStore*(GLenum pname, type, param)</p>
+</li>
+<li><p>void glTexParameter*(GLenum target​, GLenum pname​, Type param​)</p>
+</li>
+<li><p>void glCompressedTexImage2D(GLenum target​, GLint level​, GLenum internalformat​, GLsizei width​, GLsizei height​, GLint border​, GLsizei imageSize​, const GLvoid * data​)</p>
+</li>
+<li><p>void glTexSubImage2D(GLenum target​, GLint level​, GLint xoffset​, GLint yoffset​, GLsizei width​, GLsizei height​, GLenum format​, GLenum type​, const GLvoid * data​)</p>
+</li>
+<li><p>void glGenerateMipmap(GLenum target​)</p>
+</li>
+</ul>
+<h1 id="DRAW"><a href="#DRAW" class="headerlink" title="DRAW"></a>DRAW</h1><ul>
+<li>void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices) <ul>
+<li>使用 GL_ELEMENT_ARRAY_BUFFER中起始偏移为indeices的count个顶点索引来绘制<a href="#ENUM_PRIMITIVE">mode</a>图元</li>
+</ul>
+</li>
+<li>void glDrawArrays(GLenum mode​, GLint first​, GLsizei count​);</li>
+</ul>
+<h1 id="STATE"><a href="#STATE" class="headerlink" title="STATE"></a>STATE</h1><ul>
+<li><p>void glGetXXX(GLenum pname, type)</p>
+<ul>
+<li>返回pname属性的当前设置</li>
+</ul>
+</li>
+<li><p>void glEnable(GLenum cap​)</p>
+</li>
+<li><p>void glDisable(GLenum cap​)</p>
+<ul>
+<li>启用/停用 cap指定状态</li>
+</ul>
+</li>
+<li><p>void glBlendFunc(GLenum sfactor, GLenum dfactor)</p>
+</li>
+<li><p>void glBlendFunci(GlUint buf, GLenum sfactor, GLenum dfactor)</p>
+<ul>
+<li>设置[指定缓存]颜色混合逻辑</li>
+</ul>
+</li>
+<li><p> void glBlendFuncSeparate(GLenum srcRGB​, GLenum dstRGB​, GLenum srcAlpha​, GLenum dstAlpha​)</p>
+</li>
+<li><p>void glBlendFuncSeparatei(GLuint buf​, GLenum srcRGB​, GLenum dstRGB​, GLenum srcAlpha​, GLenum dstAlpha​)</p>
+<ul>
+<li>逐分量设置[指定缓存]颜色混合逻辑</li>
+</ul>
+</li>
+<li><p> void glBlendEquation(GLenum mode​)      –todo 不甚了解，大概是设置混合方程？</p>
+</li>
+</ul>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a><span id="ENUM">枚举</span></h1><ul>
+<li><p><span id="ENUM_DEPTH_TEST_FUNC">深度测试函数</span></p>
+<ul>
+<li>GL_NEVER      <strong>所有</strong>都<strong>不</strong>通过</li>
+<li>GL_LESS       当输入深度<strong>小于</strong>缓冲深度时通过</li>
+<li>GL_EQUAL      当输入深度<strong>等于</strong>缓冲深度时通过</li>
+<li>GL_LEQUAL     <strong>小于等于时</strong>*通过</li>
+<li>GL_GREATER    <strong>大于时</strong> 通过</li>
+<li>GL_NOTEQUAL   <strong>不等于</strong>时通过</li>
+<li>GL_GEQUAL     <strong>大于或等于</strong>时通过    </li>
+<li>GL_ALWAYS     <strong>无条件</strong>通过</li>
+</ul>
+</li>
+<li><p><span id="ENUM_BUFFER_TARGET">缓冲区类型</span></p>
+</li>
+<li><p><span id="ENUM_BUFFER_USAGE">缓冲区使用限定</span></p>
+</li>
+<li><p><span id="ENUM_ACCESS">访问策略</span></p>
+<ul>
+<li>GL_READ_ONLY      只能从该地址读取数据</li>
+<li>GL_WRITE_ONLY     只能向该地址写入数据</li>
+<li>GL_READ_WRITE     既可以从地址读数据，也可以向地址写数据</li>
+</ul>
+</li>
+<li><p><span id="ENUM_PRIMITIVE"><a target="_blank" rel="noopener" href="https://www.opengl.org/wiki/Primitive">图元类型</a></span> </p>
+<ul>
+<li>GL_POINTS                 点(直接使用顶点数据)</li>
+<li>GL_LINES                  线(每两个连续的点绘制成一条线段[01],[23])</li>
+<li>GL_LINE_STRIP             条带线(相邻的两个顶点绘制成一条线段[01],[12])</li>
+<li>GL_LINE_LOOP              循环线(与条带线类似，而且末点与首点相连成线)</li>
+<li>GL_TRIANGLES              三角形(每三个连续顶点组成一个三角形[012],[345])</li>
+<li>GL_TRIANGLE_STRIP         三角形条带(相邻的三个顶点组成一个三角形[012][123])</li>
+<li>GL_TRIANGLE_FAN           扇形带(从第二个点起每两个连续的顶点与第一个顶点组成三角形[012][034][056])</li>
+<li>GL_PATCHES                批量渲染(每一组顶点一起渲染， 可通过 glPatchParameteri​ 来设置)<br><a target="_blank" rel="noopener" href="http://blog.csdn.net/pizi0475/article/details/7932900">邻接图元</a><br>邻接图元与以上基本图元不同的是，这些图元会附带邻接数据，邻接数据只会在几何着色器中被处理，如果没有几何着色器，则邻接数据会被直接抛弃。</li>
+<li>GL_LINES_ADJACENCY        包含4个顶点，第23个顶点构成线段，1,4为邻接信息</li>
+<li>GL_LINE_STRIP_ADJACENCY   相邻的四个顶点([0123][1234]为一个GL_LINES_ADJACENCY</li>
+<li>GL_TRIANGLES_ADJACENCY    包含6个顶点， 第1,3,5个顶点构成三角形，第2,4,6个保存邻接信息</li>
+<li>GL_TRIANGLE_STRIP_ADJACENCY 需要配合图例解释，详见以上链接</li>
+</ul>
+</li>
+<li><p><span id="ENUM_SHADER_PARAM">Shader属性</span></p>
+<ul>
+<li>GL_SHADER_TYPE            shader类型</li>
+<li>GL_DELETE_STATUS          shader是否待删除</li>
+<li>GL_COMPILE_STATUS         shader编译状态，返回GL_TRUE表示编译成功</li>
+<li>GL_INFO_LOG_LENGTH        shader LOG信息长度</li>
+<li>GL_SHADER_SOURCE_LENGTH   shader源码长度</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>1.<a href="www.opengl.org/wiki/GLAPI">官方文档</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2016/04/12/other/openresty-2016-04-12/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>openresty</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2016/04/12/other/mysql-2016-04-12/">
+        <span>mysql</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2016/04/12/render/opengl-interface-2016-04-12/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VAO"><span class="toc-number">1.</span> <span class="toc-text">VAO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VBO"><span class="toc-number">2.</span> <span class="toc-text">VBO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SHADER"><span class="toc-number">3.</span> <span class="toc-text">SHADER</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PROGRAM"><span class="toc-number">4.</span> <span class="toc-text">PROGRAM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%82%A8%E5%AD%98%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">变量储存限定符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TEXTURE"><span class="toc-number">6.</span> <span class="toc-text">TEXTURE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DRAW"><span class="toc-number">7.</span> <span class="toc-text">DRAW</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STATE"><span class="toc-number">8.</span> <span class="toc-text">STATE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-number">9.</span> <span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">10.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

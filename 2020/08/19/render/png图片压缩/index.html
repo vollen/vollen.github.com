@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            png 图片压缩 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/">png 图片压缩</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-08-19
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=png 图片压缩&url=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=png 图片压缩&url=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/&title=png 图片压缩" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=png 图片压缩&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/&text=png 图片压缩" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/png-%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/ >png, 图片压缩</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4043efd5b944">图片压缩知识梳理</a><br><a target="_blank" rel="noopener" href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7">how-png-works</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/6844903798658318343">PNG图片压缩原理解析</a></p>
+<h1 id="压缩纹理格式"><a href="#压缩纹理格式" class="headerlink" title="压缩纹理格式"></a>压缩纹理格式</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/237940807">你所需要了解的几种纹理压缩格式原理</a></p>
+<h2 id="文件大小压缩"><a href="#文件大小压缩" class="headerlink" title="文件大小压缩"></a>文件大小压缩</h2><h3 id="png"><a href="#png" class="headerlink" title="png"></a>png</h3><h3 id="jpg"><a href="#jpg" class="headerlink" title="jpg"></a>jpg</h3><h3 id="webp"><a href="#webp" class="headerlink" title="webp"></a>webp</h3><h2 id="压缩显存大小"><a href="#压缩显存大小" class="headerlink" title="压缩显存大小"></a>压缩显存大小</h2><h3 id="Pvr"><a href="#Pvr" class="headerlink" title="Pvr"></a>Pvr</h3><p>ios 平台支持， 需要纹理的大小为 2 的整数幂</p>
+<h3 id="ETC"><a href="#ETC" class="headerlink" title="ETC"></a>ETC</h3><p>将 4x4 的像素编码为两个 2x4 或 4x2 的块。<br>每个  4x4 的像素块 64 位, 分为两个子块。<br>每个子块包含一个 基本色值 和一个 3 位的修饰表索引。<br>两个基本色值的格式为 两个RGB444 或一个 RGB555 和一个 RGB333。<br>修饰表索引用于从一个修饰表中取到 3个偏移值。 用这个3个值对基本颜色进行偏移可以得到3个新的颜色。 加上基色，一共4中颜色。子块中所有像素的颜色根据一个 2位的索引，从这个 4个颜色中取值。<br>所利用的总字节数 =  24(2个基色值) + 1x2(子块水平还是垂直分布) + 3x2(2个修饰表索引) + 16x2(16 个颜色索引) = 64 字节。</p>
+<ul>
+<li>RGB ETC-1 4bit 压缩比 6:1 如上</li>
+<li>RGB ETC-2 4bit 压缩比 6:1, 需要在OpenGL ES 3.0和OpenGL 4.3以上版</li>
+<li>RGBA ETC-2 8bit 压缩比 8:1, 需要在OpenGL ES 3.0和OpenGL 4.3以上版</li>
+</ul>
+<h3 id="DXTC"><a href="#DXTC" class="headerlink" title="DXTC"></a>DXTC</h3><p>与 ETC 不一样的是， DXTC 使用一对低精度的基色来描述一个 4x4 的像素块。并允许每个像素指定一种方式来从这个两个基色插值得到最终颜色。<br>每个像素块，占用 64 或 128 bit.</p>
+<h4 id="BC1"><a href="#BC1" class="headerlink" title="BC1"></a>BC1</h4><p>16(color0) + 16(color2) + 16 * 2(selector)<br>selector 占用 2 位，表示4种插值方式, color0, color1, (2<em>color0 + color1)/3, (color0 + 2</em>color1)/3。</p>
+<h4 id="BC2"><a href="#BC2" class="headerlink" title="BC2"></a>BC2</h4><p>BC2 编码方式与 BC1 一致，不过对于每个像素，额外使用 4bit 来表示透明度。因为只有 4位，所以最多只能表示 16种透明度，所以实际使用的较少。</p>
+<h4 id="BC3"><a href="#BC3" class="headerlink" title="BC3"></a>BC3</h4><p>BC3 也使用 64bit 来保存透明度，不过与 BC2 直接保存透明度不同，BC3 对透明度进行压缩，思路与颜色压缩方式类似。<br>16(color0) + 16(color2) + 16 * 2(selector) + 8(alpha0) + 8(alpha1) + 16 * 3(alpha selector)<br>因为对透明度进行了压缩， 所以能表示更大范围的透明度，实际应用也比较广泛。</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>BC4和BC5在D3D10中可用，只能存储一个/两个颜色通道。<br>BC6H和BC7在D3D11中可用。BC6H是一个不带a值的HDR格式，它将4x4共16个像素存储为128位数据，其中包括两个48位的RGB值（16:16:16），每个颜色分量都是带符号浮点值（1 个符号位 + 5 个指数位 + 10 个尾数位），以及16个2位索引表。<br>BC7相比其它有点特殊，虽然它也是将4x4共16个像素存储为128位数据，但它的最低有效位为mode位，（最低有效位即最低的非0位）根据不同模式，颜色值的存储格式不同，是否有a值或a值的存储格式也不尽相同，是一种比较灵活的存储格式，但这也意味着解码所带来更多的消耗。</p>
+<h3 id="ASTC"><a href="#ASTC" class="headerlink" title="ASTC"></a>ASTC</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/158740249">ASTC纹理压缩格式详解</a><br>ASTC格式的块为固定大小的128位，块中像素大小可变， 最少为 4x4, 最多为 12x12。2D纹理编码中，他从4x4到12x12像素都有，对应的压缩比从3:1到27:1<br>压缩原理， 类似 DXTC-BC7</p>
+<h1 id="open-GL"><a href="#open-GL" class="headerlink" title="open GL"></a>open GL</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f245ba1a5df6">OpenGL-纹理压缩</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/01/08/egret/egret%E5%B0%8F%E5%88%9A/">
+        <span>egret知识点小计</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/08/19/render/png%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E7%BA%B9%E7%90%86%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">压缩纹理格式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%8E%8B%E7%BC%A9"><span class="toc-number">2.1.</span> <span class="toc-text">文件大小压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#png"><span class="toc-number">2.1.1.</span> <span class="toc-text">png</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jpg"><span class="toc-number">2.1.2.</span> <span class="toc-text">jpg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webp"><span class="toc-number">2.1.3.</span> <span class="toc-text">webp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%98%BE%E5%AD%98%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.2.</span> <span class="toc-text">压缩显存大小</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pvr"><span class="toc-number">2.2.1.</span> <span class="toc-text">Pvr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ETC"><span class="toc-number">2.2.2.</span> <span class="toc-text">ETC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DXTC"><span class="toc-number">2.2.3.</span> <span class="toc-text">DXTC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BC1"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">BC1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BC2"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">BC2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BC3"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">BC3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">2.2.3.4.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASTC"><span class="toc-number">2.2.4.</span> <span class="toc-text">ASTC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#open-GL"><span class="toc-number">3.</span> <span class="toc-text">open GL</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

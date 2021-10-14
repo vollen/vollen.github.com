@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            debug技巧 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/">debug技巧</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2016-04-12
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=debug技巧&url=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=debug技巧&url=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/&title=debug技巧" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=debug技巧&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/&text=debug技巧" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/debug/ >debug</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="通过进程信息，检查内存泄露"><a href="#通过进程信息，检查内存泄露" class="headerlink" title="通过进程信息，检查内存泄露"></a><a target="_blank" rel="noopener" href="http://www.lua.ren/topic/5/%E9%80%9A%E8%BF%87%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF-%E6%A3%80%E6%9F%A5%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2">通过进程信息，检查内存泄露</a></h1><p>原理: 在linux 的 /proc 目录下, 有与系统进程同名的目录, 其中有此进程的各种相关信息. 通关查看这些信息,获取就能找到问题线索. </p>
+<span id="more"></span>
+
+<ol>
+<li>找到要调试的进程pid<br> <code>ps -elf | grep [pname]</code></li>
+<li>查看内存使用情况<br> <code>cat /proc/[pid]/status</code></li>
+<li>打印时间戳和内存占用<br> <code>clear;date;cat /proc/[pid]/status | grep VmData;sleep 3;echo &quot;######&quot;;date;echo &quot;######&quot;;cat /proc/[pid]/status | grep VmData</code></li>
+<li>查看进程当前使用的文件句柄<br> <code>ls -anl /proc/[pid]/fd</code></li>
+</ol>
+<h1 id="lua-单元测试-工具-busted"><a href="#lua-单元测试-工具-busted" class="headerlink" title="lua 单元测试 工具 (busted)"></a>lua 单元测试 工具 (busted)</h1><h1 id="linux系统分析工具"><a href="#linux系统分析工具" class="headerlink" title="linux系统分析工具"></a><a target="_blank" rel="noopener" href="http://xuclv.blog.51cto.com/5503169/1176839">linux系统分析工具</a></h1><h1 id="web-调试"><a href="#web-调试" class="headerlink" title="web 调试"></a>web 调试</h1><h2 id="weinre"><a href="#weinre" class="headerlink" title="weinre"></a>weinre</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/20623386/how-do-i-debug-an-https-loaded-page-using-weinre">weinre with https</a><br><a target="_blank" rel="noopener" href="https://www.undefinednull.com/2015/03/17/remote-debugging-localhost-with-weinre/">通过ngrok使weinre支持https</a></p>
+<h2 id="jsconsole"><a href="#jsconsole" class="headerlink" title="jsconsole"></a>jsconsole</h2><p>jsconsole更专注于console.log和数值运算。使用起来比weinre更简单</p>
+<h1 id="ngrok"><a href="#ngrok" class="headerlink" title="#ngrok"></a>#ngrok</h1><p>可以代理任意一个web server，并提供一个新的域名, 支持https;</p>
+<h2 id="whistle"><a href="#whistle" class="headerlink" title="whistle"></a>whistle</h2><p><a target="_blank" rel="noopener" href="https://avwo.github.io/whistle/">doc</a><br>whistle是基于Node实现的跨平台web调试代理工具，可以作为普通的http代理或者用来抓包、修改、操作http、https、websocket、tunnel请求。<br>内部封装了weinre.<br>支持https.</p>
+<h2 id="spy-debugger"><a href="#spy-debugger" class="headerlink" title="spy-debugger"></a>spy-debugger</h2><p>spy-debugger原理是集成了weinre，简化了weinre需要给每个调试的页面添加 js 代码。spy-debugger原理是拦截所有 html 页面请求注入weinre所需要的 js 代码。让页面调试更加方便<br><a target="_blank" rel="noopener" href="https://github.com/wuchangming/spy-debugger">github</a></p>
+<p>#微信清除浏览器缓存<br>设置==&gt;退出登录==&gt;重新登录</p>
+<h2 id="fiddler"><a href="#fiddler" class="headerlink" title="fiddler"></a>fiddler</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/99b6b4cd273c">fiddler教程</a></p>
+<h2 id="charles"><a href="#charles" class="headerlink" title="charles"></a>charles</h2><h2 id="chrome-浏览器"><a href="#chrome-浏览器" class="headerlink" title="chrome 浏览器"></a>chrome 浏览器</h2><p>chrome://inspect 页签可对安卓手机上的chrome浏览器进行调试<br>可配置host文件, 无需翻墙即可调试<br>61.91.161.217 chrome-devtools-frontend.appspot.com<br>61.91.161.217 chrometophone.appspot.com</p>
+<h3 id="webgl-inspector插件"><a href="#webgl-inspector插件" class="headerlink" title="[webgl inspector插件]"></a>[webgl inspector插件]</h3><h2 id="adb-查看手机内存"><a href="#adb-查看手机内存" class="headerlink" title="adb 查看手机内存"></a>adb 查看手机内存</h2><p>adb shell top -m 10 查看当前系统进程前十位<br>adb shell top -t -m 10 查看当前系统线程前十位</p>
+<h2 id="游戏内预留输入面板，可动态执行代码，-用于查看信息"><a href="#游戏内预留输入面板，可动态执行代码，-用于查看信息" class="headerlink" title="游戏内预留输入面板，可动态执行代码， 用于查看信息"></a>游戏内预留输入面板，可动态执行代码， 用于查看信息</h2><p>由后端协议控制面板开放。<br>eval执行，alert显示信息</p>
+<h2 id="h5-测试"><a href="#h5-测试" class="headerlink" title="h5 测试"></a>h5 测试</h2><p><a target="_blank" rel="noopener" href="http://teamcapybara.github.io/capybara/">http://teamcapybara.github.io/capybara/</a><br><a target="_blank" rel="noopener" href="https://www.seleniumhq.org/">https://www.seleniumhq.org/</a><br><a target="_blank" rel="noopener" href="https://github.com/ariya/phantomjs">https://github.com/ariya/phantomjs</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2016/04/12/other/exp-on-sdk-2016-04-12/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>exp_on_sdk</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/">
+        <span>android知识点小记</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%A3%80%E6%9F%A5%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2"><span class="toc-number">1.</span> <span class="toc-text">通过进程信息，检查内存泄露</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lua-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E5%B7%A5%E5%85%B7-busted"><span class="toc-number">2.</span> <span class="toc-text">lua 单元测试 工具 (busted)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-number">3.</span> <span class="toc-text">linux系统分析工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web-%E8%B0%83%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">web 调试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#weinre"><span class="toc-number">4.1.</span> <span class="toc-text">weinre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsconsole"><span class="toc-number">4.2.</span> <span class="toc-text">jsconsole</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ngrok"><span class="toc-number">5.</span> <span class="toc-text">#ngrok</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#whistle"><span class="toc-number">5.1.</span> <span class="toc-text">whistle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spy-debugger"><span class="toc-number">5.2.</span> <span class="toc-text">spy-debugger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiddler"><span class="toc-number">5.3.</span> <span class="toc-text">fiddler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#charles"><span class="toc-number">5.4.</span> <span class="toc-text">charles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chrome-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">5.5.</span> <span class="toc-text">chrome 浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webgl-inspector%E6%8F%92%E4%BB%B6"><span class="toc-number">5.5.1.</span> <span class="toc-text">[webgl inspector插件]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#adb-%E6%9F%A5%E7%9C%8B%E6%89%8B%E6%9C%BA%E5%86%85%E5%AD%98"><span class="toc-number">5.6.</span> <span class="toc-text">adb 查看手机内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E5%86%85%E9%A2%84%E7%95%99%E8%BE%93%E5%85%A5%E9%9D%A2%E6%9D%BF%EF%BC%8C%E5%8F%AF%E5%8A%A8%E6%80%81%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%EF%BC%8C-%E7%94%A8%E4%BA%8E%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">5.7.</span> <span class="toc-text">游戏内预留输入面板，可动态执行代码， 用于查看信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#h5-%E6%B5%8B%E8%AF%95"><span class="toc-number">5.8.</span> <span class="toc-text">h5 测试</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

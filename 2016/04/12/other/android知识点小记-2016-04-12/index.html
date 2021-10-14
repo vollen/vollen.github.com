@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            android知识点小记 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/">android知识点小记</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2016-04-12
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=android知识点小记&url=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=android知识点小记&url=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/&title=android知识点小记" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=android知识点小记&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/&text=android知识点小记" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/android/ >android</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p><a target="_blank" rel="noopener" href="http://developer.android.com/reference/packages.html">安卓官方文档</a></p>
+<h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><ul>
+<li>setFocusable()</li>
+<li>setFocusableInTouchMode()<br>  <a target="_blank" rel="noopener" href="http://www.cnblogs.com/frydsh/archive/2012/10/15/2724909.html">Android的Touch Mode</a><span id="more"></span></li>
+</ul>
+<h2 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h2><h3 id="LayoutParams"><a href="#LayoutParams" class="headerlink" title="LayoutParams"></a>LayoutParams</h3><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/xiaoluo501395377/p/3397680.html">RelativeLayout相关属性</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/neu_yousei/article/details/22044035">android布局介绍</a></p>
+<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a><a target="_blank" rel="noopener" href="http://developer.android.com/intl/zh-cn/guide/components/activities.html">Activity</a></h2><h2 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a><a target="_blank" rel="noopener" href="http://developer.android.com/intl/zh-cn/guide/components/fragments.html">Fragment</a></h2><h2 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h2><p>Button 的源码只有简单几个构造器，默认设置了一个 <code>com.android.internal.R.attr.buttonStyle</code> 的style.</p>
+<p>遇到问题：</p>
+<ul>
+<li>对于其他所有属性都相同的情况下， Button 的高度比TextView 的 高度要高不少，而且Button内的字体有被切边，显示不全的情况。<ul>
+<li>解决方案： 调用<code>setPadding(0, 0, 0, 0)</code>， 估计是因为上述Style中有设置按钮的默认padding， 日后查看源码。 </li>
+</ul>
+</li>
+</ul>
+<h3 id="ToggleButton-双状态按钮"><a href="#ToggleButton-双状态按钮" class="headerlink" title="ToggleButton 双状态按钮"></a>ToggleButton 双状态按钮</h3><h2 id="Surface"><a href="#Surface" class="headerlink" title="Surface"></a>Surface</h2><h2 id="SurfaceView"><a href="#SurfaceView" class="headerlink" title="SurfaceView"></a>SurfaceView</h2><ul>
+<li>setZOrderMediaOverlay 不管它的层级如何,直接显示在所有媒体前</li>
+</ul>
+<h2 id="SurfaceHolder"><a href="#SurfaceHolder" class="headerlink" title="SurfaceHolder"></a>SurfaceHolder</h2><p><a target="_blank" rel="noopener" href="http://www.linuxidc.com/Linux/2012-08/67619.htm">Android图形系统之Surface、SurfaceView、SurfaceHolder及SurfaceHolder.Callback之间的联系</a><br><a target="_blank" rel="noopener" href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2012/1201/658.html">Android笔记：SurfaceView与SurfaceHolder对象</a></p>
+<h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
+<li>getExternalStorageDirectory()<ul>
+<li>返回SD卡的绝对路径</li>
+</ul>
+</li>
+</ul>
+<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><ul>
+<li>getPackageName()<ul>
+<li>返回包名</li>
+</ul>
+</li>
+<li>public abstract Object getSystemService (String name)<ul>
+<li>获取一些系统相关的管理器</li>
+</ul>
+</li>
+</ul>
+<h2 id="返回-应用在-【内置存储-SDCARD】-上的【数据目录files-缓存目录cache】"><a href="#返回-应用在-【内置存储-SDCARD】-上的【数据目录files-缓存目录cache】" class="headerlink" title="返回 应用在 【内置存储/SDCARD】 上的【数据目录files/缓存目录cache】"></a>返回 应用在 【内置存储/SDCARD】 上的【数据目录files/缓存目录cache】</h2><ul>
+<li>getCacheDir()</li>
+<li>getFilesDir()</li>
+<li>getExternalFilesDir(</li>
+<li>getExternalCacheDir()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于获取可写缓冲区的一段代码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDiskCacheDir</span><span class="params">(Context context)</span> </span>&#123;  </span><br><span class="line">    String cachePath = <span class="keyword">null</span>;  </span><br><span class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())</span><br><span class="line">            || !Environment.isExternalStorageRemovable()) &#123;  </span><br><span class="line">        cachePath = context.getExternalCacheDir().getPath();  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        cachePath = context.getCacheDir().getPath();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> cachePath;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><h2 id="返回-定义时的路径-绝对路径-规范化路径（不包含-的路径）"><a href="#返回-定义时的路径-绝对路径-规范化路径（不包含-的路径）" class="headerlink" title="返回 [定义时的路径/  绝对路径 / 规范化路径（不包含./..的路径）]"></a>返回 [定义时的路径/  绝对路径 / 规范化路径（不包含./..的路径）]</h2><ul>
+<li>public String getPath ()</li>
+<li>public String getAbsolutePath ()</li>
+<li>public String getCanonicalPath ()</li>
+</ul>
+<h1 id="RandomAccessFile"><a href="#RandomAccessFile" class="headerlink" title="RandomAccessFile"></a><a target="_blank" rel="noopener" href="http://developer.android.com/reference/java/io/RandomAccessFile.html">RandomAccessFile</a></h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/akon_vm/article/details/7429245">前人引路</a></p>
+<h1 id="通过DexClassLoader来动态加载类"><a href="#通过DexClassLoader来动态加载类" class="headerlink" title="通过DexClassLoader来动态加载类"></a>通过DexClassLoader来动态加载类</h1><p><a target="_blank" rel="noopener" href="http://segmentfault.com/a/1190000004062880">Android动态加载基础 ClassLoader工作机制</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DexClassLoader loader = <span class="keyword">new</span> DexClassLoader(<span class="string">&quot;dexPath&quot;</span>, <span class="string">&quot;optimizedDirectory&quot;</span>, <span class="string">&quot;libraryPath&quot;</span>, parent);</span><br><span class="line">Class <span class="class"><span class="keyword">class</span> </span>= loader.loadClass(<span class="string">&quot;classpath&quot;</span>);</span><br><span class="line">Constructor ctor = class.getConstructor(Class...&lt;?&gt; parameterTypes);</span><br><span class="line">Object obj = ctor.newInstance(Object... args);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Environment-1"><a href="#Environment-1" class="headerlink" title="Environment"></a>Environment</h1><ul>
+<li>SDCARD 是否存在<ul>
+<li>Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())  </li>
+</ul>
+</li>
+<li>SDCARD 不可移除<ul>
+<li>Environment.isExternalStorageRemovable()</li>
+</ul>
+</li>
+<li>获取SDCARD目录fi<ul>
+<li>Environment.getExternalStorageDirectory()</li>
+</ul>
+</li>
+</ul>
+<h1 id="NET"><a href="#NET" class="headerlink" title="NET"></a>NET</h1><p><a target="_blank" rel="noopener" href="http://developer.android.com/training/basics/network-ops/connecting.html">连接网络</a></p>
+<h2 id="ConnectivityManager"><a href="#ConnectivityManager" class="headerlink" title="ConnectivityManager"></a>ConnectivityManager</h2><ul>
+<li> 获取实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Context.getSystemService(Context.CONNECTIVITY_SERVICE)`</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="SSLContext"><a href="#SSLContext" class="headerlink" title="SSLContext"></a>SSLContext</h2><h2 id="HttpURLConnection"><a href="#HttpURLConnection" class="headerlink" title="HttpURLConnection"></a>HttpURLConnection</h2><h2 id="URI和URL"><a href="#URI和URL" class="headerlink" title="URI和URL"></a><a target="_blank" rel="noopener" href="http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html">URI和URL</a></h2><h1 id="SECURITY"><a href="#SECURITY" class="headerlink" title="SECURITY"></a>SECURITY</h1><h2 id="KeyStore"><a href="#KeyStore" class="headerlink" title="KeyStore"></a><a target="_blank" rel="noopener" href="http://developer.android.com/training/articles/keystore.html">KeyStore</a></h2><h2 id="KeyFactory"><a href="#KeyFactory" class="headerlink" title="KeyFactory"></a>KeyFactory</h2><h2 id="Java使用RSA加密解密签名及校验"><a href="#Java使用RSA加密解密签名及校验" class="headerlink" title="Java使用RSA加密解密签名及校验"></a><a target="_blank" rel="noopener" href="http://blog.csdn.net/wangqiuyun/article/details/42143957">Java使用RSA加密解密签名及校验</a></h2><h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><h1 id="JAVA-加密解密"><a href="#JAVA-加密解密" class="headerlink" title="JAVA-加密解密"></a><a target="_blank" rel="noopener" href="http://wenku.baidu.com/link?url=9PvkJo7fjXDrpUElyC_67GyUQrp4kJIL-zHeQUpoR8Hfgrc_X56ukC2XN-oCplHD89HfdFhUemcVtETAduLoLLuRYIkBCcD5L7G5zJcACNu">JAVA-加密解密</a></h1><h1 id="Runable"><a href="#Runable" class="headerlink" title="Runable"></a>Runable</h1><h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><h2 id="TimerTask"><a href="#TimerTask" class="headerlink" title="TimerTask"></a>TimerTask</h2><h1 id="查看jar包方法数"><a href="#查看jar包方法数" class="headerlink" title="查看jar包方法数"></a>查看jar包方法数</h1><p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/61e8f803e0d1">參考链接</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#查看apk的method总数</span><br><span class="line">dexdump -f app.apk | grep method_ids_size</span><br><span class="line">#查看apk的field总数</span><br><span class="line">dexdump -f app.apk | grep field_ids_size</span><br><span class="line"></span><br><span class="line">#查看jar的method 总数</span><br><span class="line">dx --dex --verbose --no-strict --output=/home/Desktop/temp.dex ~/Desktop/xxx.jar &gt; ~/Desktop/temp.log</span><br><span class="line">cat temp.dex | head -c 92 | tail -c 4 | hexdump -e &#x27;1/4 &quot;%d\n&quot;&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><ul>
+<li>启动手机上的APP<br>adb shell am start -n “org.cocos2dx.test_dragon/org.cocos2dx.cpp.AppActivity</li>
+<li>过滤输出<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb logcat  tag:[V | D | I | W | E | S] </span><br><span class="line">adb logcat  *:D 输出所有Debug以上级别的输出</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:launchMode=&quot;singleInstance&quot;</span><br></pre></td></tr></table></figure>
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2016/04/12/other/debug%E6%8A%80%E5%B7%A7-2016-04-12/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>debug技巧</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2016/04/12/other/cocos2d-render-2016-04-12/">
+        <span>cocos2d_render</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2016/04/12/other/android%E7%9F%A5%E8%AF%86%E7%82%B9%E5%B0%8F%E8%AE%B0-2016-04-12/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#View"><span class="toc-number">1.</span> <span class="toc-text">View</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ViewGroup"><span class="toc-number">1.1.</span> <span class="toc-text">ViewGroup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LayoutParams"><span class="toc-number">1.1.1.</span> <span class="toc-text">LayoutParams</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activity"><span class="toc-number">1.2.</span> <span class="toc-text">Activity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fragment"><span class="toc-number">1.3.</span> <span class="toc-text">Fragment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Button"><span class="toc-number">1.4.</span> <span class="toc-text">Button</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ToggleButton-%E5%8F%8C%E7%8A%B6%E6%80%81%E6%8C%89%E9%92%AE"><span class="toc-number">1.4.1.</span> <span class="toc-text">ToggleButton 双状态按钮</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Surface"><span class="toc-number">1.5.</span> <span class="toc-text">Surface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SurfaceView"><span class="toc-number">1.6.</span> <span class="toc-text">SurfaceView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SurfaceHolder"><span class="toc-number">1.7.</span> <span class="toc-text">SurfaceHolder</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Environment"><span class="toc-number">2.</span> <span class="toc-text">Environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Context"><span class="toc-number">3.</span> <span class="toc-text">Context</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E-%E5%BA%94%E7%94%A8%E5%9C%A8-%E3%80%90%E5%86%85%E7%BD%AE%E5%AD%98%E5%82%A8-SDCARD%E3%80%91-%E4%B8%8A%E7%9A%84%E3%80%90%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95files-%E7%BC%93%E5%AD%98%E7%9B%AE%E5%BD%95cache%E3%80%91"><span class="toc-number">3.1.</span> <span class="toc-text">返回 应用在 【内置存储&#x2F;SDCARD】 上的【数据目录files&#x2F;缓存目录cache】</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File"><span class="toc-number">4.</span> <span class="toc-text">File</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E-%E5%AE%9A%E4%B9%89%E6%97%B6%E7%9A%84%E8%B7%AF%E5%BE%84-%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84-%E8%A7%84%E8%8C%83%E5%8C%96%E8%B7%AF%E5%BE%84%EF%BC%88%E4%B8%8D%E5%8C%85%E5%90%AB-%E7%9A%84%E8%B7%AF%E5%BE%84%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">返回 [定义时的路径&#x2F;  绝对路径 &#x2F; 规范化路径（不包含.&#x2F;..的路径）]</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RandomAccessFile"><span class="toc-number">5.</span> <span class="toc-text">RandomAccessFile</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87DexClassLoader%E6%9D%A5%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%B1%BB"><span class="toc-number">6.</span> <span class="toc-text">通过DexClassLoader来动态加载类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Environment-1"><span class="toc-number">7.</span> <span class="toc-text">Environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NET"><span class="toc-number">8.</span> <span class="toc-text">NET</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ConnectivityManager"><span class="toc-number">8.1.</span> <span class="toc-text">ConnectivityManager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSLContext"><span class="toc-number">8.2.</span> <span class="toc-text">SSLContext</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpURLConnection"><span class="toc-number">8.3.</span> <span class="toc-text">HttpURLConnection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URI%E5%92%8CURL"><span class="toc-number">8.4.</span> <span class="toc-text">URI和URL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SECURITY"><span class="toc-number">9.</span> <span class="toc-text">SECURITY</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyStore"><span class="toc-number">9.1.</span> <span class="toc-text">KeyStore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyFactory"><span class="toc-number">9.2.</span> <span class="toc-text">KeyFactory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E4%BD%BF%E7%94%A8RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E7%AD%BE%E5%90%8D%E5%8F%8A%E6%A0%A1%E9%AA%8C"><span class="toc-number">9.3.</span> <span class="toc-text">Java使用RSA加密解密签名及校验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO"><span class="toc-number">10.</span> <span class="toc-text">IO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA-%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86"><span class="toc-number">11.</span> <span class="toc-text">JAVA-加密解密</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Runable"><span class="toc-number">12.</span> <span class="toc-text">Runable</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AsyncTask"><span class="toc-number">12.1.</span> <span class="toc-text">AsyncTask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TimerTask"><span class="toc-number">12.2.</span> <span class="toc-text">TimerTask</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bjar%E5%8C%85%E6%96%B9%E6%B3%95%E6%95%B0"><span class="toc-number">13.</span> <span class="toc-text">查看jar包方法数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#adb"><span class="toc-number">14.</span> <span class="toc-text">adb</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

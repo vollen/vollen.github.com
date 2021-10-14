@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            linux小命令 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/">linux小命令</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2015-11-20
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=linux小命令&url=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=linux小命令&url=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/&title=linux小命令" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=linux小命令&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/&text=linux小命令" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/linux/ >linux</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>linux环境下的一些小命令：</p>
+<ul>
+<li><p>统计文件夹下的目录数<br>  ls -l | grep “^ｄ” |wc -l<br>  <a target="_blank" rel="noopener" href="http://www.cnblogs.com/peida/archive/2012/12/18/2822758.html">wc命令</a><br>  <a target="_blank" rel="noopener" href="http://www.cnblogs.com/fullhouse/archive/2011/07/17/2108786.html">linux统计文件</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 统计文件夹下ts文件数量</span><br><span class="line">find ./ -name &quot;*.ts&quot; | wc -l</span><br><span class="line"># 统计文件夹下ts文件行数</span><br><span class="line">wc -l `find ./ -name &quot;*.ts&quot;`</span><br><span class="line"># 统计文件夹下ts文件总行数</span><br><span class="line">wc -l `find ./ -name &quot;*.ts&quot;` | tail -n1</span><br><span class="line"># 统计文件夹下ts文件总行数(过滤空行)</span><br><span class="line">find ./ -name &quot;*.ts&quot; | xargs cat | grep -v ^$ | wc -l</span><br></pre></td></tr></table></figure></li>
+<li><p>修改命令行提示符<br>  <a target="_blank" rel="noopener" href="http://www.linux521.com/2009/system/201206/18120.html">环境变量PS1、PS2、PS3以及PS4来自定义用户命令行的字符显示</a><br>  linux系统的命令号提示符格式是设置在 环境变量 PS1 中的，可以通过<code>export PS1=&quot;\u@\h \w $ &quot;</code> 来临时指定。</p>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>环境变量</li>
+</ul>
+<ul>
+<li>export NAME=”value”<br>export 可定义环境变量</li>
+<li>set<br>使用 set 命令会显示普通变量和环境变量</li>
+<li>unset NAME<br>使用 unset 可以删除环境变量</li>
+<li>env<br>使用 env 命令只会显示环境变量</li>
+<li>/ext/profile, /etc/bashrc<br>对所有用户有效的环境配置文件</li>
+<li>~/.bashrc, ~/.bash_profile<br>只对当前用户有效的环境配置文件</li>
+</ul>
+<ul>
+<li><p>动态链接库</p>
+<ul>
+<li>查看符号表  <code>nm</code></li>
+<li>查看库的依赖关系 <code>ldd</code>  </li>
+</ul>
+</li>
+<li><p>查找<br>  <a target="_blank" rel="noopener" href="http://www.path8.net/tn/archives/4257">Linux的五个查找命令的区别</a></p>
+<ul>
+<li><code>locate</code>      根据文件数据库,快速查找文件位置<ul>
+<li> locate – u  重新建立文件数据库(u前面有空格)</li>
+</ul>
+</li>
+<li><code>find</code>        根据各种条件,查找文件 <ul>
+<li> 真实遍历查找,速度较慢</li>
+</ul>
+</li>
+<li><code>whereis</code>     查找指定命令的位置(包括可执行文件/说明文件/源代码),</li>
+<li><code>which</code> 指令会在PATH变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果</li>
+</ul>
+</li>
+<li><p>库文件相关</p>
+<ul>
+<li>/etc/ld.so.conf 文件中,配置了系统默认查找目录<ul>
+<li>修改配置(或新加库)之后,可通过<code>ldconfig</code> 命令来更新库缓存</li>
+<li>库文件缓存保存在 /etc/ld.so.cache 文件中, 程序查找库时,直接搜索这个文件,而不会去每个目录找</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>alias 自定义命令别名<br>  – alias  ll=’ls -lF’  自定义ll命令<br>  – unalias ll          删除ll 别名</p>
+</li>
+<li><p>xmodmap 修改键盘映射<br>  <a target="_blank" rel="noopener" href="http://blog.csdn.net/xiaoqin515515/article/details/18840035"> linux修改键盘按键</a></p>
+</li>
+<li><p>fuser 命令</p>
+<ul>
+<li>Show which processes use the named files, sockets, or filesystems.</li>
+<li>显示正在使用 指定 文件/端口/文件系统 的进程</li>
+<li>示例: 杀掉正在使用 80端口的进程<ul>
+<li>sudo fuser -k 80/tcp</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://binyan17.iteye.com/blog/1444452">linux 权限</a></p>
+</li>
+<li><p>tail 命令</p>
+<ul>
+<li><code> tail [选项] [filename]</code></li>
+<li>查看文件尾部内容, 默认为最后10行</li>
+<li>常见用法为 <code>tail -f [filename]</code>, 能即时输出文件追加的内容,常用于查看正在被写入的日志.</li>
+</ul>
+</li>
+<li><p>top 命令</p>
+<ul>
+<li><code>top</code> </li>
+<li>显示当前正在运行的所有进程,并按消耗资源数排序</li>
+</ul>
+<ul>
+<li>P – 以 CPU 占用率大小的顺序排列进程列表</li>
+<li>M – 以内存占用率大小的顺序排列进程列表</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>namei 命令</p>
+<ul>
+<li><code>namei [filename]</code></li>
+<li>从追溯一个文件,直到最后, 常用于查看多层嵌套的符号链接. </li>
+</ul>
+</li>
+<li><p>file 命令</p>
+<ul>
+<li><code>file [filename]</code></li>
+<li>查看一个文件的文件类型 (可执行文件, 库文件, 符号链接, 压缩包文件, …)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>添加系统启动项<br>假设要启动的程序为nginx, 启动脚本可<a target="_blank" rel="noopener" href="http://library.linode.com/assets/660-init-deb.sh">参考</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mv xxx.sh /etc/init.d/nginx</span><br><span class="line">sudo chmod +x /etc/init.d/nginx</span><br><span class="line">sudo /usr/sbin/updare-rc.d -f nginx defaults</span><br></pre></td></tr></table></figure></li>
+<li><p><a target="_blank" rel="noopener" href="http://www.jb51.net/LINUXjishu/151820.html">深入理解linux系统的目录结构</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/vincedotnet/p/4017574.html">ubuntu中管理用户和用户组</a><br>  <a target="_blank" rel="noopener" href="https://wiki.centos.org/zh/TipsAndTricks/BecomingRoot">如何成为 Root 用户</a></p>
+<ol>
+<li>用户组<ul>
+<li><code>groupadd</code>        新增用户组</li>
+<li><code>groupdel</code>        删除用户组</li>
+<li><code>cat /etc/group</code>  查看所有用户组</li>
+</ul>
+</li>
+<li>用户<ul>
+<li><code>useradd</code>         新增用户</li>
+<li><code>userdel</code>         删除用户</li>
+<li><code>passwd [user]</code>   修改用户密码, 可以使用sudo 修改root密码</li>
+<li><code>usermod</code>         修改用户权限</li>
+<li><code>cat /etc/passwd</code> 查看所有用户</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>字符集<br>  <code>locale -a</code>     查看本机支持的所有字符集<br>  <code>cd /usr/share/locales &amp;&amp; sudo ./install-language-pack zh_CN</code> 安装中文字符集<br>  <code>cd /usr/share/locales &amp;&amp; sudo ./remove-language-pack zh_CN</code> 卸载中文字符集</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-20766194-id-1850375.html">批量修改文件名</a></p>
+<ul>
+<li>find + grep + awk</li>
+<li>脚本批量 mv</li>
+<li>rename</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">netstat 命令</a><br>  Netstat 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等<br>  #查看某端口号被哪个程序占用<br>  <code>netstat -apn | grep  portno</code></p>
+</li>
+<li><p>应用程序错误报告<br>  有时候, 系统中的某个应用出现了问题, 那么你就会在每次启动的时候, 看到一个提示框, 问你要不要报告错误. 如果去掉这个提示呢? </p>
+<ol>
+<li>消除这一次的提示<br> 删除 <code>/var/crash/*</code></li>
+<li>彻底摆脱错误弹窗<br> 编辑<code>/etc/default/apport</code> 文件, 并修改enable为0</li>
+</ol>
+</li>
+<li><p>大多数linux 命令行工具, 都会把参数 <code>-</code> 当作标准输入流(通常是读取命令行输入).</p>
+<ul>
+<li>比如 <code>cat -</code>, 会输出命令行输入.</li>
+</ul>
+</li>
+<li><p>查看/切换 shell</p>
+<ul>
+<li><code>echo $SHELL</code>         查看当前使用的shell程序</li>
+<li><code>chsh -s /bin/zsh</code>    切换shell为shell, 最后参数为执行文件路径</li>
+</ul>
+</li>
+<li><p>系统时间相关</p>
+<ul>
+<li>查看当前时间  <code>date</code></li>
+<li>修改系统时区<br>  <code>tzselect</code><br>  <code>sudo cp /usr/share/zoneinfo/Asia/ShangHai /etc/localtime</code></li>
+<li>同步网络时间  <code>ntpdate time.windows.com</code></li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.kghost.info/2011/02/11/%E4%BD%BF%E7%94%A8fakeroot%E6%A8%A1%E6%8B%9Froot%E6%9D%83%E9%99%90%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F/">fakeroot</a><br>  在一个虚拟的环境中，模拟root操作， 但实际权限还是当前用户权限，常用于debian编译打包。</p>
+</li>
+<li><p>du<br>  统计文件大小的一个命令, -s 只显示最终结果，  -B[M|G] 指定显示单位</p>
+</li>
+<li><p>objdump</p>
+<ul>
+<li>objdump -s –section=.comment [filename]<br>  查看库或可执行文件的编译器信息</li>
+</ul>
+</li>
+<li><p>nohup<br>  用这个命令启动的程序, 不会收到HUP信号, 并且会自动把输出重定向到nohup.out<br>  可配合<code>&amp;</code><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html">启动deamon进程</a></p>
+</li>
+<li><p>压缩文件 </p>
+<ul>
+<li>zip<br>  <code>zip -r xxx.zip file1 file2 dir1 dir2</code></li>
+</ul>
+</li>
+<li><p>linux解压windows压缩的文件， 出现中文乱码<br>  解压的时候指定字符集, <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20523036">详情</a><br>  <code>unzip -O CP936 filename</code></p>
+</li>
+</ul>
+<ul>
+<li><p>mtr<br>  查看本地服务器 到 目标服务器的路由路径情况.<br>  <a target="_blank" rel="noopener" href="https://meiriyitie.com/2015/05/26/diagnosing-network-issues-with-mtr/">使用 MTR 诊断网络问题</a></p>
+</li>
+<li><p>ubuntu 开机自动启动</p>
+<ul>
+<li>命令行运行 <code>gnome-session-properties</code> 可以修改登陆后 </li>
+<li><code>sysv-rc-conf</code> 工具可以管理开机启动的服务.</li>
+<li><code>/etc/lightdm/lightdm.conf</code></li>
+</ul>
+</li>
+<li><p>在GUI打开隐藏文件夹</p>
+<ul>
+<li>Ctrl +　H </li>
+<li>Alt + F12 直接输入文件路径</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sed 命令<br>sed [-nefri] ‘command’ 输入文本</li>
+</ul>
+<ul>
+<li>选项<ul>
+<li>n∶使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN的资料一般都会被列出到萤幕上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。</li>
+<li>e∶直接在指令列模式上进行 sed 的动作编辑；</li>
+<li>f∶直接将 sed 的动作写在一个档案内， -f filename 则可以执行 filename 内的sed 动作；</li>
+<li>r∶sed 的动作支援的是延伸型正规表示法的语法。(预设是基础正规表示法语法)</li>
+<li>i∶直接修改读取的档案内容，而不是由萤幕输出。       </li>
+</ul>
+</li>
+<li>命令<ul>
+<li>a   ∶新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～</li>
+<li>c   ∶取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！</li>
+<li>d   ∶删除，因为是删除啊，所以 d 后面通常不接任何咚咚；</li>
+<li>i   ∶插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</li>
+<li>p  ∶打印，亦即将某个选择的资料印出。通常 p 会与参数 sed -n 一起运作～</li>
+<li>s  ∶取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g</li>
+</ul>
+</li>
+<li>一个比较复杂的修改例子<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将一段匹配pattern1--pattern2之间的匹配pattern3的字符串用pattern4替换</span></span><br><span class="line">sed -i <span class="string">&#x27;/pattern1/,/pattern2/s/pattern3/pattern4/g&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>man 帮助手册<br><code>man -k [word]</code>  查看所有包含 word 关键字的文档<br>mandb 生成 whatis 数据库</p>
+</li>
+<li><p>info<br>与 man 类似， 不过是以页面树的形式组织。<br><code>/usr/share/doc</code> 很多有用的说明文档目录</p>
+</li>
+<li><p>查看当前系统状态</p>
+</li>
+</ul>
+<ul>
+<li>who 查看当前连接的用户</li>
+<li>netstat -a 查看网络使用状况</li>
+<li>ps -aux  查看运行的进程</li>
+</ul>
+<ul>
+<li><p>sync<br>同步内存数据到硬盘</p>
+</li>
+<li><p>od<br>以二进制形式输出文件</p>
+</li>
+<li><p>rsync<br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/kevingrace/p/5766139.html">参考</a><br>同步文件<br><code>rsync -avz --delete $&#123;source_dir&#125; $&#123;VPS&#125;:$&#123;midDir&#125;</code></p>
+</li>
+</ul>
+<p>$ python 启动一个简单的 webserver<br>python -m SimpleHTTPServer port</p>
+<h1 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6d32b166f47d">linux下的/etc/profile、/etc/bashrc、<del>/.bash_profile、</del>/.bashrc文件</a><br>O(<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-23842323-id-2656618.html">http://blog.chinaunix.net/uid-23842323-id-2656618.html</a>)<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sfhawx/article/details/49969321">login shell和non-login shell</a></p>
+<h2 id="设置变量默认值"><a href="#设置变量默认值" class="headerlink" title="设置变量默认值"></a>设置变量默认值</h2><h3 id="当变量a为null时则var-b"><a href="#当变量a为null时则var-b" class="headerlink" title="当变量a为null时则var=b"></a>当变量a为null时则var=b</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="variable">$&#123;a-b&#125;</span></span><br></pre></td></tr></table></figure>
+<p>#当变量a为null或为空字符串时则var=b  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="variable">$&#123;a:-b&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="禁用密码登录"><a href="#禁用密码登录" class="headerlink" title="禁用密码登录"></a>禁用密码登录</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/ssh/sshd_config  </span></span><br><span class="line">PasswordAuthentication no //禁止使用基于口令认证的方式登陆</span><br><span class="line">PubkeyAuthentication yes //允许使用基于密钥认证的方式登陆</span><br><span class="line"><span class="comment"># /etc/init.d/sshd reload</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2016/04/12/other/cocos2d-render-2016-04-12/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>cocos2d_render</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2015/10/10/other/usefull-blog-2015-10-10/">
+        <span>usefull_blog</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2015/11/20/linux/linux%E5%B0%8F%E5%91%BD%E4%BB%A4-2015-11-20/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#bash"><span class="toc-number">1.</span> <span class="toc-text">bash</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">1.1.</span> <span class="toc-text">设置变量默认值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E5%8F%98%E9%87%8Fa%E4%B8%BAnull%E6%97%B6%E5%88%99var-b"><span class="toc-number">1.1.1.</span> <span class="toc-text">当变量a为null时则var&#x3D;b</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">禁用密码登录</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

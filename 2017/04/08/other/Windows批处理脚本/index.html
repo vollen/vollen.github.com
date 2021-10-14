@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Windows 批处理脚本 | 听风楼
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">听风楼</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">倚楼听风雨，淡看江湖路</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">vollen</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:vollen@aliyun.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/vollen" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/">Windows 批处理脚本</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2017-04-08
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-09-17
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Windows 批处理脚本&url=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/&pic=https://vollen.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Windows 批处理脚本&url=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/&via=vollen" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/&title=Windows 批处理脚本" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=听风楼&title=Windows 批处理脚本&summary=&pics=https://vollen.github.io/null&url=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://vollen.github.io/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/&text=Windows 批处理脚本" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/windows/ >windows</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/learn/ >learn</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/taoxu0903/archive/2011/06/28/2092212.html">参考资料</a></p>
+<h1 id="简单内部命令"><a href="#简单内部命令" class="headerlink" title="简单内部命令"></a>简单内部命令</h1><h2 id="help-cmd-，-cmd"><a href="#help-cmd-，-cmd" class="headerlink" title="help [cmd] ， cmd /?"></a>help [cmd] ， cmd /?</h2><p>查看帮助， 可指定命令，一下内置命令都可以通过help来查看帮助</p>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>echo {[on | off]} [message]</p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="@命令"></a>@命令</h2><p>表示不回显@后面的命令</p>
+<h2 id="Goto"><a href="#Goto" class="headerlink" title="Goto"></a>Goto</h2><p>跳转到指定标签</p>
+<h2 id="Rem"><a href="#Rem" class="headerlink" title="Rem, ::"></a>Rem, ::</h2><p>注释</p>
+<h2 id="Pause"><a href="#Pause" class="headerlink" title="Pause"></a>Pause</h2><p>挂起程序， 等待用户响应</p>
+<h2 id="Call"><a href="#Call" class="headerlink" title="Call"></a>Call</h2><p>在脚本内调用另一个批处理程序</p>
+<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><p>打开一个新窗口调用 Dos命令或命令行程序</p>
+<h2 id="choice-c-abc"><a href="#choice-c-abc" class="headerlink" title="choice /c:abc"></a>choice /c:abc</h2><p>让用户输入一个字符， /c: 可置顶可选字符</p>
+<h2 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h2><p>显示当前目录中的文件和子目录</p>
+<figure class="highlight plaintext"><figcaption><span>/a``` 显示所有文件， 包括隐藏文件和系统文件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line">## md/mkdir</span><br><span class="line">创建目录</span><br><span class="line">## rd</span><br><span class="line">删除目录</span><br><span class="line">## del</span><br><span class="line">删除指定文件</span><br><span class="line">## ren</span><br><span class="line">重命名文件</span><br><span class="line">## cls</span><br><span class="line">清空屏幕内容</span><br><span class="line">## type</span><br><span class="line">显示文件内容</span><br><span class="line">## copy</span><br><span class="line">拷贝文件, 涉及文件路径， 最好加上双引号</span><br><span class="line">&gt;&gt; con 代表屏幕， prn 代表打印机， nul 代表空设备</span><br><span class="line">```copy con test.txt```</span><br><span class="line">从键盘输入到test.txt, Ctrl+Z 结束输入</span><br><span class="line"></span><br><span class="line">```copy test.txt +```</span><br><span class="line">拷贝文件到自己， 修改文件修改时间。</span><br><span class="line">## xcopy</span><br><span class="line">复制文件和目录树</span><br><span class="line">## title</span><br><span class="line">设置窗口标题</span><br><span class="line">## ver</span><br><span class="line">显示系统版本</span><br><span class="line">## vol</span><br><span class="line">显示卷标</span><br><span class="line">## label</span><br><span class="line">显示卷标并提示输入新卷标</span><br><span class="line">## date, time</span><br><span class="line">显示日期和时间</span><br><span class="line">## find</span><br><span class="line">```find &quot;str&quot; file```</span><br><span class="line">在文件中查找含有字符串的行， 找不到则errorlevel为1。</span><br><span class="line">+ /i 忽略大小写</span><br><span class="line">+ /c 显示匹配的行数</span><br><span class="line">## more</span><br><span class="line">逐屏显示</span><br><span class="line">## tree</span><br><span class="line">显示目录结构</span><br><span class="line">## %0， %1 ... %9, %*</span><br><span class="line">+ %cd% 当前目录</span><br><span class="line">+ %0 批处理文件本身</span><br><span class="line">+ %1 ... %9 传入程序的第1-9个参数</span><br><span class="line">+ %* 从第一个参数开始的所有参数</span><br><span class="line">+ 自带的参数扩展标记， 已第i个参数为输入，得到对应结果， 参数并不会改变</span><br><span class="line">- %~i 去除引号</span><br><span class="line">- %~fi 扩充为一个完整的路径名</span><br><span class="line">- %~di 扩充为一个驱动器号</span><br><span class="line">- %~pi 扩充到一个路径</span><br><span class="line">- %~ni 扩充到一个文件名</span><br><span class="line">- %~xi 扩充到一个文件扩展名</span><br><span class="line">- %~si 扩充的路径只含有短名</span><br><span class="line">- %~ai 扩充到文件属性</span><br><span class="line">- %~ti 扩充到文件的时间</span><br><span class="line">- %~zi 扩充到文件的大小</span><br><span class="line">- %~$PATH:i 查找PATH环境变量指向的目录， 并获得第一个完全合格的名称。</span><br><span class="line">## setlocal， endlocal</span><br><span class="line">设置和取消[命令扩展名 和 延缓变量扩展]</span><br><span class="line">```SETLOCAL ENABLEEXTENSIONS```</span><br><span class="line">```SETLOCAL ENABLEDELAYEDEXPANSION```</span><br><span class="line">[enabledelayedexpansion](http://www.jb51.net/article/29323.htm)</span><br><span class="line">批处理是逐条命令读取的，for循环内部块算作一条， 在读取的过程中， 会将变量填充补全。</span><br><span class="line">所以for循环内部的set命令， 不会对之后的命令生效。</span><br><span class="line">如果启用了变量延迟， 则读取命令的时候，不对变量填充，而是在执行之前计算。</span><br><span class="line">但是要是用变量填充， 需要将%p% 换成!p!,否则仍然不会延迟计算。</span><br><span class="line"></span><br><span class="line">## set</span><br><span class="line">set 显示目前可用变量</span><br><span class="line">set p 显示p开头的变量</span><br><span class="line">set p=1 设置变量p的值为1</span><br><span class="line">## assoc</span><br><span class="line">设置&#x27;文件扩展名&#x27;关联到&#x27;文件类型&#x27;</span><br><span class="line">## ftype</span><br><span class="line">设置&#x27;文件类型&#x27;关联到&#x27;执行程序和参数&#x27;</span><br><span class="line">## pushd, popd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## if</span><br><span class="line">### if param1 == param2</span><br><span class="line">### if exist [filename]</span><br><span class="line">### if [not] errorlevel</span><br><span class="line">## for</span><br><span class="line">### for &#123;%variable | %%variable&#125; in (set) do command  [command-parameters]</span><br><span class="line">### /D</span><br><span class="line">```for /D %variable in (set)```</span><br><span class="line">与目录名匹配， 不与文件名匹配</span><br><span class="line">### /R</span><br><span class="line">```for /R [[drive:]path] %variable in (set)```</span><br><span class="line">检查已[drive:]path为根的目录树，不指定目录则为当前目录。</span><br><span class="line">### /L</span><br><span class="line">```for /L %variable in (start, step, end)```</span><br><span class="line">表示遍历一个已增量形式从开始到结束的集合。</span><br><span class="line">### /F</span><br><span class="line">```FOR /F [&quot;options&quot;] %variable IN ([file-set | &quot;string&quot; | &#x27;command&#x27;])```</span><br><span class="line">打开，读取并处理集合中的文件。</span><br><span class="line">处理包括读取文件，将其分成一行行文字。 然后解析成符号， 然后用找到的符号调用for循环。</span><br><span class="line">默认方式为使用空白符号分割， 跳过空白行</span><br><span class="line">#### options</span><br><span class="line">options可以指定参数替换默认解析操作。</span><br><span class="line">##### eol=c</span><br><span class="line">指定行结尾字符</span><br><span class="line">##### skip=n</span><br><span class="line">指定在文件开头忽略的行数</span><br><span class="line">##### delims=xxx</span><br><span class="line">指定分隔符集， 替换默认的空白符号。</span><br><span class="line">##### tokens=x,y, m-n</span><br><span class="line">指定for循环中取到的变量集。 如果返回的最后为*， 则剩余的所有符号会被传入最后一个变量。</span><br><span class="line">##### usebackq</span><br><span class="line">将括号之间的字符串变成一个反括号字符串，该字符串会被当做一个命令行执行， 并将其输出当做输入文件来分析。</span><br><span class="line">```FOR /F &quot;eol=; tokens=2,3* delims=, &quot; %i in (myfile.txt) do command ```</span><br><span class="line">读取myfile.txt, 忽略`;`之后的内容， 已`,`和 ` `作为分隔符， 使用 %i取第二个符号， %j取第三个符号， %k取剩余的所有符号。</span><br><span class="line"></span><br><span class="line">#组合命令</span><br><span class="line">## &amp;</span><br><span class="line">顺序执行多个命令， 不管是否成功，都会执行完</span><br><span class="line">## &amp;&amp;</span><br><span class="line">顺序执行多个命令，如果某一条失败， 则不继续执行后面的命令。</span><br><span class="line">## ||</span><br><span class="line">顺序执行多个命令，如果某一条成功， 则不继续执行后面的命令。</span><br><span class="line">## |</span><br><span class="line">管道命令, 将迁移命令的输出当做后一命令的输入。</span><br><span class="line">## &gt; , &gt;&gt;</span><br><span class="line">讲命令的输出写入到指定文件中。 &gt; 会先清空改文件内容再写入， &gt;&gt; 则是在文件最后追加内容.</span><br><span class="line">## &lt;</span><br><span class="line">`&lt;` 从文件中而不是键盘读入输入。</span><br><span class="line">`&gt;&amp;` 将一个句柄的输出传给另一个句柄当输入</span><br><span class="line">`&lt;&amp;` 从一个句柄读取内容，并写入到另一个句柄的输出</span><br><span class="line"></span><br><span class="line"># 字符串处理</span><br><span class="line">## 赋值</span><br><span class="line">set str1=xxx xx</span><br><span class="line">## 连接</span><br><span class="line">set str1=xxx</span><br><span class="line">set str2= xxxx</span><br><span class="line">set str3=%str1%%str2%</span><br><span class="line">## 截取</span><br><span class="line">set str2 = %str1:~起始值,长度%</span><br><span class="line">如果省略长度和逗号， 则一直截取到末尾</span><br><span class="line">## 求长度</span><br><span class="line">使用循环，每次截取1，计算循环次数。</span><br><span class="line">```bat</span><br><span class="line">set str=adfds</span><br><span class="line">set num=0</span><br><span class="line">:loop</span><br><span class="line">if not &quot;%str%&quot; == &quot;&quot;</span><br><span class="line">(</span><br><span class="line">    set /a num+=1</span><br><span class="line">    set str=%str:~1%</span><br><span class="line">    goto loop</span><br><span class="line">)</span><br><span class="line">echo %num%</span><br></pre></td></tr></table></figure>
+<h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><p>set str=%str:src=dst%</p>
+
+  </div>
+  <!--文末结束语-->
+  
+
+    <div style="text-align:center;color: #ccc;font-size:24px;">--- <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> 这篇看完了 ---</div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/01/08/render/opengl-%E8%B5%84%E6%BA%90%E7%AB%99/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>opengl-资源站</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2017/04/08/other/base-rules/">
+        <span>base_rules</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2017/04/08/other/Windows%E6%89%B9%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%86%85%E9%83%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">简单内部命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#help-cmd-%EF%BC%8C-cmd"><span class="toc-number">1.1.</span> <span class="toc-text">help [cmd] ， cmd &#x2F;?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo"><span class="toc-number">1.2.</span> <span class="toc-text">echo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">@命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Goto"><span class="toc-number">1.4.</span> <span class="toc-text">Goto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rem"><span class="toc-number">1.5.</span> <span class="toc-text">Rem, ::</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pause"><span class="toc-number">1.6.</span> <span class="toc-text">Pause</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Call"><span class="toc-number">1.7.</span> <span class="toc-text">Call</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#start"><span class="toc-number">1.8.</span> <span class="toc-text">start</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#choice-c-abc"><span class="toc-number">1.9.</span> <span class="toc-text">choice &#x2F;c:abc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dir"><span class="toc-number">1.10.</span> <span class="toc-text">dir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.11.</span> <span class="toc-text">替换</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd9127c2b6da5cfb3d828',
+    clientSecret: 'a1fadc5a05d2d693fb35075aa0cda62bfa972b44',
+    repo: 'git@github.com:vollen/vollen.github.com.git',
+    owner: 'vollen',
+    admin: ['vollen'],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18031193号-1</a>
+      
+      <span>
+        &copy; 2018 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        vollen
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
